@@ -1,18 +1,44 @@
 ## TransformerTTS
 
-### 개요
+### Overview
 
-이 레포지토리는 Transformer Network를 사용한 신경망 기반 음성 합성 모델인 Transformer-TTS의 PyTorch 구현입니다. ChoiHkk님의 [Transformer-TTS](https://github.com/choiHkk/Transformer-TTS/tree/main) 코드를 기반으로 구현되었으며, LJSpeech 데이터셋을 사용하여 학습되었습니다. Google colab 환경에서 [노트북](https://github.com/Orca0917/TransformerTTS/blob/main/TransformerTTS.ipynb)파일을 실행시켜볼 수 있습니다.
+This repository is a PyTorch implementation of a neural network-based speech synthesis model, Transformer-TTS, which uses the Transformer Network. It is based on the code by [ChoiHkk's Transformer-TTS](https://github.com/choiHkk/Transformer-TTS/tree/main) and has been trained on the LJSpeech dataset. You can run the [notebook](https://github.com/Orca0917/TransformerTTS/blob/main/TransformerTTS.ipynb) in a Google Colab environment.
 
-### 데이터셋
+<br>
+
+### Model architecture
+
+![Transformer architecture](./asset/transformer-tts-architecture.png)
+
+<br>
+
+### Dataset
+
+The dataset used is the English speech dataset LJSpeech. In the Jupyter notebook, the dataset is utilized without a separate download by using the `torchaudio` package. The data preprocessing was implemented by referring to the tacotron audio preprocessing by [Kyubong Park](https://github.com/Kyubyong).
 
 * https://keithito.com/LJ-Speech-Dataset/
 * torchaudio.dataset
 
-### 결과 
+<br>
+
+### Result 
+
+The training was conducted with a batch size of 16 on a total of 13,100 voice datasets for 10 epochs. The result is expressed as a gif showing the predicted mel spectrogram and the ground truth mel spectrogram every 100 steps.
 
 ![training result](./asset/transformer-tts-result.gif)
 
+<br>
+
+### Dependency
+
+```text
+torch                            2.3.0+cu121
+torchaudio                       2.3.0+cu121
+librosa                          0.10.2.post1
+numpy                            1.25.2
+scipy                            1.11.4
+python                           3.10.12
+```
 
 ### 참고 자료
 
