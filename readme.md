@@ -9,9 +9,9 @@
 * https://keithito.com/LJ-Speech-Dataset/
 
 
-### 결과 (1 epoch sample)
+### 결과 
 
-![alt text](./asset/1epoch-visualization.png)
+![training result](./asset/transformer-tts-result.gif)
 
 
 ### 참고 자료
