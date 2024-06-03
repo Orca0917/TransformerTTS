@@ -42,7 +42,7 @@ python                           3.10.12
 
 <br>
 
-### 참고 자료
+### References
 
 * Li, N., Liu, S., Liu, Y., Zhao, S., & Liu, M. (2019, July). Neural speech synthesis with transformer network. In Proceedings of the AAAI conference on artificial intelligence (Vol. 33, No. 01, pp. 6706-6713).
 
