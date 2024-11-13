@@ -1,0 +1,42 @@
+common:
+  d_hidden: 256
+  n_mels: 80
+
+encoder:
+  prenet:
+    d_hidden: 256
+    n_phonemes: 120
+    n_convolutions: 3
+    kernel_size: 3
+  transformer:
+    n_heads: 4
+    n_layers: 4
+    d_hidden: 256
+    d_feedforward: 256
+    dropout: 0.1
+
+decoder:
+  prenet:
+    in_dim: 80
+    sizes:
+      - 256
+      - 256
+  transformer:
+    d_hidden: 256
+    n_heads: 4
+    n_layers: 4
+    d_feedforward: 256
+    dropout: 0.1
+  mel_output:
+    n_mels: 80
+  stop_token:
+    d_hidden: 256
+
+positional_encoding:
+  max_seq_len: 1024
+  d_hidden: 256
+
+postnet:
+  kernel_size: 5
+  n_convolutions: 5
+  embedding_dim: 1024

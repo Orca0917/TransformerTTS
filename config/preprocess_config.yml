@@ -1,0 +1,17 @@
+dataset: "LJSpeech-1.1"
+
+path:
+  corpus_path: "/TransformerTTS/data/wavs"
+  metadata_path: "/TransformerTTS/data"
+
+preprocessing:
+  audio:
+    sampling_rate: 22050
+  stft:
+    n_fft: 1024
+    hop_length: 256
+    win_length: 1024
+  mel:
+    n_mels: 80
+    fmin: 80
+    fmax: 7600

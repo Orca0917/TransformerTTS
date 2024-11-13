@@ -1,0 +1,20 @@
+general:
+  seed: 42
+  ckpt_path: "out/ckpt"
+  log_path: "out/log"
+  result_path: "out/result"
+  vocoder_path: "vocoder/checkpoint-2500000steps.pkl"
+
+training:
+  batch_size: 16
+  learning_rate: 0.001
+  betas:
+    - 0.9
+    - 0.99
+  total_step: 100000
+
+logging:
+  log_step: 100
+  val_step: 1000
+  save_step: 10000
+  synth_step: 1000
