@@ -2,31 +2,27 @@ common:
   d_hidden: 256
   n_mels: 80
 
-encoder:
-  prenet:
-    d_hidden: 256
+transformer:
+  d_hidden: 256
+  n_heads: 4
+  n_encoder_layers: 4
+  n_decoder_layers: 4
+  d_feedforward: 256
+  dropout: 0.1
+
+prenet:
+  encoder:
     n_phonemes: 120
     n_convolutions: 3
     kernel_size: 3
-  transformer:
-    n_heads: 4
-    n_layers: 4
-    d_hidden: 256
-    d_feedforward: 256
-    dropout: 0.1
-
-decoder:
-  prenet:
-    in_dim: 80
+  decoder:
     sizes:
       - 256
       - 256
-  transformer:
-    d_hidden: 256
-    n_heads: 4
-    n_layers: 4
-    d_feedforward: 256
-    dropout: 0.1
+
+
+
+decoder:
   mel_output:
     n_mels: 80
   stop_token:
@@ -39,4 +35,4 @@ positional_encoding:
 postnet:
   kernel_size: 5
   n_convolutions: 5
-  embedding_dim: 1024
+  d_hidden: 1024

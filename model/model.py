@@ -1,24 +1,31 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from util import create_masks, create_square_subsequent_mask
+from util import create_square_subsequent_mask
+from model.layers import LinearNorm
 from .module import (
     EncoderPreNet, 
     DecoderPreNet, 
     ScaledPositionalEncoding, 
-    Encoder, 
-    Decoder
+    Transformer,
+    PostNet
 )
 
 
 class TransformerTTS(nn.Module):
     def __init__(self, m_config):
         super(TransformerTTS, self).__init__()
+        # configuration
+        d_hidden = m_config["common"]["d_hidden"]
+        n_mels   = m_config["common"]["n_mels"]
+
         self.encoder_prenet = EncoderPreNet(m_config)
         self.decoder_prenet = DecoderPreNet(m_config)
         self.scaled_positional_encoding = ScaledPositionalEncoding(m_config)
-        self.encoder = Encoder(m_config)
-        self.decoder = Decoder(m_config)
+        self.transformer = Transformer(m_config)
+        self.mel_linear = LinearNorm(d_hidden, n_mels)
+        self.stop_linear = LinearNorm(d_hidden, 1)
+        self.postnet = PostNet(m_config)
 
     def forward(self, phoneme, melspectrogram, src_len, mel_len, **kwargs):
         """
@@ -30,33 +37,29 @@ class TransformerTTS(nn.Module):
             src_len: [batch_size]
             mel_len: [batch_size]
         """
-        # Create all masks
-        masks = create_masks(phoneme, melspectrogram, src_len, mel_len)
+
+        batch_size, _, n_mels = melspectrogram.size()
+        device = melspectrogram.device
         
-        # Encoder
-        encoder_prenet_out = self.encoder_prenet(phoneme)
-        encoder_pe_out = self.scaled_positional_encoding(encoder_prenet_out)
-        memory = self.encoder(
-            encoder_pe_out,
-            mask=masks["encoder_attention_mask"],
-            src_key_padding_mask=masks["src_key_padding_mask"],
-        )
-        
-        # Decoder
-        B, _, n_mels = melspectrogram.size()
-        go_frame = torch.zeros(B, 1, n_mels).to(melspectrogram.device)
+        # Encoder prenet
+        prenet_src_out = self.encoder_prenet(phoneme)
+        src = self.scaled_positional_encoding(prenet_src_out)
+
+        # Decoder prenet
+        go_frame = torch.zeros(batch_size, 1, n_mels).to(device)
         melspectrogram = torch.cat([go_frame, melspectrogram[:, :-1, :]], dim=1)
-        decoder_prenet_out = self.decoder_prenet(melspectrogram)
-        decoder_pe_out = self.scaled_positional_encoding(decoder_prenet_out)
-        decoder_output = self.decoder(
-            decoder_pe_out,
-            memory,
-            tgt_mask=masks["tgt_mask"],
-            tgt_key_padding_mask=masks["tgt_key_padding_mask"],
-            memory_key_padding_mask=masks["memory_key_padding_mask"]
-        )
+        prenet_tgt_out = self.decoder_prenet(melspectrogram)
+        tgt = self.scaled_positional_encoding(prenet_tgt_out)
+
+        # transformer
+        transformer_out = self.transformer(src, tgt, src_len, mel_len)
+
+        # output layers
+        mel_output = self.mel_linear(transformer_out)
+        stop_token = self.stop_linear(transformer_out).squeeze(-1)
+        mel_output_postnet = self.postnet(mel_output) + mel_output
         
-        return decoder_output
+        return mel_output, stop_token, mel_output_postnet
     
     @torch.no_grad()
     def inference(self, phoneme, max_decoder_steps=1000, **kwargs):

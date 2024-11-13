@@ -1,34 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
-class LinearNorm(nn.Module):
-    def __init__(self, in_dim, out_dim, bias=True, w_init_gain='linear'):
-        super(LinearNorm, self).__init__()
-        self.linear_layer = nn.Linear(in_dim, out_dim, bias=bias)
-        nn.init.xavier_uniform_(
-            self.linear_layer.weight,
-            gain=nn.init.calculate_gain(w_init_gain))
-
-    def forward(self, x):
-        return self.linear_layer(x)
-
-
-class ConvNorm(nn.Module):
-    def __init__(self, in_channels, out_channels, kernel_size=1, stride=1,
-                 padding=None, dilation=1, bias=True, w_init_gain='linear'):
-        super(ConvNorm, self).__init__()
-        if padding is None:
-            padding = int(dilation * (kernel_size - 1) / 2)
-        self.conv = nn.Conv1d(in_channels, out_channels,
-                              kernel_size=kernel_size, stride=stride,
-                              padding=padding, dilation=dilation,
-                              bias=bias)
-        nn.init.xavier_uniform_(
-            self.conv.weight, gain=nn.init.calculate_gain(w_init_gain))
-
-    def forward(self, signal):
-        return self.conv(signal)
+from model.layers import LinearNorm, ConvNorm
 
 
 class EncoderPreNet(nn.Module):
@@ -36,13 +9,13 @@ class EncoderPreNet(nn.Module):
         super(EncoderPreNet, self).__init__()
         
         # Load configuration parameters
-        n_phoneme = m_config["encoder"]["prenet"]["n_phonemes"]
-        d_hidden = m_config["encoder"]["prenet"]["d_hidden"]
-        n_convolutions = m_config["encoder"]["prenet"]["n_convolutions"]
-        kernel_size = m_config["encoder"]["prenet"]["kernel_size"]
+        d_hidden        = m_config["common"]["d_hidden"]
+        n_phonemes      = m_config["prenet"]["encoder"]["n_phonemes"]
+        n_convolutions  = m_config["prenet"]["encoder"]["n_convolutions"]
+        kernel_size     = m_config["prenet"]["encoder"]["kernel_size"]
 
         # Embedding layer for phonemes
-        self.embedding = nn.Embedding(n_phoneme, d_hidden)
+        self.embedding = nn.Embedding(n_phonemes, d_hidden)
         
         # Convolution layers
         self.convolutions = nn.ModuleList([
@@ -71,8 +44,8 @@ class DecoderPreNet(nn.Module):
         super(DecoderPreNet, self).__init__()
         
         # Load configuration parameters
-        in_dim = m_config["decoder"]["prenet"]["in_dim"]
-        sizes = m_config["decoder"]["prenet"]["sizes"]
+        in_dim  = m_config["common"]["n_mels"]
+        sizes   = m_config["prenet"]["decoder"]["sizes"]
         
         in_sizes = [in_dim] + sizes[:-1]
         self.layers = nn.ModuleList([
@@ -91,40 +64,33 @@ class PostNet(nn.Module):
         super(PostNet, self).__init__()
         
         # Load configuration parameters
-        n_mel_channels = m_config["common"]["n_mels"]
-        postnet_embedding_dim = m_config["postnet"]["embedding_dim"]
-        postnet_kernel_size = m_config["postnet"]["kernel_size"]
-        postnet_n_convolutions = m_config["postnet"]["n_convolutions"]
+        n_mels          = m_config["common"]["n_mels"]
+        d_hidden        = m_config["postnet"]["d_hidden"]
+        kernel_size     = m_config["postnet"]["kernel_size"]
+        n_convolutions  = m_config["postnet"]["n_convolutions"]
         
         self.convolutions = nn.ModuleList()
         
         # Initial convolution layer
         self.convolutions.append(nn.Sequential(
-            ConvNorm(n_mel_channels, postnet_embedding_dim,
-                     kernel_size=postnet_kernel_size, stride=1,
-                     padding=(postnet_kernel_size - 1) // 2, w_init_gain='tanh'),
-            nn.BatchNorm1d(postnet_embedding_dim)
+            ConvNorm(n_mels, d_hidden, kernel_size, w_init_gain='tanh'),
+            nn.BatchNorm1d(d_hidden)
         ))
         
         # Intermediate convolution layers
-        for _ in range(1, postnet_n_convolutions - 1):
+        for _ in range(1, n_convolutions - 1):
             self.convolutions.append(nn.Sequential(
-                ConvNorm(postnet_embedding_dim, postnet_embedding_dim,
-                         kernel_size=postnet_kernel_size, stride=1,
-                         padding=(postnet_kernel_size - 1) // 2, w_init_gain='tanh'),
-                nn.BatchNorm1d(postnet_embedding_dim)
+                ConvNorm(d_hidden, d_hidden, kernel_size, w_init_gain='tanh'),
+                nn.BatchNorm1d(d_hidden)
             ))
         
         # Final convolution layer
         self.convolutions.append(nn.Sequential(
-            ConvNorm(postnet_embedding_dim, n_mel_channels,
-                     kernel_size=postnet_kernel_size, stride=1,
-                     padding=(postnet_kernel_size - 1) // 2, w_init_gain='linear'),
-            nn.BatchNorm1d(n_mel_channels)
+            ConvNorm(d_hidden, n_mels, kernel_size, w_init_gain='linear'),
+            nn.BatchNorm1d(n_mels)
         ))
 
     def forward(self, x):
-        
         x = x.transpose(1, 2)
         for conv in self.convolutions[:-1]:
             x = F.dropout(torch.tanh(conv(x)), 0.5, self.training)
@@ -133,12 +99,10 @@ class PostNet(nn.Module):
     
     
 class ScaledPositionalEncoding(nn.Module):
-    def __init__(self, m_config):
+    def __init__(self, m_config, max_len=1024):
         super(ScaledPositionalEncoding, self).__init__()
         
-        # Load configuration parameters
-        max_len = m_config["positional_encoding"]["max_seq_len"]
-        d_hidden = m_config["positional_encoding"]["d_hidden"]
+        d_hidden = m_config["common"]["d_hidden"]
         
         # Positional encoding matrix initialization
         pe = torch.zeros(max_len, d_hidden)
@@ -158,68 +122,48 @@ class ScaledPositionalEncoding(nn.Module):
         return prenet_out + self.alpha * self.pe[:, :prenet_out.size(1), :]
     
 
-class Encoder(nn.Module):
+class Transformer(nn.Module):
     def __init__(self, m_config):
-        super(Encoder, self).__init__()
-        
-        # Load configuration parameters
-        d_model = m_config["encoder"]["transformer"]["d_hidden"]
-        n_head = m_config["encoder"]["transformer"]["n_heads"]
-        d_feedforward = m_config["encoder"]["transformer"]["d_feedforward"]
-        n_layers = m_config["encoder"]["transformer"]["n_layers"]
-        dropout = m_config["encoder"]["transformer"]["dropout"]
-        
-        self.encoder_layer = nn.TransformerEncoderLayer(
-            d_model=d_model, nhead=n_head, dim_feedforward=d_feedforward,
-            dropout=dropout, batch_first=True
-        )
-        self.encoder = nn.TransformerEncoder(
-            encoder_layer=self.encoder_layer, num_layers=n_layers
-        )
-        
-    def forward(self, encoder_pe_out, mask, src_key_padding_mask):
-        return self.encoder(src=encoder_pe_out, mask=mask, src_key_padding_mask=src_key_padding_mask)
+        super(Transformer, self).__init__()
+        d_model = m_config["transformer"]["d_hidden"]
+        n_heads = m_config["transformer"]["n_heads"]
+        n_encoder_layers = m_config["transformer"]["n_encoder_layers"]
+        n_decoder_layers = m_config["transformer"]["n_decoder_layers"]
+        d_feedforward = m_config["transformer"]["d_feedforward"]
+        dropout = m_config["transformer"]["dropout"]
+        self.transformer = nn.Transformer(d_model, n_heads, n_encoder_layers, n_decoder_layers, d_feedforward, dropout, batch_first=True)
 
-
-class Decoder(nn.Module):
-    def __init__(self, m_config):
-        super(Decoder, self).__init__()
-        
-        # Load configuration parameters
-        d_model = m_config["decoder"]["transformer"]["d_hidden"]
-        n_head = m_config["decoder"]["transformer"]["n_heads"]
-        d_feedforward = m_config["decoder"]["transformer"]["d_feedforward"]
-        n_layers = m_config["decoder"]["transformer"]["n_layers"]
-        dropout = m_config["decoder"]["transformer"]["dropout"]
-        n_mels = m_config["common"]["n_mels"]
-        self.n_mels = n_mels
-        
-        self.decoder_layer = nn.TransformerDecoderLayer(
-            d_model=d_model, nhead=n_head, dim_feedforward=d_feedforward,
-            dropout=dropout, batch_first=True
-        )
-        self.decoder = nn.TransformerDecoder(
-            decoder_layer=self.decoder_layer, num_layers=n_layers
+    def forward(self, src, tgt, src_len, tgt_len):
+        masks = self.get_masks(src_len, tgt_len)
+        return self.transformer(
+            src=src,
+            tgt=tgt,
+            tgt_mask=masks["tgt_mask"],
+            src_key_padding_mask=masks["src_key_padding_mask"],
+            tgt_key_padding_mask=masks["tgt_key_padding_mask"],
+            memory_key_padding_mask=masks["src_key_padding_mask"],
         )
 
-        # Output layers
-        self.mel_linear = LinearNorm(d_model, n_mels)
-        self.stop_linear = LinearNorm(d_model, 1)
-        self.postnet = PostNet(m_config)
+    def get_masks(self, src_len, tgt_len):
+        # src_len: B, 1
+        # tgt_len: B, 1
+        batch_size = src_len.size(0)
 
-    def forward(self, decoder_pe_out, memory, tgt_mask=None, memory_mask=None,
-                tgt_key_padding_mask=None, memory_key_padding_mask=None):
-        decoder_output = self.decoder(
-            tgt=decoder_pe_out, 
-            memory=memory, 
-            tgt_mask=tgt_mask,
-            memory_mask=memory_mask, 
-            tgt_key_padding_mask=tgt_key_padding_mask, 
-            memory_key_padding_mask=memory_key_padding_mask
-        )
+        src_max_len = torch.max(src_len)
+        tgt_max_len = torch.max(tgt_len)
 
-        mel_output = self.mel_linear(decoder_output)
-        stop_token = self.stop_linear(decoder_output)
-        mel_output_postnet = self.postnet(mel_output) + mel_output
+        src_key_padding_mask = torch.zeros((batch_size, src_max_len))
+        for idx, len in enumerate(src_len):
+            src_key_padding_mask[idx, len:] = 1
         
-        return mel_output, stop_token.squeeze(2), mel_output_postnet
+        tgt_key_padding_mask = torch.zeros((batch_size, tgt_max_len))
+        for idx, len in enumerate(tgt_len):
+            tgt_key_padding_mask[idx, len:] = 1
+
+        tgt_mask = self.transformer.generate_square_subsequent_mask(tgt_max_len)
+
+        return {
+            "tgt_mask": tgt_mask,
+            "src_key_padding_mask": (src_key_padding_mask == 1),
+            "tgt_key_padding_mask": (tgt_key_padding_mask == 1),
+        }
