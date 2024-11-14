@@ -1,3 +1,6 @@
 __pycache__
 data
 checkpoint-2500000steps.pkl
+
+
+out/*

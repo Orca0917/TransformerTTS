@@ -1,6 +1,7 @@
 import os
 import random
 import torch
+import scipy
 import numpy as np
 import matplotlib.pyplot as plt
 from parallel_wavegan.utils import load_model
@@ -21,7 +22,6 @@ def get_vocoder(t_config, device):
     vocoder.remove_weight_norm()
     _ = vocoder.eval()
     return vocoder
-
 
 def to_device(batch, device):
     (
@@ -102,50 +102,7 @@ def pad_2D(batch):
     # batch : [batch_size, seq_len, n_mel]
     return torch.nn.utils.rnn.pad_sequence(batch, batch_first=True, padding_value=0)
 
-def create_masks(phoneme, melspectrogram, src_len, mel_len):
-    device = phoneme.device
-    batch_size = phoneme.size(0)
-    max_src_len = phoneme.size(1)
-    max_mel_len = melspectrogram.size(1)
-
-    # 인코더 마스크
-    src_key_padding_mask = create_src_mask(phoneme, src_len)  # Shape: [batch_size, max_src_len]
-    encoder_attention_mask = None  # 필요하지 않다면 None으로 설정
-
-    # 디코더 마스크
-    tgt_mask = create_look_ahead_mask(max_mel_len, device)  # Shape: [max_mel_len, max_mel_len]
-    tgt_key_padding_mask = create_tgt_padding_mask(mel_len, max_mel_len, device)  # Shape: [batch_size, max_mel_len]
-
-    # 크로스 어텐션 마스크 (필요한 경우)
-    memory_key_padding_mask = src_key_padding_mask  # Shape: [batch_size, max_src_len]
-    memory_mask = None  # 필요하지 않다면 None으로 설정
-
-    return {
-        "encoder_attention_mask": encoder_attention_mask,
-        "src_key_padding_mask": src_key_padding_mask,
-        "tgt_mask": tgt_mask,
-        "tgt_key_padding_mask": tgt_key_padding_mask,
-        "memory_mask": memory_mask,
-        "memory_key_padding_mask": memory_key_padding_mask
-    }
-
-def create_src_mask(src_seq, src_len):
-    batch_size, max_src_len = src_seq.size()
-    src_key_padding_mask = torch.zeros((batch_size, max_src_len), dtype=torch.bool, device=src_seq.device)
-    for idx, length in enumerate(src_len):
-        src_key_padding_mask[idx, length:] = True
-    return src_key_padding_mask
-
-def create_look_ahead_mask(max_len, device):
-    return torch.triu(torch.ones((max_len, max_len), device=device, dtype=torch.bool), diagonal=1)
-
-def create_tgt_padding_mask(mel_len, max_len, device):
-    batch_size = len(mel_len)
-    tgt_padding_mask = torch.zeros((batch_size, max_len), dtype=torch.bool, device=device)
-    for idx, length in enumerate(mel_len):
-        tgt_padding_mask[idx, length:] = True
-    return tgt_padding_mask
-
-def create_square_subsequent_mask(sz):
-    return torch.triu(torch.ones(sz, sz) == 1, diagonal=1).transpose(0, 1).bool()
-
+def synthesize(vocoder, melspectrogram, save_path, sr=22050):
+    y_out = vocoder.inference(melspectrogram)
+    reconstruction = y_out.view(-1).detach().cpu().numpy()
+    scipy.io.wavfile.write(save_path, 22050, reconstruction)

@@ -1,148 +1,256 @@
 import os
 import yaml
 import torch
-import scipy
 import argparse
-from dataset import TransformerTTSDataset
+import warnings
+from tqdm import tqdm
 from torch.utils.data import DataLoader, random_split
-from util import seed_everything, get_vocoder, to_device, plot_melspectrogram
+from torch.utils.tensorboard import SummaryWriter 
+
+from dataset import TransformerTTSDataset
+from utils.util import (
+    seed_everything,
+    get_vocoder,
+    to_device,
+    plot_melspectrogram,
+    synthesize,
+)
 from model import TransformerTTS
 from loss import TransformerTTSLoss
-from tqdm import tqdm
+from optimizer import ScheduledOptim
 
-import warnings
 warnings.filterwarnings("ignore")
 
 
-def main(m_config, p_config, t_config):
-    seed_everything(t_config)
-    device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+class Trainer:
+    def __init__(self, m_config, p_config, t_config):
+        self.m_config = m_config
+        self.p_config = p_config
+        self.t_config = t_config
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    # configuration
-    batch_size = t_config["training"]["batch_size"]
-    lr = t_config["training"]["learning_rate"]
-    betas = t_config["training"]["betas"]
-    total_step = t_config["training"]["total_step"]
+        # Seed and prepare environment
+        seed_everything(t_config)
+        self._prepare_directories()
+        self._load_data()
+        self._initialize_model()
+        self.global_step = 0
 
-    # dataset
-    dataset = TransformerTTSDataset(p_config)
-    trainset, validset = random_split(dataset, [len(dataset) - 1310, 1310])
-    train_loader = DataLoader(trainset, batch_size, shuffle=True, collate_fn=dataset.collate_fn, drop_last=True)
-    valid_loader = DataLoader(validset, batch_size, shuffle=False, collate_fn=dataset.collate_fn, drop_last=True)
+        # Tensorboard configuration
+        self.writer = SummaryWriter(log_dir=self.log_path)
 
-    # trainers
-    model = TransformerTTS(m_config).to(device)
-    optim = torch.optim.Adam(model.parameters(), lr=lr, betas=betas)
-    criterion = TransformerTTSLoss()
-    vocoder = get_vocoder(t_config, device)
+    def _prepare_directories(self):
+        self.log_path = self.t_config["general"]["log_path"]
+        self.result_path = self.t_config["general"]["result_path"]
+        self.ckpt_path = self.t_config["general"]["ckpt_path"]
 
-    global_step_tqdm = tqdm(desc="Global training step", total=total_step)
-    global_step_tqdm.update(0)
-    epoch = 1
+        os.makedirs(self.log_path, exist_ok=True)
+        os.makedirs(os.path.join(self.result_path, "wav"), exist_ok=True)
+        os.makedirs(self.ckpt_path, exist_ok=True)
 
-    # train
-    while True:
-        train_one_epoch(t_config, device, epoch, global_step_tqdm, train_loader, model, criterion, optim, vocoder)
-        valid_one_epoch(t_config, device, epoch, global_step_tqdm, valid_loader, model, criterion, vocoder)
-        epoch += 1
+    def _load_data(self):
+        dataset = TransformerTTSDataset(self.p_config)
+        val_size = self.t_config["training"].get("validation_size", 1310)
+        train_size = len(dataset) - val_size
+        trainset, validset = random_split(dataset, [train_size, val_size])
+
+        batch_size = self.t_config["training"]["batch_size"]
+        collate_fn = dataset.collate_fn
+
+        self.train_loader = DataLoader(
+            trainset,
+            batch_size=batch_size,
+            shuffle=True,
+            collate_fn=collate_fn,
+            drop_last=True,
+        )
+        self.valid_loader = DataLoader(
+            validset,
+            batch_size=batch_size,
+            shuffle=False,
+            collate_fn=collate_fn,
+            drop_last=True,
+        )
+
+    def _initialize_model(self):
+        self.model = TransformerTTS(self.m_config).to(self.device)
+        self.optimizer = ScheduledOptim(self.model, self.t_config, self.m_config)
+        self.criterion = TransformerTTSLoss()
+        self.vocoder = get_vocoder(self.t_config, self.device)
+
+        self.total_step = self.t_config["training"]["total_step"]
+        self.log_step = self.t_config["logging"]["log_step"]
+        self.synth_step = self.t_config["logging"]["synth_step"]
+        self.save_step = self.t_config["logging"]["save_step"]
+
+    def train(self):
+        epoch = 1
+        pbar = tqdm(total=self.total_step, desc="Global Training Step")
+        while self.global_step < self.total_step:
+            self._train_one_epoch(epoch, pbar)
+            self._validate_one_epoch(epoch)
+            epoch += 1
+        pbar.close()
+        self.writer.close()
+
+    def _train_one_epoch(self, epoch, pbar):
+        self.model.train()
+        total_loss, mel_loss, stop_loss = 0, 0, 0
+
+        for batch in tqdm(
+            self.train_loader, desc=f"Training Epoch {epoch}", leave=False
+        ):
+            batch = to_device(batch, self.device)
+            self.optimizer.zero_grad()
+
+            # Forward pass
+            outputs = self.model(**batch)
+            losses = self.criterion(*outputs, **batch)
+
+            # Backward and optimize
+            losses["total_loss"].backward()
+            self.optimizer.step_and_update_lr()
+            self.current_lr = self.optimizer._optimizer.param_groups[0]["lr"]
+
+            # Logging
+            self.global_step += 1
+            pbar.update(1)
+
+            if self.global_step % self.log_step == 0:
+                self._log_step(losses, self.current_lr)
+
+            self.writer.add_scalar("Loss/Train/Total_Loss", losses["total_loss"].item(), self.global_step)
+            self.writer.add_scalar("Loss/Train/Mel_Loss", losses["mel_loss"].item(), self.global_step)
+            self.writer.add_scalar("Loss/Train/Stop_Loss", losses["stop_loss"].item(), self.global_step)
+            self.writer.add_scalar("Learning_Rate", self.current_lr, self.global_step)
+
+            if self.global_step % self.save_step == 0:
+                self._save_checkpoint()
+
+            # Accumulate losses
+            total_loss += losses["total_loss"].item()
+            mel_loss += losses["mel_loss"].item()
+            stop_loss += losses["stop_loss"].item()
+
+            if self.global_step >= self.total_step:
+                break
+
+        # Epoch summary
+        self._log_epoch(
+            epoch, total_loss, mel_loss, stop_loss, len(self.train_loader), "TRAIN"
+        )
+
+    def _validate_one_epoch(self, epoch):
+        self.model.eval()
+        total_loss, mel_loss, stop_loss = 0, 0, 0
+
+        with torch.no_grad():
+            for idx, batch in enumerate(
+                tqdm(self.valid_loader, desc=f"Validation Epoch {epoch}", leave=False)
+            ):
+                batch = to_device(batch, self.device)
+
+                # Forward pass
+                outputs = self.model(**batch)
+                losses = self.criterion(*outputs, **batch)
+
+                self.writer.add_scalar("Loss/Validation/Total_Loss", losses["total_loss"].item(), self.global_step)
+                self.writer.add_scalar("Loss/Validation/Mel_Loss", losses["mel_loss"].item(), self.global_step)
+                self.writer.add_scalar("Loss/Validation/Stop_Loss", losses["stop_loss"].item(), self.global_step)
+
+                # Accumulate losses
+                total_loss += losses["total_loss"].item()
+                mel_loss += losses["mel_loss"].item()
+                stop_loss += losses["stop_loss"].item()
+
+                if idx == 0:
+                    self._synthesize_sample(batch, outputs, validation=True)
+
+        # Epoch summary
+        self._log_epoch(
+            epoch, total_loss, mel_loss, stop_loss, len(self.valid_loader), "VALID"
+        )
+
+    def _log_step(self, losses, current_lr):
+        message = (
+            f"Step {self.global_step}/{self.total_step} | "
+            f"Total Loss: {losses['total_loss']:.4f} | "
+            f"Mel Loss: {losses['mel_loss']:.4f} | "
+            f"Stop Loss: {losses['stop_loss']:.4f} | "
+            f"LR: {current_lr:.6f}"
+        )
+        tqdm.write(message)
+        self._write_log(message)
+
+    def _log_epoch(self, epoch, total_loss, mel_loss, stop_loss, num_batches, mode):
+        avg_total_loss = total_loss / num_batches
+        avg_mel_loss = mel_loss / num_batches
+        avg_stop_loss = stop_loss / num_batches
+
+        message = (
+            f"[{mode}] Epoch {epoch:03d} | "
+            f"Average Total Loss: {avg_total_loss:.4f} | "
+            f"Average Mel Loss: {avg_mel_loss:.4f} | "
+            f"Average Stop Loss: {avg_stop_loss:.4f}"
+        )
+        tqdm.write(message)
+        self._write_log(message)
+
+        self.writer.add_scalar(f"Loss/{mode}/Average_Total_Loss", avg_total_loss, epoch)
+        self.writer.add_scalar(f"Loss/{mode}/Average_Mel_Loss", avg_mel_loss, epoch)
+        self.writer.add_scalar(f"Loss/{mode}/Average_Stop_Loss", avg_stop_loss, epoch)
+
+    def _write_log(self, message):
+        with open(os.path.join(self.log_path, "log.txt"), "a") as f:
+            f.write(message + "\n")
+
+    def _synthesize_sample(self, batch, outputs, validation=False):
+        idx = 0  # Take the first sample in the batch
+        tgt_mel = batch["melspectrogram"][idx].detach().cpu().numpy()
+        prd_mel = outputs[0][idx].detach().cpu().numpy()
+
+        # Plot mel-spectrogram
+        plot_melspectrogram(self.result_path, self.global_step, tgt_mel, prd_mel)
+
+        # Synthesize audio
+        text = batch["text"][idx]
+        wav_dir = os.path.join(self.result_path, "wav")
+        wav_filename = f"{self.global_step}step_{text}.wav"
+        wav_path = os.path.join(wav_dir, wav_filename)
+        synthesize(self.vocoder, outputs[0][idx], wav_path)
+
+    def _save_checkpoint(self):
+        checkpoint = {
+            "model": self.model.state_dict(),
+            "optimizer": self.optimizer._optimizer.state_dict(),
+            "step": self.global_step,
+            "learning_rate": self.current_lr,
+        }
+        save_path = os.path.join(self.ckpt_path, f"{self.global_step}steps.ckpt")
+        torch.save(checkpoint, save_path)
+        tqdm.write(f"Saved checkpoint at {save_path}")
 
 
-def train_one_epoch(t_config, device, epoch, global_tqdm, loader, model, criterion, optim, vocoder):
-    log_step = t_config["logging"]["log_step"]
-    log_path = t_config["general"]["log_path"]
-    res_path = t_config["general"]["result_path"]
-    synth_step = t_config["logging"]["synth_step"]
-    model.train()
-    
-    global_total_loss = 0
-    global_mel_loss = 0
-    global_stop_loss = 0
-    for batch in tqdm(loader, desc="Training epoch {}".format(epoch)):
-        batch = to_device(batch, device)
-
-        # forward
-        out = model(**batch)
-        loss = criterion(*out, **batch)
-
-        # back propagation
-        optim.zero_grad()
-        loss["total_loss"].backward()
-        optim.step()
-
-        # logging
-        global_tqdm.update(1)
-        if global_tqdm.n % log_step == 0:
-            message1 = "Step {} / {} ".format(global_tqdm.n, global_tqdm.total)
-            message2 = "Total loss: {:.4f}, Mel loss: {:.4f}, Stop loss: {:.4f}".format(*loss.values())
-            global_tqdm.write(message1 + message2)
-
-            with open(os.path.join(log_path, "log.txt"), "a") as f:
-                f.write(message1 + message2 + "\n")
-
-        if global_tqdm.n % synth_step == 0:
-            # plot
-            tgt_mel = batch["melspectrogram"][0].detach().cpu().numpy()
-            prd_mel = out[0][0].detach().cpu().numpy()
-            plot_melspectrogram(res_path, global_tqdm.n, tgt_mel, prd_mel)
-            
-            # synthesize
-            y_out = vocoder.inference(out[0][0])
-            reconstruction = y_out.view(-1).detach().cpu().numpy()
-            wav_path = os.path.join(res_path, "wav", "{}step-{}.wav".format(global_tqdm.n, batch["text"][0]))
-            scipy.io.wavfile.write(wav_path, 22050, reconstruction)
-
-        global_total_loss += loss["total_loss"].item()
-        global_mel_loss += loss["mel_loss"].item()
-        global_stop_loss += loss["stop_loss"].item()
-
-    global_total_loss = global_total_loss / len(loader)
-    global_mel_loss = global_mel_loss / len(loader)
-    global_stop_loss = global_stop_loss / len(loader)
-
-    message = "[TRAIN] Epoch {:03d} | Average total loss: {:.4f} | Average mel loss: {:.4f} | Average stop loss: {:.4f}".format(
-        epoch, global_total_loss, global_mel_loss, global_stop_loss)
-    global_tqdm.write(message)
+def parse_args():
+    parser = argparse.ArgumentParser(description="Transformer TTS Training Script")
+    parser.add_argument("-m", "--model", type=str, required=True, help="Path to model configuration file")
+    parser.add_argument("-p", "--preprocess", type=str, required=True, help="Path to preprocess configuration file")
+    parser.add_argument("-t", "--train", type=str, required=True, help="Path to train configuration file")
+    return parser.parse_args()
 
 
-def valid_one_epoch(t_config, device, epoch, global_tqdm, loader, model, criterion, vocoder):
-    log_path = t_config["general"]["log_path"]
-    res_path = t_config["general"]["result_path"]
-
-    global_total_loss = 0
-    global_mel_loss = 0
-    global_stop_loss = 0
-
-    model.eval()
-    with torch.no_grad():
-        for idx, batch in enumerate(tqdm(loader, desc="Validation epoch {}".format(epoch))):
-            batch = to_device(batch, device)
-
-            # forward
-            out = model(**batch)
-            loss = criterion(*out, **batch)
-
-            global_total_loss += loss["total_loss"].item()
-            global_mel_loss += loss["mel_loss"].item()
-            global_stop_loss += loss["stop_loss"].item()
-
-    global_total_loss = global_total_loss / len(loader)
-    global_mel_loss = global_mel_loss / len(loader)
-    global_stop_loss = global_stop_loss / len(loader)
-
-    message = "[VALID] Epoch {:03d} | Average total loss: {:.4f} | Average mel loss: {:.4f} | Average stop loss: {:.4f}".format(
-        epoch, global_total_loss, global_mel_loss, global_stop_loss)
-    global_tqdm.write(message)
+def load_configs(args):
+    with open(args.model, "r") as m_file, open(args.preprocess, "r") as p_file, open(
+        args.train, "r"
+    ) as t_file:
+        m_config = yaml.safe_load(m_file)
+        p_config = yaml.safe_load(p_file)
+        t_config = yaml.safe_load(t_file)
+    return m_config, p_config, t_config
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-m", "--model", type=str, help="path to model configuration file")
-    parser.add_argument("-p", "--preprocess", type=str, help="path to preprocess configuration file")
-    parser.add_argument("-t", "--train", type=str, help="path to train configuration file")
-    args = parser.parse_args()
-
-    m_config = yaml.load(open(args.model, "r"), Loader=yaml.FullLoader)
-    p_config = yaml.load(open(args.preprocess, "r"), Loader=yaml.FullLoader)
-    t_config = yaml.load(open(args.train, "r"), Loader=yaml.FullLoader)
-
-    main(m_config, p_config, t_config)
+    args = parse_args()
+    m_config, p_config, t_config = load_configs(args)
+    trainer = Trainer(m_config, p_config, t_config)
+    trainer.train()

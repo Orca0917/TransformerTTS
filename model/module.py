@@ -134,6 +134,10 @@ class Transformer(nn.Module):
         self.transformer = nn.Transformer(d_model, n_heads, n_encoder_layers, n_decoder_layers, d_feedforward, dropout, batch_first=True)
 
     def forward(self, src, tgt, src_len, tgt_len):
+        # src: (B, src_len, d_hidden)
+        # tgt: (B, tgt_len, d_hidden)
+        # src_len: (B, 1)
+        # tgt_len: (B, 1)
         masks = self.get_masks(src_len, tgt_len)
         return self.transformer(
             src=src,
@@ -144,26 +148,29 @@ class Transformer(nn.Module):
             memory_key_padding_mask=masks["src_key_padding_mask"],
         )
 
+    def _get_key_padding_masks(self, lens):
+        batch_size = lens.size(0)
+        device = lens.device
+
+        max_len = torch.max(lens).item()
+        key_padding_mask = torch.zeros((batch_size, max_len), dtype=torch.bool)
+        for idx, len in enumerate(lens):
+            key_padding_mask[idx, len.item():] = True
+        
+        return key_padding_mask.to(device)
+
     def get_masks(self, src_len, tgt_len):
         # src_len: B, 1
         # tgt_len: B, 1
-        batch_size = src_len.size(0)
+        device = src_len.device
+        tgt_max_len = torch.max(tgt_len).item()
 
-        src_max_len = torch.max(src_len)
-        tgt_max_len = torch.max(tgt_len)
-
-        src_key_padding_mask = torch.zeros((batch_size, src_max_len))
-        for idx, len in enumerate(src_len):
-            src_key_padding_mask[idx, len:] = 1
-        
-        tgt_key_padding_mask = torch.zeros((batch_size, tgt_max_len))
-        for idx, len in enumerate(tgt_len):
-            tgt_key_padding_mask[idx, len:] = 1
-
+        src_key_padding_mask = self._get_key_padding_masks(src_len)
+        tgt_key_padding_mask = self._get_key_padding_masks(tgt_len)
         tgt_mask = self.transformer.generate_square_subsequent_mask(tgt_max_len)
 
         return {
-            "tgt_mask": tgt_mask,
-            "src_key_padding_mask": (src_key_padding_mask == 1),
-            "tgt_key_padding_mask": (tgt_key_padding_mask == 1),
+            "tgt_mask": tgt_mask.to(device),
+            "src_key_padding_mask": src_key_padding_mask.to(device),
+            "tgt_key_padding_mask": tgt_key_padding_mask.to(device),
         }

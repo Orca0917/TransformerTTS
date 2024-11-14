@@ -5,9 +5,9 @@ common:
 transformer:
   d_hidden: 256
   n_heads: 4
-  n_encoder_layers: 4
-  n_decoder_layers: 4
-  d_feedforward: 256
+  n_encoder_layers: 3
+  n_decoder_layers: 3
+  d_feedforward: 1024
   dropout: 0.1
 
 prenet:
@@ -19,9 +19,6 @@ prenet:
     sizes:
       - 256
       - 256
-
-
-
 decoder:
   mel_output:
     n_mels: 80

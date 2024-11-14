@@ -13,6 +13,19 @@ training:
     - 0.99
   total_step: 100000
 
+optimizer:
+  betas:
+    - 0.9
+    - 0.98
+  eps: 0.000000001
+  weight_decay: 0.000001
+  warm_up_step: 4000
+  anneal_steps:
+    - 300000
+    - 400000
+    - 500000
+  anneal_rate: 0.3
+
 logging:
   log_step: 100
   val_step: 1000

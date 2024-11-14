@@ -3,8 +3,8 @@ import yaml
 import torch
 import torchaudio
 from torch.utils.data import Dataset, DataLoader
-from util import process_metadata, plot_mel, pad_1D, pad_2D
-from audio import get_spectrogram, get_melspectrogram
+from utils.util import process_metadata, plot_mel, pad_1D, pad_2D
+from utils.audio import get_spectrogram, get_melspectrogram
 
 class TransformerTTSDataset(Dataset):
     def __init__(self, config):
