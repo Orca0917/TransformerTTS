@@ -1,54 +1,71 @@
-## TransformerTTS
+# TransformerTTS
 
-### Overview
-
-This repository is a PyTorch implementation of a neural network-based speech synthesis model, Transformer-TTS, which uses the Transformer Network. It is based on the code by [ChoiHkk's Transformer-TTS](https://github.com/choiHkk/Transformer-TTS/tree/main) and has been trained on the LJSpeech dataset. You can run the [notebook](https://github.com/Orca0917/TransformerTTS/blob/main/TransformerTTS.ipynb) in a Google Colab environment.
+A PyTorch implementation of **Transformer-TTS**, a neural network-based speech synthesis model leveraging the Transformer Network. This unofficial repository uses **teacher forcing** for training. Currently I'm addressing challenges in inference by experimenting with techniques like **teacher forcing ratio adjustment** and **pseudo-label training**.
 
 <br>
 
-### Model architecture
+## Model Architecture
 
 ![Transformer architecture](./asset/transformer-tts-architecture.png)
 
-<br>
-
-### Dataset
-
-The dataset used is the English speech dataset LJSpeech. In the Jupyter notebook, the dataset is utilized without a separate download by using the `torchaudio` package. The data preprocessing was implemented by referring to the tacotron audio preprocessing by [Kyubong Park](https://github.com/Kyubyong).
-
-* https://keithito.com/LJ-Speech-Dataset/
-* torchaudio.dataset
+The architecture follows the Transformer-TTS model design proposed in the reference paper. It employs self-attention mechanisms to effectively learn the mapping from text to mel-spectrograms.
 
 <br>
 
-### Result 
+## Dataset
 
-The training was conducted with a batch size of 16 on a total of 13,100 voice datasets for 10 epochs. The result is expressed as a gif showing the predicted mel spectrogram and the ground truth mel spectrogram every 100 steps.
+The [LJSpeech dataset](https://keithito.com/LJ-Speech-Dataset/) is used for training. You can download the dataset manually or through the `torchaudio` library. Organize the dataset as follows:
 
-![training result](./asset/transformer-tts-result.gif)
+```
+|- data
+  |- wavs/
+  |- metadata.csv
+```
+
+For more details, refer to the [torchaudio dataset documentation](https://pytorch.org/audio/stable/datasets.html).
 
 <br>
 
-### Dependency
+## Vocoder
 
-```text
-torch                            2.3.0+cu121
-torchaudio                       2.3.0+cu121
-librosa                          0.10.2.post1
-numpy                            1.25.2
-scipy                            1.11.4
-python                           3.10.12
+This repository uses **HiFi-GAN** as the vocoder, integrated with [kan-bayashi's parallel wavegan](https://github.com/kan-bayashi/ParallelWaveGAN). Ensure the following files are downloaded and placed in the `vocoder` directory:
+
+```
+|- vocoder
+  |- checkpoint-2500000steps.pkl
+  |- config.yml
+  |- mu.npy
+  |- var.npy
 ```
 
 <br>
 
-### References
+## Installation & Training
 
-* Li, N., Liu, S., Liu, Y., Zhao, S., & Liu, M. (2019, July). Neural speech synthesis with transformer network. In Proceedings of the AAAI conference on artificial intelligence (Vol. 33, No. 01, pp. 6706-6713).
+Follow these steps to set up and train the model:
 
-* keithito https://github.com/keithito/tacotron/tree/master/text
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-* ming024 https://github.com/ming024/FastSpeech2/tree/master/audio
+2. Start training with configurable parameters:
+   ```bash
+   python train.py -m config/model_config.yml -p config/preprocess_config.yml -t config/train_config.yml
+   ```
 
-* choiHkk https://github.com/choiHkk/Transformer-TTS/tree/main
+Modify the configuration files to adjust model and preprocessing parameters as needed.
 
+<br>
+
+## Training Results
+
+The model was trained on 13,100 audio samples with a batch size of 32 for 10 epochs. Below is a comparison of the ground-truth and predicted mel-spectrograms after **35,000 steps**:
+
+![Training result](./out/result/melspectrogram/teacher_forcing_35000step_val.png)
+
+<br>
+
+## References
+
+Li, N., Liu, S., Liu, Y., Zhao, S., & Liu, M. (2019, July). Neural speech synthesis with transformer network. In *Proceedings of the AAAI Conference on Artificial Intelligence* (Vol. 33, No. 01, pp. 6706-6713). [Read the paper](https://arxiv.org/abs/1809.08895)

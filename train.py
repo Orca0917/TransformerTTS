@@ -5,7 +5,7 @@ import argparse
 import warnings
 from tqdm import tqdm
 from torch.utils.data import DataLoader, random_split
-from torch.utils.tensorboard import SummaryWriter 
+from torch.utils.tensorboard import SummaryWriter
 
 from dataset import TransformerTTSDataset
 from utils.util import (
@@ -35,6 +35,7 @@ class Trainer:
         self._load_data()
         self._initialize_model()
         self.global_step = 0
+        self.best_valid = 1e9
 
         # Tensorboard configuration
         self.writer = SummaryWriter(log_dir=self.log_path)
@@ -50,7 +51,7 @@ class Trainer:
 
     def _load_data(self):
         dataset = TransformerTTSDataset(self.p_config)
-        val_size = self.t_config["training"].get("validation_size", 1310)
+        val_size = self.t_config["training"].get("validation_size", 2620)
         train_size = len(dataset) - val_size
         trainset, validset = random_split(dataset, [train_size, val_size])
 
@@ -105,12 +106,12 @@ class Trainer:
 
             # Forward pass
             outputs = self.model(**batch)
-            losses = self.criterion(*outputs, **batch)
+            losses = self.criterion(**outputs, **batch)
 
             # Backward and optimize
             losses["total_loss"].backward()
-            self.optimizer.step_and_update_lr()
-            self.current_lr = self.optimizer._optimizer.param_groups[0]["lr"]
+            self.optimizer.step()
+            self.current_lr = self.optimizer.param_groups[0]["lr"]
 
             # Logging
             self.global_step += 1
@@ -150,10 +151,14 @@ class Trainer:
             ):
                 batch = to_device(batch, self.device)
 
-                # Forward pass
+                # Forward pass (일반적인 방식)
                 outputs = self.model(**batch)
-                losses = self.criterion(*outputs, **batch)
+                losses = self.criterion(**outputs, **batch)
 
+                # 음성 합성
+                if idx == 0:
+                    self._synthesize_sample(batch, outputs, validation=True, prefix="teacher_forcing")
+            
                 self.writer.add_scalar("Loss/Validation/Total_Loss", losses["total_loss"].item(), self.global_step)
                 self.writer.add_scalar("Loss/Validation/Mel_Loss", losses["mel_loss"].item(), self.global_step)
                 self.writer.add_scalar("Loss/Validation/Stop_Loss", losses["stop_loss"].item(), self.global_step)
@@ -163,13 +168,10 @@ class Trainer:
                 mel_loss += losses["mel_loss"].item()
                 stop_loss += losses["stop_loss"].item()
 
-                if idx == 0:
-                    self._synthesize_sample(batch, outputs, validation=True)
-
-        # Epoch summary
-        self._log_epoch(
-            epoch, total_loss, mel_loss, stop_loss, len(self.valid_loader), "VALID"
-        )
+            # Epoch summary
+            self._log_epoch(
+                epoch, total_loss, mel_loss, stop_loss, len(self.valid_loader), "VALID"
+            )
 
     def _log_step(self, losses, current_lr):
         message = (
@@ -198,26 +200,33 @@ class Trainer:
 
         self.writer.add_scalar(f"Loss/{mode}/Average_Total_Loss", avg_total_loss, epoch)
         self.writer.add_scalar(f"Loss/{mode}/Average_Mel_Loss", avg_mel_loss, epoch)
+        
         self.writer.add_scalar(f"Loss/{mode}/Average_Stop_Loss", avg_stop_loss, epoch)
 
     def _write_log(self, message):
         with open(os.path.join(self.log_path, "log.txt"), "a") as f:
             f.write(message + "\n")
 
-    def _synthesize_sample(self, batch, outputs, validation=False):
+    def _synthesize_sample(self, batch, outputs, validation=False, prefix=""):
         idx = 0  # Take the first sample in the batch
         tgt_mel = batch["melspectrogram"][idx].detach().cpu().numpy()
-        prd_mel = outputs[0][idx].detach().cpu().numpy()
-
-        # Plot mel-spectrogram
-        plot_melspectrogram(self.result_path, self.global_step, tgt_mel, prd_mel)
+        prd_mel = outputs["mel_output_postnet"][idx].detach().cpu().numpy()
+        
+        # Plot mel-spectrogram (시각화용)
+        plot_melspectrogram(
+            self.result_path, 
+            f"{prefix}_{self.global_step}", 
+            tgt_mel, 
+            prd_mel, 
+            is_train=not validation
+        )
 
         # Synthesize audio
         text = batch["text"][idx]
-        wav_dir = os.path.join(self.result_path, "wav")
-        wav_filename = f"{self.global_step}step_{text}.wav"
-        wav_path = os.path.join(wav_dir, wav_filename)
-        synthesize(self.vocoder, outputs[0][idx], wav_path)
+        wav_filename = f"{prefix}_{self.global_step}step_{text}.wav"
+        wav_path = os.path.join(self.result_path, "wav", wav_filename)
+        
+        synthesize(self.vocoder, prd_mel, wav_path)
 
     def _save_checkpoint(self):
         checkpoint = {

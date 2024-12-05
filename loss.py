@@ -15,11 +15,15 @@ class TransformerTTSLoss():
         # Calculate mel loss with and without postnet
         mel_loss = self.mel_loss(mel_output, melspectrogram) + self.mel_loss(mel_output_postnet, melspectrogram)
 
-        # Create stop token target using mel_len
+        # 시퀀스별 마스크 생성
+        mask = (torch.arange(mel_output.size(1), device=mel_output.device)[None, :] < mel_len[:, None]).float()
+        
+        # stop token loss 계산 시 마스크 적용
         stop_target = (torch.arange(mel_output.size(1), device=mel_output.device) >= mel_len[:, None]).float()
-
-        # Reshape and calculate stop token loss
-        stop_loss = self.stop_loss(stop_token, stop_target) * self.r_gate
+        stop_loss = self.stop_loss(
+            stop_token * mask,  # 마스크 적용
+            stop_target * mask  # 마스크 적용
+        ) * self.r_gate
 
         return {
             "total_loss": mel_loss + stop_loss,

@@ -27,7 +27,6 @@ def to_device(batch, device):
     (
         text,
         phoneme,
-        spectrogram,
         melspectrogram,
         src_len,
         mel_len
@@ -41,7 +40,6 @@ def to_device(batch, device):
     return {
         "text": text,
         "phoneme": phoneme,
-        "spectrogram": spectrogram,
         "melspectrogram": melspectrogram,
         "src_len": src_len,
         "mel_len": mel_len
@@ -75,11 +73,16 @@ def plot_melspectrogram(result_path, step, targ_mel, pred_mel=None, is_train=Tru
     
     else:
         fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 8))
-        ax1.imshow(targ_mel.T, origin='lower', aspect='auto', interpolation=None)
+        
+        # 첫 번째 subplot (target melspectrogram)
+        im1 = ax1.imshow(targ_mel.T, origin='lower', aspect='auto', interpolation=None)
+        fig.colorbar(im1, ax=ax1)
         ax1.set_xlabel("mel frame")
         ax1.set_ylabel("n mels")
 
-        ax2.imshow(pred_mel.T, origin='lower', aspect='auto', interpolation=None)
+        # 두 번째 subplot (predicted melspectrogram)
+        im2 = ax2.imshow(pred_mel.T, origin='lower', aspect='auto', interpolation=None)
+        fig.colorbar(im2, ax=ax2)
         ax2.set_xlabel("mel frame")
         ax2.set_ylabel("n mels")
 
@@ -103,6 +106,6 @@ def pad_2D(batch):
     return torch.nn.utils.rnn.pad_sequence(batch, batch_first=True, padding_value=0)
 
 def synthesize(vocoder, melspectrogram, save_path, sr=22050):
-    y_out = vocoder.inference(melspectrogram)
-    reconstruction = y_out.view(-1).detach().cpu().numpy()
-    scipy.io.wavfile.write(save_path, 22050, reconstruction)
+    melspectrogram = torch.FloatTensor(melspectrogram).cuda()
+    reconstruction = vocoder.inference(melspectrogram).view(-1).detach().cpu().numpy()
+    scipy.io.wavfile.write(save_path, sr, reconstruction)

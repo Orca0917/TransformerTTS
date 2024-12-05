@@ -4,14 +4,19 @@ path:
   corpus_path: "/TransformerTTS/data/wavs"
   metadata_path: "/TransformerTTS/data"
 
-preprocessing:
-  audio:
-    sampling_rate: 22050
-  stft:
-    n_fft: 1024
-    hop_length: 256
-    win_length: 1024
-  mel:
-    n_mels: 80
-    fmin: 80
-    fmax: 7600
+audio:
+  sampling_rate: 22050
+  preemphasis: None
+  frame_shift_ms: None
+  hop_length: 256
+  filter_length: 1024
+  win_length: 1024
+  n_mel_channels: 80
+  mel_fmin: 80.0
+  mel_fmax: 7600.0
+  ref_level_db: 20
+  min_level_db: -100.0
+  max_abs_value: 4.0
+  signal_normalization: True
+  mu: -53.84337
+  sigma: 16.970741

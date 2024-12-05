@@ -1,471 +1,566 @@
-Step 100/100000 | Total Loss: 4.3566 | Mel Loss: 3.3781 | Stop Loss: 0.9785 | LR: 0.000025
-Step 200/100000 | Total Loss: 2.6300 | Mel Loss: 2.4734 | Stop Loss: 0.1565 | LR: 0.000049
-Step 300/100000 | Total Loss: 2.2638 | Mel Loss: 2.2082 | Stop Loss: 0.0556 | LR: 0.000074
-Step 400/100000 | Total Loss: 2.0391 | Mel Loss: 2.0047 | Stop Loss: 0.0344 | LR: 0.000099
-Step 500/100000 | Total Loss: 1.8592 | Mel Loss: 1.8320 | Stop Loss: 0.0272 | LR: 0.000124
-Step 600/100000 | Total Loss: 1.7743 | Mel Loss: 1.7482 | Stop Loss: 0.0262 | LR: 0.000148
-Step 700/100000 | Total Loss: 1.6732 | Mel Loss: 1.6479 | Stop Loss: 0.0253 | LR: 0.000173
-[TRAIN] Epoch 001 | Average Total Loss: 2.8143 | Average Mel Loss: 2.4020 | Average Stop Loss: 0.4124
-[VALID] Epoch 001 | Average Total Loss: 0.9741 | Average Mel Loss: 0.9531 | Average Stop Loss: 0.0210
-Step 800/100000 | Total Loss: 1.5763 | Mel Loss: 1.5508 | Stop Loss: 0.0256 | LR: 0.000198
-Step 900/100000 | Total Loss: 1.4837 | Mel Loss: 1.4588 | Stop Loss: 0.0250 | LR: 0.000222
-Step 1000/100000 | Total Loss: 1.4051 | Mel Loss: 1.3847 | Stop Loss: 0.0203 | LR: 0.000247
-Step 1100/100000 | Total Loss: 1.3476 | Mel Loss: 1.3209 | Stop Loss: 0.0267 | LR: 0.000272
-Step 1200/100000 | Total Loss: 1.2598 | Mel Loss: 1.2404 | Stop Loss: 0.0194 | LR: 0.000296
-Step 1300/100000 | Total Loss: 1.1702 | Mel Loss: 1.1490 | Stop Loss: 0.0212 | LR: 0.000321
-Step 1400/100000 | Total Loss: 1.0697 | Mel Loss: 1.0478 | Stop Loss: 0.0219 | LR: 0.000346
-[TRAIN] Epoch 002 | Average Total Loss: 1.3356 | Average Mel Loss: 1.3121 | Average Stop Loss: 0.0235
-[VALID] Epoch 002 | Average Total Loss: 0.4721 | Average Mel Loss: 0.4530 | Average Stop Loss: 0.0191
-Step 1500/100000 | Total Loss: 1.0106 | Mel Loss: 0.9903 | Stop Loss: 0.0203 | LR: 0.000371
-Step 1600/100000 | Total Loss: 0.9196 | Mel Loss: 0.9002 | Stop Loss: 0.0194 | LR: 0.000395
-Step 1700/100000 | Total Loss: 0.8328 | Mel Loss: 0.8110 | Stop Loss: 0.0218 | LR: 0.000420
-Step 1800/100000 | Total Loss: 0.7392 | Mel Loss: 0.7148 | Stop Loss: 0.0244 | LR: 0.000445
-Step 1900/100000 | Total Loss: 0.6612 | Mel Loss: 0.6399 | Stop Loss: 0.0213 | LR: 0.000469
-Step 2000/100000 | Total Loss: 0.5882 | Mel Loss: 0.5676 | Stop Loss: 0.0206 | LR: 0.000494
-Step 2100/100000 | Total Loss: 0.5016 | Mel Loss: 0.4832 | Stop Loss: 0.0184 | LR: 0.000519
-Step 2200/100000 | Total Loss: 0.4476 | Mel Loss: 0.4265 | Stop Loss: 0.0210 | LR: 0.000544
-[TRAIN] Epoch 003 | Average Total Loss: 0.7163 | Average Mel Loss: 0.6952 | Average Stop Loss: 0.0211
-[VALID] Epoch 003 | Average Total Loss: 0.2142 | Average Mel Loss: 0.1955 | Average Stop Loss: 0.0187
-Step 2300/100000 | Total Loss: 0.3648 | Mel Loss: 0.3457 | Stop Loss: 0.0191 | LR: 0.000568
-Step 2400/100000 | Total Loss: 0.3245 | Mel Loss: 0.3075 | Stop Loss: 0.0170 | LR: 0.000593
-Step 2500/100000 | Total Loss: 0.3080 | Mel Loss: 0.2838 | Stop Loss: 0.0242 | LR: 0.000618
-Step 2600/100000 | Total Loss: 0.2665 | Mel Loss: 0.2471 | Stop Loss: 0.0194 | LR: 0.000642
-Step 2700/100000 | Total Loss: 0.2728 | Mel Loss: 0.2521 | Stop Loss: 0.0207 | LR: 0.000667
-Step 2800/100000 | Total Loss: 0.2270 | Mel Loss: 0.2102 | Stop Loss: 0.0169 | LR: 0.000692
-Step 2900/100000 | Total Loss: 0.2454 | Mel Loss: 0.2288 | Stop Loss: 0.0166 | LR: 0.000716
-[TRAIN] Epoch 004 | Average Total Loss: 0.3027 | Average Mel Loss: 0.2837 | Average Stop Loss: 0.0190
-[VALID] Epoch 004 | Average Total Loss: 0.1853 | Average Mel Loss: 0.1688 | Average Stop Loss: 0.0166
-Step 3000/100000 | Total Loss: 0.2701 | Mel Loss: 0.2521 | Stop Loss: 0.0179 | LR: 0.000741
-Step 3100/100000 | Total Loss: 0.2500 | Mel Loss: 0.2341 | Stop Loss: 0.0159 | LR: 0.000766
-Step 3200/100000 | Total Loss: 0.2314 | Mel Loss: 0.2166 | Stop Loss: 0.0148 | LR: 0.000791
-Step 3300/100000 | Total Loss: 0.2816 | Mel Loss: 0.2572 | Stop Loss: 0.0244 | LR: 0.000815
-Step 3400/100000 | Total Loss: 0.2451 | Mel Loss: 0.2238 | Stop Loss: 0.0213 | LR: 0.000840
-Step 3500/100000 | Total Loss: 0.2009 | Mel Loss: 0.1862 | Stop Loss: 0.0146 | LR: 0.000865
-Step 3600/100000 | Total Loss: 0.2455 | Mel Loss: 0.2377 | Stop Loss: 0.0078 | LR: 0.000889
-[TRAIN] Epoch 005 | Average Total Loss: 0.2391 | Average Mel Loss: 0.2230 | Average Stop Loss: 0.0161
-[VALID] Epoch 005 | Average Total Loss: 0.1889 | Average Mel Loss: 0.1660 | Average Stop Loss: 0.0229
-Step 3700/100000 | Total Loss: 0.2338 | Mel Loss: 0.2310 | Stop Loss: 0.0028 | LR: 0.000914
-Step 3800/100000 | Total Loss: 0.2257 | Mel Loss: 0.2232 | Stop Loss: 0.0025 | LR: 0.000939
-Step 3900/100000 | Total Loss: 0.2291 | Mel Loss: 0.2259 | Stop Loss: 0.0032 | LR: 0.000964
-Step 4000/100000 | Total Loss: 0.2069 | Mel Loss: 0.2023 | Stop Loss: 0.0047 | LR: 0.000988
-Step 4100/100000 | Total Loss: 0.2028 | Mel Loss: 0.2021 | Stop Loss: 0.0006 | LR: 0.000976
-Step 4200/100000 | Total Loss: 0.2409 | Mel Loss: 0.2402 | Stop Loss: 0.0007 | LR: 0.000964
-Step 4300/100000 | Total Loss: 0.2091 | Mel Loss: 0.2061 | Stop Loss: 0.0030 | LR: 0.000953
-Step 4400/100000 | Total Loss: 0.2289 | Mel Loss: 0.2254 | Stop Loss: 0.0035 | LR: 0.000942
-[TRAIN] Epoch 006 | Average Total Loss: 0.2184 | Average Mel Loss: 0.2143 | Average Stop Loss: 0.0040
-[VALID] Epoch 006 | Average Total Loss: 0.1976 | Average Mel Loss: 0.1690 | Average Stop Loss: 0.0286
-Step 4500/100000 | Total Loss: 0.2317 | Mel Loss: 0.2286 | Stop Loss: 0.0030 | LR: 0.000932
-Step 4600/100000 | Total Loss: 0.2026 | Mel Loss: 0.2018 | Stop Loss: 0.0007 | LR: 0.000922
-Step 4700/100000 | Total Loss: 0.2102 | Mel Loss: 0.2097 | Stop Loss: 0.0005 | LR: 0.000912
-Step 4800/100000 | Total Loss: 0.1868 | Mel Loss: 0.1836 | Stop Loss: 0.0032 | LR: 0.000902
-Step 4900/100000 | Total Loss: 0.2322 | Mel Loss: 0.2313 | Stop Loss: 0.0009 | LR: 0.000893
-Step 5000/100000 | Total Loss: 0.2043 | Mel Loss: 0.2038 | Stop Loss: 0.0005 | LR: 0.000884
-Step 5100/100000 | Total Loss: 0.2214 | Mel Loss: 0.2211 | Stop Loss: 0.0004 | LR: 0.000875
-[TRAIN] Epoch 007 | Average Total Loss: 0.2065 | Average Mel Loss: 0.2038 | Average Stop Loss: 0.0026
-[VALID] Epoch 007 | Average Total Loss: 0.2076 | Average Mel Loss: 0.1743 | Average Stop Loss: 0.0334
-Step 5200/100000 | Total Loss: 0.2010 | Mel Loss: 0.1978 | Stop Loss: 0.0033 | LR: 0.000867
-Step 5300/100000 | Total Loss: 0.1940 | Mel Loss: 0.1938 | Stop Loss: 0.0002 | LR: 0.000859
-Step 5400/100000 | Total Loss: 0.2155 | Mel Loss: 0.2151 | Stop Loss: 0.0005 | LR: 0.000851
-Step 5500/100000 | Total Loss: 0.1891 | Mel Loss: 0.1780 | Stop Loss: 0.0111 | LR: 0.000843
-Step 5600/100000 | Total Loss: 0.1945 | Mel Loss: 0.1937 | Stop Loss: 0.0007 | LR: 0.000835
-Step 5700/100000 | Total Loss: 0.1861 | Mel Loss: 0.1857 | Stop Loss: 0.0004 | LR: 0.000828
-Step 5800/100000 | Total Loss: 0.2043 | Mel Loss: 0.2041 | Stop Loss: 0.0002 | LR: 0.000821
-[TRAIN] Epoch 008 | Average Total Loss: 0.1976 | Average Mel Loss: 0.1956 | Average Stop Loss: 0.0021
-[VALID] Epoch 008 | Average Total Loss: 0.2279 | Average Mel Loss: 0.1969 | Average Stop Loss: 0.0311
-Step 5900/100000 | Total Loss: 0.2110 | Mel Loss: 0.2055 | Stop Loss: 0.0055 | LR: 0.000814
-Step 6000/100000 | Total Loss: 0.1865 | Mel Loss: 0.1835 | Stop Loss: 0.0030 | LR: 0.000807
-Step 6100/100000 | Total Loss: 0.2083 | Mel Loss: 0.2082 | Stop Loss: 0.0001 | LR: 0.000800
-Step 6200/100000 | Total Loss: 0.2150 | Mel Loss: 0.2148 | Stop Loss: 0.0002 | LR: 0.000794
-Step 6300/100000 | Total Loss: 0.1964 | Mel Loss: 0.1961 | Stop Loss: 0.0003 | LR: 0.000787
-Step 6400/100000 | Total Loss: 0.1906 | Mel Loss: 0.1905 | Stop Loss: 0.0001 | LR: 0.000781
-Step 6500/100000 | Total Loss: 0.1841 | Mel Loss: 0.1829 | Stop Loss: 0.0013 | LR: 0.000775
-Step 6600/100000 | Total Loss: 0.1959 | Mel Loss: 0.1952 | Stop Loss: 0.0007 | LR: 0.000769
-[TRAIN] Epoch 009 | Average Total Loss: 0.1907 | Average Mel Loss: 0.1892 | Average Stop Loss: 0.0015
-[VALID] Epoch 009 | Average Total Loss: 0.2230 | Average Mel Loss: 0.2007 | Average Stop Loss: 0.0222
-Step 6700/100000 | Total Loss: 0.2060 | Mel Loss: 0.2031 | Stop Loss: 0.0029 | LR: 0.000764
-Step 6800/100000 | Total Loss: 0.1654 | Mel Loss: 0.1638 | Stop Loss: 0.0016 | LR: 0.000758
-Step 6900/100000 | Total Loss: 0.1912 | Mel Loss: 0.1892 | Stop Loss: 0.0020 | LR: 0.000752
-Step 7000/100000 | Total Loss: 0.2080 | Mel Loss: 0.2069 | Stop Loss: 0.0010 | LR: 0.000747
-Step 7100/100000 | Total Loss: 0.2056 | Mel Loss: 0.2045 | Stop Loss: 0.0012 | LR: 0.000742
-Step 7200/100000 | Total Loss: 0.1903 | Mel Loss: 0.1829 | Stop Loss: 0.0074 | LR: 0.000737
-Step 7300/100000 | Total Loss: 0.1928 | Mel Loss: 0.1912 | Stop Loss: 0.0016 | LR: 0.000732
-[TRAIN] Epoch 010 | Average Total Loss: 0.1849 | Average Mel Loss: 0.1837 | Average Stop Loss: 0.0012
-[VALID] Epoch 010 | Average Total Loss: 0.2196 | Average Mel Loss: 0.1969 | Average Stop Loss: 0.0228
-Step 7400/100000 | Total Loss: 0.1795 | Mel Loss: 0.1775 | Stop Loss: 0.0020 | LR: 0.000727
-Step 7500/100000 | Total Loss: 0.1958 | Mel Loss: 0.1954 | Stop Loss: 0.0004 | LR: 0.000722
-Step 7600/100000 | Total Loss: 0.1900 | Mel Loss: 0.1898 | Stop Loss: 0.0001 | LR: 0.000717
-Step 7700/100000 | Total Loss: 0.1756 | Mel Loss: 0.1719 | Stop Loss: 0.0038 | LR: 0.000712
-Step 7800/100000 | Total Loss: 0.1696 | Mel Loss: 0.1680 | Stop Loss: 0.0016 | LR: 0.000708
-Step 7900/100000 | Total Loss: 0.1722 | Mel Loss: 0.1698 | Stop Loss: 0.0024 | LR: 0.000703
-Step 8000/100000 | Total Loss: 0.1855 | Mel Loss: 0.1854 | Stop Loss: 0.0001 | LR: 0.000699
-[TRAIN] Epoch 011 | Average Total Loss: 0.1806 | Average Mel Loss: 0.1796 | Average Stop Loss: 0.0010
-[VALID] Epoch 011 | Average Total Loss: 0.2277 | Average Mel Loss: 0.1981 | Average Stop Loss: 0.0295
-Step 8100/100000 | Total Loss: 0.2055 | Mel Loss: 0.2055 | Stop Loss: 0.0001 | LR: 0.000694
-Step 8200/100000 | Total Loss: 0.1791 | Mel Loss: 0.1789 | Stop Loss: 0.0003 | LR: 0.000690
-Step 8300/100000 | Total Loss: 0.1736 | Mel Loss: 0.1735 | Stop Loss: 0.0001 | LR: 0.000686
-Step 8400/100000 | Total Loss: 0.1572 | Mel Loss: 0.1570 | Stop Loss: 0.0001 | LR: 0.000682
-Step 8500/100000 | Total Loss: 0.1480 | Mel Loss: 0.1474 | Stop Loss: 0.0006 | LR: 0.000678
-Step 8600/100000 | Total Loss: 0.1810 | Mel Loss: 0.1804 | Stop Loss: 0.0005 | LR: 0.000674
-Step 8700/100000 | Total Loss: 0.2015 | Mel Loss: 0.1984 | Stop Loss: 0.0031 | LR: 0.000670
-Step 8800/100000 | Total Loss: 0.1872 | Mel Loss: 0.1854 | Stop Loss: 0.0018 | LR: 0.000666
-[TRAIN] Epoch 012 | Average Total Loss: 0.1772 | Average Mel Loss: 0.1762 | Average Stop Loss: 0.0010
-[VALID] Epoch 012 | Average Total Loss: 0.2417 | Average Mel Loss: 0.2039 | Average Stop Loss: 0.0378
-Step 8900/100000 | Total Loss: 0.1949 | Mel Loss: 0.1944 | Stop Loss: 0.0005 | LR: 0.000662
-Step 9000/100000 | Total Loss: 0.1726 | Mel Loss: 0.1715 | Stop Loss: 0.0011 | LR: 0.000659
-Step 9100/100000 | Total Loss: 0.1952 | Mel Loss: 0.1950 | Stop Loss: 0.0002 | LR: 0.000655
-Step 9200/100000 | Total Loss: 0.1649 | Mel Loss: 0.1648 | Stop Loss: 0.0001 | LR: 0.000652
-Step 9300/100000 | Total Loss: 0.1764 | Mel Loss: 0.1763 | Stop Loss: 0.0001 | LR: 0.000648
-Step 9400/100000 | Total Loss: 0.1457 | Mel Loss: 0.1436 | Stop Loss: 0.0021 | LR: 0.000645
-Step 9500/100000 | Total Loss: 0.1677 | Mel Loss: 0.1676 | Stop Loss: 0.0000 | LR: 0.000641
-[TRAIN] Epoch 013 | Average Total Loss: 0.1735 | Average Mel Loss: 0.1727 | Average Stop Loss: 0.0008
-[VALID] Epoch 013 | Average Total Loss: 0.2320 | Average Mel Loss: 0.2027 | Average Stop Loss: 0.0293
-Step 9600/100000 | Total Loss: 0.1490 | Mel Loss: 0.1472 | Stop Loss: 0.0018 | LR: 0.000638
-Step 9700/100000 | Total Loss: 0.1858 | Mel Loss: 0.1853 | Stop Loss: 0.0004 | LR: 0.000635
-Step 9800/100000 | Total Loss: 0.1806 | Mel Loss: 0.1800 | Stop Loss: 0.0006 | LR: 0.000631
-Step 9900/100000 | Total Loss: 0.1762 | Mel Loss: 0.1761 | Stop Loss: 0.0001 | LR: 0.000628
-Step 10000/100000 | Total Loss: 0.1490 | Mel Loss: 0.1487 | Stop Loss: 0.0003 | LR: 0.000625
-Step 10100/100000 | Total Loss: 0.1699 | Mel Loss: 0.1684 | Stop Loss: 0.0015 | LR: 0.000622
-Step 10200/100000 | Total Loss: 0.1620 | Mel Loss: 0.1617 | Stop Loss: 0.0003 | LR: 0.000619
-Step 10300/100000 | Total Loss: 0.1539 | Mel Loss: 0.1536 | Stop Loss: 0.0003 | LR: 0.000616
-[TRAIN] Epoch 014 | Average Total Loss: 0.1708 | Average Mel Loss: 0.1700 | Average Stop Loss: 0.0007
-[VALID] Epoch 014 | Average Total Loss: 0.2314 | Average Mel Loss: 0.2011 | Average Stop Loss: 0.0303
-Step 10400/100000 | Total Loss: 0.1635 | Mel Loss: 0.1610 | Stop Loss: 0.0025 | LR: 0.000613
-Step 10500/100000 | Total Loss: 0.1789 | Mel Loss: 0.1770 | Stop Loss: 0.0019 | LR: 0.000610
-Step 10600/100000 | Total Loss: 0.1692 | Mel Loss: 0.1690 | Stop Loss: 0.0001 | LR: 0.000607
-Step 10700/100000 | Total Loss: 0.1779 | Mel Loss: 0.1778 | Stop Loss: 0.0000 | LR: 0.000604
-Step 10800/100000 | Total Loss: 0.1638 | Mel Loss: 0.1637 | Stop Loss: 0.0001 | LR: 0.000601
-Step 10900/100000 | Total Loss: 0.1502 | Mel Loss: 0.1501 | Stop Loss: 0.0000 | LR: 0.000599
-Step 11000/100000 | Total Loss: 0.1625 | Mel Loss: 0.1624 | Stop Loss: 0.0001 | LR: 0.000596
-[TRAIN] Epoch 015 | Average Total Loss: 0.1682 | Average Mel Loss: 0.1675 | Average Stop Loss: 0.0006
-[VALID] Epoch 015 | Average Total Loss: 0.2416 | Average Mel Loss: 0.2051 | Average Stop Loss: 0.0365
-Step 11100/100000 | Total Loss: 0.1434 | Mel Loss: 0.1433 | Stop Loss: 0.0001 | LR: 0.000593
-Step 11200/100000 | Total Loss: 0.1801 | Mel Loss: 0.1801 | Stop Loss: 0.0000 | LR: 0.000591
-Step 11300/100000 | Total Loss: 0.1634 | Mel Loss: 0.1632 | Stop Loss: 0.0002 | LR: 0.000588
-Step 11400/100000 | Total Loss: 0.1793 | Mel Loss: 0.1793 | Stop Loss: 0.0001 | LR: 0.000585
-Step 11500/100000 | Total Loss: 0.1534 | Mel Loss: 0.1534 | Stop Loss: 0.0000 | LR: 0.000583
-Step 11600/100000 | Total Loss: 0.1939 | Mel Loss: 0.1939 | Stop Loss: 0.0000 | LR: 0.000580
-Step 11700/100000 | Total Loss: 0.1846 | Mel Loss: 0.1845 | Stop Loss: 0.0001 | LR: 0.000578
-[TRAIN] Epoch 016 | Average Total Loss: 0.1661 | Average Mel Loss: 0.1655 | Average Stop Loss: 0.0006
-[VALID] Epoch 016 | Average Total Loss: 0.2394 | Average Mel Loss: 0.2116 | Average Stop Loss: 0.0279
-Step 11800/100000 | Total Loss: 0.1544 | Mel Loss: 0.1544 | Stop Loss: 0.0000 | LR: 0.000575
-Step 11900/100000 | Total Loss: 0.1662 | Mel Loss: 0.1660 | Stop Loss: 0.0001 | LR: 0.000573
-Step 12000/100000 | Total Loss: 0.1496 | Mel Loss: 0.1496 | Stop Loss: 0.0000 | LR: 0.000571
-Step 12100/100000 | Total Loss: 0.1524 | Mel Loss: 0.1500 | Stop Loss: 0.0024 | LR: 0.000568
-Step 12200/100000 | Total Loss: 0.1654 | Mel Loss: 0.1654 | Stop Loss: 0.0000 | LR: 0.000566
-Step 12300/100000 | Total Loss: 0.1839 | Mel Loss: 0.1806 | Stop Loss: 0.0033 | LR: 0.000564
-Step 12400/100000 | Total Loss: 0.1778 | Mel Loss: 0.1778 | Stop Loss: 0.0000 | LR: 0.000561
-Step 12500/100000 | Total Loss: 0.1813 | Mel Loss: 0.1812 | Stop Loss: 0.0000 | LR: 0.000559
-[TRAIN] Epoch 017 | Average Total Loss: 0.1642 | Average Mel Loss: 0.1636 | Average Stop Loss: 0.0007
-[VALID] Epoch 017 | Average Total Loss: 0.2409 | Average Mel Loss: 0.2028 | Average Stop Loss: 0.0381
-Step 12600/100000 | Total Loss: 0.1803 | Mel Loss: 0.1789 | Stop Loss: 0.0014 | LR: 0.000557
-Step 12700/100000 | Total Loss: 0.1446 | Mel Loss: 0.1446 | Stop Loss: 0.0000 | LR: 0.000555
-Step 12800/100000 | Total Loss: 0.1699 | Mel Loss: 0.1664 | Stop Loss: 0.0034 | LR: 0.000552
-Step 12900/100000 | Total Loss: 0.1718 | Mel Loss: 0.1716 | Stop Loss: 0.0001 | LR: 0.000550
-Step 13000/100000 | Total Loss: 0.1718 | Mel Loss: 0.1671 | Stop Loss: 0.0047 | LR: 0.000548
-Step 13100/100000 | Total Loss: 0.1666 | Mel Loss: 0.1665 | Stop Loss: 0.0001 | LR: 0.000546
-Step 13200/100000 | Total Loss: 0.1662 | Mel Loss: 0.1662 | Stop Loss: 0.0000 | LR: 0.000544
-[TRAIN] Epoch 018 | Average Total Loss: 0.1623 | Average Mel Loss: 0.1617 | Average Stop Loss: 0.0006
-[VALID] Epoch 018 | Average Total Loss: 0.2503 | Average Mel Loss: 0.2106 | Average Stop Loss: 0.0397
-Step 13300/100000 | Total Loss: 0.1762 | Mel Loss: 0.1761 | Stop Loss: 0.0001 | LR: 0.000542
-Step 13400/100000 | Total Loss: 0.1569 | Mel Loss: 0.1568 | Stop Loss: 0.0001 | LR: 0.000540
-Step 13500/100000 | Total Loss: 0.1539 | Mel Loss: 0.1497 | Stop Loss: 0.0041 | LR: 0.000538
-Step 13600/100000 | Total Loss: 0.1555 | Mel Loss: 0.1554 | Stop Loss: 0.0000 | LR: 0.000536
-Step 13700/100000 | Total Loss: 0.1571 | Mel Loss: 0.1569 | Stop Loss: 0.0002 | LR: 0.000534
-Step 13800/100000 | Total Loss: 0.1653 | Mel Loss: 0.1652 | Stop Loss: 0.0000 | LR: 0.000532
-Step 13900/100000 | Total Loss: 0.1433 | Mel Loss: 0.1433 | Stop Loss: 0.0000 | LR: 0.000530
-[TRAIN] Epoch 019 | Average Total Loss: 0.1611 | Average Mel Loss: 0.1606 | Average Stop Loss: 0.0005
-[VALID] Epoch 019 | Average Total Loss: 0.2391 | Average Mel Loss: 0.2010 | Average Stop Loss: 0.0382
-Step 14000/100000 | Total Loss: 0.1787 | Mel Loss: 0.1769 | Stop Loss: 0.0018 | LR: 0.000528
-Step 14100/100000 | Total Loss: 0.1751 | Mel Loss: 0.1745 | Stop Loss: 0.0005 | LR: 0.000526
-Step 14200/100000 | Total Loss: 0.1875 | Mel Loss: 0.1874 | Stop Loss: 0.0001 | LR: 0.000524
-Step 14300/100000 | Total Loss: 0.1733 | Mel Loss: 0.1733 | Stop Loss: 0.0000 | LR: 0.000523
-Step 14400/100000 | Total Loss: 0.1420 | Mel Loss: 0.1419 | Stop Loss: 0.0000 | LR: 0.000521
-Step 14500/100000 | Total Loss: 0.1307 | Mel Loss: 0.1307 | Stop Loss: 0.0000 | LR: 0.000519
-Step 14600/100000 | Total Loss: 0.1808 | Mel Loss: 0.1784 | Stop Loss: 0.0024 | LR: 0.000517
-Step 14700/100000 | Total Loss: 0.1454 | Mel Loss: 0.1442 | Stop Loss: 0.0012 | LR: 0.000515
-[TRAIN] Epoch 020 | Average Total Loss: 0.1590 | Average Mel Loss: 0.1586 | Average Stop Loss: 0.0004
-[VALID] Epoch 020 | Average Total Loss: 0.2575 | Average Mel Loss: 0.2060 | Average Stop Loss: 0.0515
-Step 14800/100000 | Total Loss: 0.1556 | Mel Loss: 0.1556 | Stop Loss: 0.0000 | LR: 0.000514
-Step 14900/100000 | Total Loss: 0.1491 | Mel Loss: 0.1490 | Stop Loss: 0.0001 | LR: 0.000512
-Step 15000/100000 | Total Loss: 0.1435 | Mel Loss: 0.1415 | Stop Loss: 0.0020 | LR: 0.000510
-Step 15100/100000 | Total Loss: 0.1736 | Mel Loss: 0.1735 | Stop Loss: 0.0001 | LR: 0.000509
-Step 15200/100000 | Total Loss: 0.1651 | Mel Loss: 0.1648 | Stop Loss: 0.0003 | LR: 0.000507
-Step 15300/100000 | Total Loss: 0.1581 | Mel Loss: 0.1579 | Stop Loss: 0.0002 | LR: 0.000505
-Step 15400/100000 | Total Loss: 0.1526 | Mel Loss: 0.1525 | Stop Loss: 0.0000 | LR: 0.000504
-[TRAIN] Epoch 021 | Average Total Loss: 0.1576 | Average Mel Loss: 0.1572 | Average Stop Loss: 0.0004
-[VALID] Epoch 021 | Average Total Loss: 0.2553 | Average Mel Loss: 0.2158 | Average Stop Loss: 0.0395
-Step 15500/100000 | Total Loss: 0.1351 | Mel Loss: 0.1351 | Stop Loss: 0.0000 | LR: 0.000502
-Step 15600/100000 | Total Loss: 0.1812 | Mel Loss: 0.1812 | Stop Loss: 0.0000 | LR: 0.000500
-Step 15700/100000 | Total Loss: 0.1601 | Mel Loss: 0.1600 | Stop Loss: 0.0001 | LR: 0.000499
-Step 15800/100000 | Total Loss: 0.1473 | Mel Loss: 0.1473 | Stop Loss: 0.0000 | LR: 0.000497
-Step 15900/100000 | Total Loss: 0.1559 | Mel Loss: 0.1558 | Stop Loss: 0.0000 | LR: 0.000496
-Step 16000/100000 | Total Loss: 0.1454 | Mel Loss: 0.1454 | Stop Loss: 0.0000 | LR: 0.000494
-Step 16100/100000 | Total Loss: 0.1495 | Mel Loss: 0.1488 | Stop Loss: 0.0007 | LR: 0.000493
-[TRAIN] Epoch 022 | Average Total Loss: 0.1564 | Average Mel Loss: 0.1561 | Average Stop Loss: 0.0003
-[VALID] Epoch 022 | Average Total Loss: 0.2473 | Average Mel Loss: 0.2144 | Average Stop Loss: 0.0329
-Step 16200/100000 | Total Loss: 0.1438 | Mel Loss: 0.1434 | Stop Loss: 0.0004 | LR: 0.000491
-Step 16300/100000 | Total Loss: 0.1676 | Mel Loss: 0.1675 | Stop Loss: 0.0001 | LR: 0.000490
-Step 16400/100000 | Total Loss: 0.1654 | Mel Loss: 0.1654 | Stop Loss: 0.0000 | LR: 0.000488
-Step 16500/100000 | Total Loss: 0.1459 | Mel Loss: 0.1459 | Stop Loss: 0.0000 | LR: 0.000487
-Step 16600/100000 | Total Loss: 0.1581 | Mel Loss: 0.1560 | Stop Loss: 0.0021 | LR: 0.000485
-Step 16700/100000 | Total Loss: 0.1395 | Mel Loss: 0.1395 | Stop Loss: 0.0000 | LR: 0.000484
-Step 16800/100000 | Total Loss: 0.1562 | Mel Loss: 0.1559 | Stop Loss: 0.0003 | LR: 0.000482
-Step 16900/100000 | Total Loss: 0.1325 | Mel Loss: 0.1325 | Stop Loss: 0.0000 | LR: 0.000481
-[TRAIN] Epoch 023 | Average Total Loss: 0.1555 | Average Mel Loss: 0.1551 | Average Stop Loss: 0.0004
-[VALID] Epoch 023 | Average Total Loss: 0.2537 | Average Mel Loss: 0.2082 | Average Stop Loss: 0.0455
-Step 17000/100000 | Total Loss: 0.1344 | Mel Loss: 0.1343 | Stop Loss: 0.0001 | LR: 0.000479
-Step 17100/100000 | Total Loss: 0.1492 | Mel Loss: 0.1492 | Stop Loss: 0.0000 | LR: 0.000478
-Step 17200/100000 | Total Loss: 0.1594 | Mel Loss: 0.1593 | Stop Loss: 0.0001 | LR: 0.000477
-Step 17300/100000 | Total Loss: 0.1508 | Mel Loss: 0.1508 | Stop Loss: 0.0000 | LR: 0.000475
-Step 17400/100000 | Total Loss: 0.1502 | Mel Loss: 0.1502 | Stop Loss: 0.0000 | LR: 0.000474
-Step 17500/100000 | Total Loss: 0.1486 | Mel Loss: 0.1485 | Stop Loss: 0.0000 | LR: 0.000472
-Step 17600/100000 | Total Loss: 0.1615 | Mel Loss: 0.1615 | Stop Loss: 0.0000 | LR: 0.000471
-[TRAIN] Epoch 024 | Average Total Loss: 0.1546 | Average Mel Loss: 0.1542 | Average Stop Loss: 0.0003
-[VALID] Epoch 024 | Average Total Loss: 0.2524 | Average Mel Loss: 0.2259 | Average Stop Loss: 0.0265
-Step 17700/100000 | Total Loss: 0.1526 | Mel Loss: 0.1525 | Stop Loss: 0.0001 | LR: 0.000470
-Step 17800/100000 | Total Loss: 0.1658 | Mel Loss: 0.1658 | Stop Loss: 0.0000 | LR: 0.000468
-Step 17900/100000 | Total Loss: 0.1322 | Mel Loss: 0.1321 | Stop Loss: 0.0000 | LR: 0.000467
-Step 18000/100000 | Total Loss: 0.1392 | Mel Loss: 0.1392 | Stop Loss: 0.0000 | LR: 0.000466
-Step 18100/100000 | Total Loss: 0.1376 | Mel Loss: 0.1376 | Stop Loss: 0.0000 | LR: 0.000465
-Step 18200/100000 | Total Loss: 0.1571 | Mel Loss: 0.1570 | Stop Loss: 0.0001 | LR: 0.000463
-Step 18300/100000 | Total Loss: 0.1679 | Mel Loss: 0.1678 | Stop Loss: 0.0000 | LR: 0.000462
-Step 18400/100000 | Total Loss: 0.1436 | Mel Loss: 0.1432 | Stop Loss: 0.0004 | LR: 0.000461
-[TRAIN] Epoch 025 | Average Total Loss: 0.1535 | Average Mel Loss: 0.1532 | Average Stop Loss: 0.0003
-[VALID] Epoch 025 | Average Total Loss: 0.2454 | Average Mel Loss: 0.2119 | Average Stop Loss: 0.0335
-Step 18500/100000 | Total Loss: 0.1468 | Mel Loss: 0.1467 | Stop Loss: 0.0000 | LR: 0.000460
-Step 18600/100000 | Total Loss: 0.1449 | Mel Loss: 0.1449 | Stop Loss: 0.0000 | LR: 0.000458
-Step 18700/100000 | Total Loss: 0.1744 | Mel Loss: 0.1744 | Stop Loss: 0.0000 | LR: 0.000457
-Step 18800/100000 | Total Loss: 0.1233 | Mel Loss: 0.1218 | Stop Loss: 0.0015 | LR: 0.000456
-Step 18900/100000 | Total Loss: 0.1597 | Mel Loss: 0.1597 | Stop Loss: 0.0000 | LR: 0.000455
-Step 19000/100000 | Total Loss: 0.1520 | Mel Loss: 0.1520 | Stop Loss: 0.0000 | LR: 0.000453
-Step 19100/100000 | Total Loss: 0.1498 | Mel Loss: 0.1498 | Stop Loss: 0.0000 | LR: 0.000452
-[TRAIN] Epoch 026 | Average Total Loss: 0.1523 | Average Mel Loss: 0.1519 | Average Stop Loss: 0.0004
-[VALID] Epoch 026 | Average Total Loss: 0.2584 | Average Mel Loss: 0.2176 | Average Stop Loss: 0.0408
-Step 19200/100000 | Total Loss: 0.1600 | Mel Loss: 0.1561 | Stop Loss: 0.0038 | LR: 0.000451
-Step 19300/100000 | Total Loss: 0.1483 | Mel Loss: 0.1483 | Stop Loss: 0.0000 | LR: 0.000450
-Step 19400/100000 | Total Loss: 0.1494 | Mel Loss: 0.1494 | Stop Loss: 0.0000 | LR: 0.000449
-Step 19500/100000 | Total Loss: 0.1478 | Mel Loss: 0.1478 | Stop Loss: 0.0000 | LR: 0.000448
-Step 19600/100000 | Total Loss: 0.1575 | Mel Loss: 0.1567 | Stop Loss: 0.0008 | LR: 0.000446
-Step 19700/100000 | Total Loss: 0.1468 | Mel Loss: 0.1468 | Stop Loss: 0.0000 | LR: 0.000445
-Step 19800/100000 | Total Loss: 0.1394 | Mel Loss: 0.1394 | Stop Loss: 0.0000 | LR: 0.000444
-[TRAIN] Epoch 027 | Average Total Loss: 0.1514 | Average Mel Loss: 0.1511 | Average Stop Loss: 0.0003
-[VALID] Epoch 027 | Average Total Loss: 0.2549 | Average Mel Loss: 0.2066 | Average Stop Loss: 0.0483
-Step 19900/100000 | Total Loss: 0.1564 | Mel Loss: 0.1564 | Stop Loss: 0.0001 | LR: 0.000443
-Step 20000/100000 | Total Loss: 0.1646 | Mel Loss: 0.1633 | Stop Loss: 0.0012 | LR: 0.000442
-Step 20100/100000 | Total Loss: 0.1599 | Mel Loss: 0.1599 | Stop Loss: 0.0001 | LR: 0.000441
-Step 20200/100000 | Total Loss: 0.1596 | Mel Loss: 0.1596 | Stop Loss: 0.0000 | LR: 0.000440
-Step 20300/100000 | Total Loss: 0.1500 | Mel Loss: 0.1500 | Stop Loss: 0.0000 | LR: 0.000439
-Step 20400/100000 | Total Loss: 0.1484 | Mel Loss: 0.1484 | Stop Loss: 0.0001 | LR: 0.000438
-Step 20500/100000 | Total Loss: 0.1418 | Mel Loss: 0.1369 | Stop Loss: 0.0049 | LR: 0.000437
-Step 20600/100000 | Total Loss: 0.1270 | Mel Loss: 0.1270 | Stop Loss: 0.0000 | LR: 0.000435
-[TRAIN] Epoch 028 | Average Total Loss: 0.1504 | Average Mel Loss: 0.1501 | Average Stop Loss: 0.0003
-[VALID] Epoch 028 | Average Total Loss: 0.2468 | Average Mel Loss: 0.2064 | Average Stop Loss: 0.0404
-Step 20700/100000 | Total Loss: 0.1515 | Mel Loss: 0.1478 | Stop Loss: 0.0037 | LR: 0.000434
-Step 20800/100000 | Total Loss: 0.1433 | Mel Loss: 0.1433 | Stop Loss: 0.0000 | LR: 0.000433
-Step 20900/100000 | Total Loss: 0.1484 | Mel Loss: 0.1484 | Stop Loss: 0.0000 | LR: 0.000432
-Step 21000/100000 | Total Loss: 0.1423 | Mel Loss: 0.1423 | Stop Loss: 0.0000 | LR: 0.000431
-Step 21100/100000 | Total Loss: 0.1609 | Mel Loss: 0.1574 | Stop Loss: 0.0035 | LR: 0.000430
-Step 21200/100000 | Total Loss: 0.1520 | Mel Loss: 0.1513 | Stop Loss: 0.0007 | LR: 0.000429
-Step 21300/100000 | Total Loss: 0.1527 | Mel Loss: 0.1525 | Stop Loss: 0.0002 | LR: 0.000428
-[TRAIN] Epoch 029 | Average Total Loss: 0.1495 | Average Mel Loss: 0.1493 | Average Stop Loss: 0.0003
-[VALID] Epoch 029 | Average Total Loss: 0.2650 | Average Mel Loss: 0.2122 | Average Stop Loss: 0.0529
-Step 21400/100000 | Total Loss: 0.1596 | Mel Loss: 0.1595 | Stop Loss: 0.0001 | LR: 0.000427
-Step 21500/100000 | Total Loss: 0.1626 | Mel Loss: 0.1625 | Stop Loss: 0.0000 | LR: 0.000426
-Step 21600/100000 | Total Loss: 0.1370 | Mel Loss: 0.1370 | Stop Loss: 0.0001 | LR: 0.000425
-Step 21700/100000 | Total Loss: 0.1516 | Mel Loss: 0.1515 | Stop Loss: 0.0000 | LR: 0.000424
-Step 21800/100000 | Total Loss: 0.1418 | Mel Loss: 0.1405 | Stop Loss: 0.0013 | LR: 0.000423
-Step 21900/100000 | Total Loss: 0.1424 | Mel Loss: 0.1424 | Stop Loss: 0.0000 | LR: 0.000422
-Step 22000/100000 | Total Loss: 0.1688 | Mel Loss: 0.1688 | Stop Loss: 0.0000 | LR: 0.000421
-[TRAIN] Epoch 030 | Average Total Loss: 0.1488 | Average Mel Loss: 0.1485 | Average Stop Loss: 0.0003
-[VALID] Epoch 030 | Average Total Loss: 0.2383 | Average Mel Loss: 0.1991 | Average Stop Loss: 0.0392
-Step 22100/100000 | Total Loss: 0.1325 | Mel Loss: 0.1325 | Stop Loss: 0.0000 | LR: 0.000420
-Step 22200/100000 | Total Loss: 0.1505 | Mel Loss: 0.1505 | Stop Loss: 0.0000 | LR: 0.000419
-Step 22300/100000 | Total Loss: 0.1490 | Mel Loss: 0.1490 | Stop Loss: 0.0000 | LR: 0.000419
-Step 22400/100000 | Total Loss: 0.1499 | Mel Loss: 0.1499 | Stop Loss: 0.0000 | LR: 0.000418
-Step 22500/100000 | Total Loss: 0.1536 | Mel Loss: 0.1536 | Stop Loss: 0.0000 | LR: 0.000417
-Step 22600/100000 | Total Loss: 0.1500 | Mel Loss: 0.1440 | Stop Loss: 0.0060 | LR: 0.000416
-Step 22700/100000 | Total Loss: 0.1433 | Mel Loss: 0.1433 | Stop Loss: 0.0000 | LR: 0.000415
-Step 22800/100000 | Total Loss: 0.1412 | Mel Loss: 0.1374 | Stop Loss: 0.0038 | LR: 0.000414
-[TRAIN] Epoch 031 | Average Total Loss: 0.1477 | Average Mel Loss: 0.1475 | Average Stop Loss: 0.0003
-[VALID] Epoch 031 | Average Total Loss: 0.2545 | Average Mel Loss: 0.2071 | Average Stop Loss: 0.0475
-Step 22900/100000 | Total Loss: 0.1707 | Mel Loss: 0.1706 | Stop Loss: 0.0000 | LR: 0.000413
-Step 23000/100000 | Total Loss: 0.1580 | Mel Loss: 0.1579 | Stop Loss: 0.0000 | LR: 0.000412
-Step 23100/100000 | Total Loss: 0.1397 | Mel Loss: 0.1396 | Stop Loss: 0.0001 | LR: 0.000411
-Step 23200/100000 | Total Loss: 0.1499 | Mel Loss: 0.1499 | Stop Loss: 0.0000 | LR: 0.000410
-Step 23300/100000 | Total Loss: 0.1369 | Mel Loss: 0.1368 | Stop Loss: 0.0000 | LR: 0.000409
-Step 23400/100000 | Total Loss: 0.1339 | Mel Loss: 0.1302 | Stop Loss: 0.0038 | LR: 0.000409
-Step 23500/100000 | Total Loss: 0.1421 | Mel Loss: 0.1421 | Stop Loss: 0.0000 | LR: 0.000408
-[TRAIN] Epoch 032 | Average Total Loss: 0.1478 | Average Mel Loss: 0.1475 | Average Stop Loss: 0.0003
-[VALID] Epoch 032 | Average Total Loss: 0.2328 | Average Mel Loss: 0.2014 | Average Stop Loss: 0.0314
-Step 23600/100000 | Total Loss: 0.1343 | Mel Loss: 0.1343 | Stop Loss: 0.0000 | LR: 0.000407
-Step 23700/100000 | Total Loss: 0.1617 | Mel Loss: 0.1617 | Stop Loss: 0.0000 | LR: 0.000406
-Step 23800/100000 | Total Loss: 0.1472 | Mel Loss: 0.1472 | Stop Loss: 0.0000 | LR: 0.000405
-Step 23900/100000 | Total Loss: 0.1640 | Mel Loss: 0.1640 | Stop Loss: 0.0000 | LR: 0.000404
-Step 24000/100000 | Total Loss: 0.1515 | Mel Loss: 0.1515 | Stop Loss: 0.0000 | LR: 0.000403
-Step 24100/100000 | Total Loss: 0.1529 | Mel Loss: 0.1529 | Stop Loss: 0.0000 | LR: 0.000403
-Step 24200/100000 | Total Loss: 0.1562 | Mel Loss: 0.1562 | Stop Loss: 0.0000 | LR: 0.000402
-[TRAIN] Epoch 033 | Average Total Loss: 0.1466 | Average Mel Loss: 0.1463 | Average Stop Loss: 0.0003
-[VALID] Epoch 033 | Average Total Loss: 0.2374 | Average Mel Loss: 0.2042 | Average Stop Loss: 0.0332
-Step 24300/100000 | Total Loss: 0.1540 | Mel Loss: 0.1540 | Stop Loss: 0.0000 | LR: 0.000401
-Step 24400/100000 | Total Loss: 0.1525 | Mel Loss: 0.1525 | Stop Loss: 0.0000 | LR: 0.000400
-Step 24500/100000 | Total Loss: 0.1559 | Mel Loss: 0.1559 | Stop Loss: 0.0000 | LR: 0.000399
-Step 24600/100000 | Total Loss: 0.1520 | Mel Loss: 0.1519 | Stop Loss: 0.0002 | LR: 0.000398
-Step 24700/100000 | Total Loss: 0.1620 | Mel Loss: 0.1620 | Stop Loss: 0.0000 | LR: 0.000398
-Step 24800/100000 | Total Loss: 0.1711 | Mel Loss: 0.1710 | Stop Loss: 0.0000 | LR: 0.000397
-Step 24900/100000 | Total Loss: 0.1352 | Mel Loss: 0.1352 | Stop Loss: 0.0000 | LR: 0.000396
-Step 25000/100000 | Total Loss: 0.1414 | Mel Loss: 0.1386 | Stop Loss: 0.0027 | LR: 0.000395
-[TRAIN] Epoch 034 | Average Total Loss: 0.1459 | Average Mel Loss: 0.1457 | Average Stop Loss: 0.0002
-[VALID] Epoch 034 | Average Total Loss: 0.2514 | Average Mel Loss: 0.2171 | Average Stop Loss: 0.0343
-Step 25100/100000 | Total Loss: 0.1578 | Mel Loss: 0.1578 | Stop Loss: 0.0000 | LR: 0.000394
-Step 25200/100000 | Total Loss: 0.1391 | Mel Loss: 0.1390 | Stop Loss: 0.0000 | LR: 0.000394
-Step 25300/100000 | Total Loss: 0.1424 | Mel Loss: 0.1422 | Stop Loss: 0.0003 | LR: 0.000393
-Step 25400/100000 | Total Loss: 0.1585 | Mel Loss: 0.1585 | Stop Loss: 0.0000 | LR: 0.000392
-Step 25500/100000 | Total Loss: 0.1496 | Mel Loss: 0.1495 | Stop Loss: 0.0001 | LR: 0.000391
-Step 25600/100000 | Total Loss: 0.1663 | Mel Loss: 0.1661 | Stop Loss: 0.0002 | LR: 0.000391
-Step 25700/100000 | Total Loss: 0.1417 | Mel Loss: 0.1416 | Stop Loss: 0.0001 | LR: 0.000390
-[TRAIN] Epoch 035 | Average Total Loss: 0.1457 | Average Mel Loss: 0.1454 | Average Stop Loss: 0.0003
-[VALID] Epoch 035 | Average Total Loss: 0.2533 | Average Mel Loss: 0.2057 | Average Stop Loss: 0.0476
-Step 25800/100000 | Total Loss: 0.1312 | Mel Loss: 0.1312 | Stop Loss: 0.0000 | LR: 0.000389
-Step 25900/100000 | Total Loss: 0.1482 | Mel Loss: 0.1481 | Stop Loss: 0.0001 | LR: 0.000388
-Step 26000/100000 | Total Loss: 0.1497 | Mel Loss: 0.1497 | Stop Loss: 0.0000 | LR: 0.000388
-Step 26100/100000 | Total Loss: 0.1408 | Mel Loss: 0.1407 | Stop Loss: 0.0001 | LR: 0.000387
-Step 26200/100000 | Total Loss: 0.1283 | Mel Loss: 0.1283 | Stop Loss: 0.0000 | LR: 0.000386
-Step 26300/100000 | Total Loss: 0.1279 | Mel Loss: 0.1279 | Stop Loss: 0.0000 | LR: 0.000385
-Step 26400/100000 | Total Loss: 0.1491 | Mel Loss: 0.1445 | Stop Loss: 0.0046 | LR: 0.000385
-[TRAIN] Epoch 036 | Average Total Loss: 0.1452 | Average Mel Loss: 0.1450 | Average Stop Loss: 0.0002
-[VALID] Epoch 036 | Average Total Loss: 0.2289 | Average Mel Loss: 0.1985 | Average Stop Loss: 0.0304
-Step 26500/100000 | Total Loss: 0.1250 | Mel Loss: 0.1250 | Stop Loss: 0.0000 | LR: 0.000384
-Step 26600/100000 | Total Loss: 0.1342 | Mel Loss: 0.1341 | Stop Loss: 0.0001 | LR: 0.000383
-Step 26700/100000 | Total Loss: 0.1587 | Mel Loss: 0.1587 | Stop Loss: 0.0000 | LR: 0.000382
-Step 26800/100000 | Total Loss: 0.1381 | Mel Loss: 0.1366 | Stop Loss: 0.0015 | LR: 0.000382
-Step 26900/100000 | Total Loss: 0.1497 | Mel Loss: 0.1493 | Stop Loss: 0.0004 | LR: 0.000381
-Step 27000/100000 | Total Loss: 0.1280 | Mel Loss: 0.1280 | Stop Loss: 0.0000 | LR: 0.000380
-Step 27100/100000 | Total Loss: 0.1549 | Mel Loss: 0.1549 | Stop Loss: 0.0000 | LR: 0.000380
-Step 27200/100000 | Total Loss: 0.1598 | Mel Loss: 0.1598 | Stop Loss: 0.0000 | LR: 0.000379
-[TRAIN] Epoch 037 | Average Total Loss: 0.1442 | Average Mel Loss: 0.1440 | Average Stop Loss: 0.0002
-[VALID] Epoch 037 | Average Total Loss: 0.2367 | Average Mel Loss: 0.2072 | Average Stop Loss: 0.0295
-Step 27300/100000 | Total Loss: 0.1373 | Mel Loss: 0.1373 | Stop Loss: 0.0000 | LR: 0.000378
-Step 27400/100000 | Total Loss: 0.1478 | Mel Loss: 0.1477 | Stop Loss: 0.0000 | LR: 0.000378
-Step 27500/100000 | Total Loss: 0.1541 | Mel Loss: 0.1541 | Stop Loss: 0.0000 | LR: 0.000377
-Step 27600/100000 | Total Loss: 0.1249 | Mel Loss: 0.1249 | Stop Loss: 0.0000 | LR: 0.000376
-Step 27700/100000 | Total Loss: 0.1338 | Mel Loss: 0.1338 | Stop Loss: 0.0000 | LR: 0.000376
-Step 27800/100000 | Total Loss: 0.1407 | Mel Loss: 0.1404 | Stop Loss: 0.0002 | LR: 0.000375
-Step 27900/100000 | Total Loss: 0.1332 | Mel Loss: 0.1332 | Stop Loss: 0.0000 | LR: 0.000374
-[TRAIN] Epoch 038 | Average Total Loss: 0.1434 | Average Mel Loss: 0.1432 | Average Stop Loss: 0.0002
-[VALID] Epoch 038 | Average Total Loss: 0.2540 | Average Mel Loss: 0.2026 | Average Stop Loss: 0.0514
-Step 28000/100000 | Total Loss: 0.1546 | Mel Loss: 0.1544 | Stop Loss: 0.0001 | LR: 0.000374
-Step 28100/100000 | Total Loss: 0.1477 | Mel Loss: 0.1477 | Stop Loss: 0.0000 | LR: 0.000373
-Step 28200/100000 | Total Loss: 0.1144 | Mel Loss: 0.1144 | Stop Loss: 0.0000 | LR: 0.000372
-Step 28300/100000 | Total Loss: 0.1540 | Mel Loss: 0.1535 | Stop Loss: 0.0005 | LR: 0.000372
-Step 28400/100000 | Total Loss: 0.1307 | Mel Loss: 0.1307 | Stop Loss: 0.0000 | LR: 0.000371
-Step 28500/100000 | Total Loss: 0.1344 | Mel Loss: 0.1344 | Stop Loss: 0.0000 | LR: 0.000370
-Step 28600/100000 | Total Loss: 0.1331 | Mel Loss: 0.1330 | Stop Loss: 0.0000 | LR: 0.000370
-Step 28700/100000 | Total Loss: 0.1299 | Mel Loss: 0.1298 | Stop Loss: 0.0000 | LR: 0.000369
-[TRAIN] Epoch 039 | Average Total Loss: 0.1433 | Average Mel Loss: 0.1431 | Average Stop Loss: 0.0002
-[VALID] Epoch 039 | Average Total Loss: 0.2443 | Average Mel Loss: 0.2033 | Average Stop Loss: 0.0410
-Step 28800/100000 | Total Loss: 0.1219 | Mel Loss: 0.1219 | Stop Loss: 0.0000 | LR: 0.000368
-Step 28900/100000 | Total Loss: 0.1494 | Mel Loss: 0.1493 | Stop Loss: 0.0000 | LR: 0.000368
-Step 29000/100000 | Total Loss: 0.1278 | Mel Loss: 0.1278 | Stop Loss: 0.0000 | LR: 0.000367
-Step 29100/100000 | Total Loss: 0.1473 | Mel Loss: 0.1473 | Stop Loss: 0.0000 | LR: 0.000366
-Step 29200/100000 | Total Loss: 0.1469 | Mel Loss: 0.1469 | Stop Loss: 0.0000 | LR: 0.000366
-Step 29300/100000 | Total Loss: 0.1422 | Mel Loss: 0.1422 | Stop Loss: 0.0000 | LR: 0.000365
-Step 29400/100000 | Total Loss: 0.1337 | Mel Loss: 0.1337 | Stop Loss: 0.0000 | LR: 0.000365
-[TRAIN] Epoch 040 | Average Total Loss: 0.1426 | Average Mel Loss: 0.1424 | Average Stop Loss: 0.0002
-[VALID] Epoch 040 | Average Total Loss: 0.2312 | Average Mel Loss: 0.2009 | Average Stop Loss: 0.0302
-Step 29500/100000 | Total Loss: 0.1674 | Mel Loss: 0.1674 | Stop Loss: 0.0000 | LR: 0.000364
-Step 29600/100000 | Total Loss: 0.1382 | Mel Loss: 0.1382 | Stop Loss: 0.0000 | LR: 0.000363
-Step 29700/100000 | Total Loss: 0.1324 | Mel Loss: 0.1287 | Stop Loss: 0.0037 | LR: 0.000363
-Step 29800/100000 | Total Loss: 0.1503 | Mel Loss: 0.1503 | Stop Loss: 0.0000 | LR: 0.000362
-Step 29900/100000 | Total Loss: 0.1210 | Mel Loss: 0.1193 | Stop Loss: 0.0017 | LR: 0.000361
-Step 30000/100000 | Total Loss: 0.1358 | Mel Loss: 0.1358 | Stop Loss: 0.0000 | LR: 0.000361
-Step 30100/100000 | Total Loss: 0.1467 | Mel Loss: 0.1467 | Stop Loss: 0.0000 | LR: 0.000360
-[TRAIN] Epoch 041 | Average Total Loss: 0.1422 | Average Mel Loss: 0.1420 | Average Stop Loss: 0.0002
-[VALID] Epoch 041 | Average Total Loss: 0.2580 | Average Mel Loss: 0.2035 | Average Stop Loss: 0.0545
-Step 30200/100000 | Total Loss: 0.1516 | Mel Loss: 0.1516 | Stop Loss: 0.0000 | LR: 0.000360
-Step 30300/100000 | Total Loss: 0.1276 | Mel Loss: 0.1276 | Stop Loss: 0.0000 | LR: 0.000359
-Step 30400/100000 | Total Loss: 0.1349 | Mel Loss: 0.1349 | Stop Loss: 0.0000 | LR: 0.000358
-Step 30500/100000 | Total Loss: 0.1481 | Mel Loss: 0.1456 | Stop Loss: 0.0025 | LR: 0.000358
-Step 30600/100000 | Total Loss: 0.1532 | Mel Loss: 0.1526 | Stop Loss: 0.0006 | LR: 0.000357
-Step 30700/100000 | Total Loss: 0.1410 | Mel Loss: 0.1410 | Stop Loss: 0.0000 | LR: 0.000357
-Step 30800/100000 | Total Loss: 0.1364 | Mel Loss: 0.1364 | Stop Loss: 0.0000 | LR: 0.000356
-Step 30900/100000 | Total Loss: 0.1519 | Mel Loss: 0.1519 | Stop Loss: 0.0000 | LR: 0.000356
-[TRAIN] Epoch 042 | Average Total Loss: 0.1418 | Average Mel Loss: 0.1416 | Average Stop Loss: 0.0002
-[VALID] Epoch 042 | Average Total Loss: 0.2603 | Average Mel Loss: 0.2069 | Average Stop Loss: 0.0534
-Step 31000/100000 | Total Loss: 0.1440 | Mel Loss: 0.1439 | Stop Loss: 0.0000 | LR: 0.000355
-Step 31100/100000 | Total Loss: 0.1447 | Mel Loss: 0.1447 | Stop Loss: 0.0000 | LR: 0.000354
-Step 31200/100000 | Total Loss: 0.1400 | Mel Loss: 0.1386 | Stop Loss: 0.0013 | LR: 0.000354
-Step 31300/100000 | Total Loss: 0.1348 | Mel Loss: 0.1348 | Stop Loss: 0.0000 | LR: 0.000353
-Step 31400/100000 | Total Loss: 0.1442 | Mel Loss: 0.1442 | Stop Loss: 0.0000 | LR: 0.000353
-Step 31500/100000 | Total Loss: 0.1396 | Mel Loss: 0.1396 | Stop Loss: 0.0000 | LR: 0.000352
-Step 31600/100000 | Total Loss: 0.1202 | Mel Loss: 0.1202 | Stop Loss: 0.0000 | LR: 0.000352
-[TRAIN] Epoch 043 | Average Total Loss: 0.1411 | Average Mel Loss: 0.1410 | Average Stop Loss: 0.0002
-[VALID] Epoch 043 | Average Total Loss: 0.2491 | Average Mel Loss: 0.1962 | Average Stop Loss: 0.0529
-Step 31700/100000 | Total Loss: 0.1313 | Mel Loss: 0.1313 | Stop Loss: 0.0000 | LR: 0.000351
-Step 31800/100000 | Total Loss: 0.1384 | Mel Loss: 0.1383 | Stop Loss: 0.0000 | LR: 0.000350
-Step 31900/100000 | Total Loss: 0.1294 | Mel Loss: 0.1294 | Stop Loss: 0.0000 | LR: 0.000350
-Step 32000/100000 | Total Loss: 0.1495 | Mel Loss: 0.1495 | Stop Loss: 0.0000 | LR: 0.000349
-Step 32100/100000 | Total Loss: 0.1429 | Mel Loss: 0.1424 | Stop Loss: 0.0005 | LR: 0.000349
-Step 32200/100000 | Total Loss: 0.1341 | Mel Loss: 0.1306 | Stop Loss: 0.0035 | LR: 0.000348
-Step 32300/100000 | Total Loss: 0.1420 | Mel Loss: 0.1419 | Stop Loss: 0.0000 | LR: 0.000348
-[TRAIN] Epoch 044 | Average Total Loss: 0.1407 | Average Mel Loss: 0.1405 | Average Stop Loss: 0.0002
-[VALID] Epoch 044 | Average Total Loss: 0.2256 | Average Mel Loss: 0.1978 | Average Stop Loss: 0.0278
-Step 32400/100000 | Total Loss: 0.1431 | Mel Loss: 0.1430 | Stop Loss: 0.0001 | LR: 0.000347
-Step 32500/100000 | Total Loss: 0.1419 | Mel Loss: 0.1418 | Stop Loss: 0.0000 | LR: 0.000347
-Step 32600/100000 | Total Loss: 0.1250 | Mel Loss: 0.1250 | Stop Loss: 0.0000 | LR: 0.000346
-Step 32700/100000 | Total Loss: 0.1396 | Mel Loss: 0.1396 | Stop Loss: 0.0000 | LR: 0.000346
-Step 32800/100000 | Total Loss: 0.1492 | Mel Loss: 0.1492 | Stop Loss: 0.0000 | LR: 0.000345
-Step 32900/100000 | Total Loss: 0.1369 | Mel Loss: 0.1369 | Stop Loss: 0.0000 | LR: 0.000345
-Step 33000/100000 | Total Loss: 0.1360 | Mel Loss: 0.1359 | Stop Loss: 0.0001 | LR: 0.000344
-Step 33100/100000 | Total Loss: 0.1403 | Mel Loss: 0.1402 | Stop Loss: 0.0000 | LR: 0.000344
-[TRAIN] Epoch 045 | Average Total Loss: 0.1403 | Average Mel Loss: 0.1400 | Average Stop Loss: 0.0002
-[VALID] Epoch 045 | Average Total Loss: 0.2403 | Average Mel Loss: 0.1936 | Average Stop Loss: 0.0467
-Step 33200/100000 | Total Loss: 0.1483 | Mel Loss: 0.1481 | Stop Loss: 0.0002 | LR: 0.000343
-Step 33300/100000 | Total Loss: 0.1147 | Mel Loss: 0.1146 | Stop Loss: 0.0000 | LR: 0.000342
-Step 33400/100000 | Total Loss: 0.1542 | Mel Loss: 0.1542 | Stop Loss: 0.0000 | LR: 0.000342
-Step 33500/100000 | Total Loss: 0.1418 | Mel Loss: 0.1415 | Stop Loss: 0.0004 | LR: 0.000341
-Step 33600/100000 | Total Loss: 0.1401 | Mel Loss: 0.1401 | Stop Loss: 0.0000 | LR: 0.000341
-Step 33700/100000 | Total Loss: 0.1589 | Mel Loss: 0.1588 | Stop Loss: 0.0000 | LR: 0.000340
-Step 33800/100000 | Total Loss: 0.1487 | Mel Loss: 0.1487 | Stop Loss: 0.0000 | LR: 0.000340
-[TRAIN] Epoch 046 | Average Total Loss: 0.1399 | Average Mel Loss: 0.1397 | Average Stop Loss: 0.0002
-[VALID] Epoch 046 | Average Total Loss: 0.2331 | Average Mel Loss: 0.1984 | Average Stop Loss: 0.0348
-Step 33900/100000 | Total Loss: 0.1248 | Mel Loss: 0.1248 | Stop Loss: 0.0000 | LR: 0.000339
-Step 34000/100000 | Total Loss: 0.1291 | Mel Loss: 0.1291 | Stop Loss: 0.0000 | LR: 0.000339
-Step 34100/100000 | Total Loss: 0.1437 | Mel Loss: 0.1437 | Stop Loss: 0.0000 | LR: 0.000338
-Step 34200/100000 | Total Loss: 0.1556 | Mel Loss: 0.1556 | Stop Loss: 0.0000 | LR: 0.000338
-Step 34300/100000 | Total Loss: 0.1404 | Mel Loss: 0.1404 | Stop Loss: 0.0000 | LR: 0.000337
-Step 34400/100000 | Total Loss: 0.1290 | Mel Loss: 0.1290 | Stop Loss: 0.0000 | LR: 0.000337
-Step 34500/100000 | Total Loss: 0.1246 | Mel Loss: 0.1246 | Stop Loss: 0.0000 | LR: 0.000336
-[TRAIN] Epoch 047 | Average Total Loss: 0.1390 | Average Mel Loss: 0.1389 | Average Stop Loss: 0.0002
-[VALID] Epoch 047 | Average Total Loss: 0.2417 | Average Mel Loss: 0.1965 | Average Stop Loss: 0.0451
-Step 34600/100000 | Total Loss: 0.1477 | Mel Loss: 0.1477 | Stop Loss: 0.0000 | LR: 0.000336
-Step 34700/100000 | Total Loss: 0.1353 | Mel Loss: 0.1353 | Stop Loss: 0.0000 | LR: 0.000336
-Step 34800/100000 | Total Loss: 0.1148 | Mel Loss: 0.1148 | Stop Loss: 0.0000 | LR: 0.000335
-Step 34900/100000 | Total Loss: 0.1401 | Mel Loss: 0.1401 | Stop Loss: 0.0000 | LR: 0.000335
-Step 35000/100000 | Total Loss: 0.1438 | Mel Loss: 0.1438 | Stop Loss: 0.0000 | LR: 0.000334
-Step 35100/100000 | Total Loss: 0.1528 | Mel Loss: 0.1528 | Stop Loss: 0.0000 | LR: 0.000334
-Step 35200/100000 | Total Loss: 0.1240 | Mel Loss: 0.1240 | Stop Loss: 0.0000 | LR: 0.000333
-Step 35300/100000 | Total Loss: 0.1511 | Mel Loss: 0.1511 | Stop Loss: 0.0000 | LR: 0.000333
-[TRAIN] Epoch 048 | Average Total Loss: 0.1389 | Average Mel Loss: 0.1388 | Average Stop Loss: 0.0002
-[VALID] Epoch 048 | Average Total Loss: 0.2358 | Average Mel Loss: 0.1996 | Average Stop Loss: 0.0362
-Step 35400/100000 | Total Loss: 0.1549 | Mel Loss: 0.1548 | Stop Loss: 0.0000 | LR: 0.000332
-Step 35500/100000 | Total Loss: 0.1221 | Mel Loss: 0.1221 | Stop Loss: 0.0000 | LR: 0.000332
-Step 35600/100000 | Total Loss: 0.1501 | Mel Loss: 0.1500 | Stop Loss: 0.0000 | LR: 0.000331
-Step 35700/100000 | Total Loss: 0.1464 | Mel Loss: 0.1464 | Stop Loss: 0.0000 | LR: 0.000331
-Step 35800/100000 | Total Loss: 0.1309 | Mel Loss: 0.1309 | Stop Loss: 0.0000 | LR: 0.000330
-Step 35900/100000 | Total Loss: 0.1488 | Mel Loss: 0.1488 | Stop Loss: 0.0000 | LR: 0.000330
-Step 36000/100000 | Total Loss: 0.1406 | Mel Loss: 0.1405 | Stop Loss: 0.0000 | LR: 0.000329
-[TRAIN] Epoch 049 | Average Total Loss: 0.1387 | Average Mel Loss: 0.1385 | Average Stop Loss: 0.0002
-[VALID] Epoch 049 | Average Total Loss: 0.2512 | Average Mel Loss: 0.2044 | Average Stop Loss: 0.0468
-Step 36100/100000 | Total Loss: 0.1363 | Mel Loss: 0.1363 | Stop Loss: 0.0000 | LR: 0.000329
-Step 36200/100000 | Total Loss: 0.1300 | Mel Loss: 0.1300 | Stop Loss: 0.0000 | LR: 0.000328
-Step 36300/100000 | Total Loss: 0.1496 | Mel Loss: 0.1495 | Stop Loss: 0.0000 | LR: 0.000328
-Step 36400/100000 | Total Loss: 0.1296 | Mel Loss: 0.1296 | Stop Loss: 0.0000 | LR: 0.000328
-Step 36500/100000 | Total Loss: 0.1407 | Mel Loss: 0.1407 | Stop Loss: 0.0000 | LR: 0.000327
-Step 36600/100000 | Total Loss: 0.1486 | Mel Loss: 0.1485 | Stop Loss: 0.0000 | LR: 0.000327
-Step 36700/100000 | Total Loss: 0.1626 | Mel Loss: 0.1626 | Stop Loss: 0.0000 | LR: 0.000326
-Step 36800/100000 | Total Loss: 0.1235 | Mel Loss: 0.1235 | Stop Loss: 0.0000 | LR: 0.000326
-[TRAIN] Epoch 050 | Average Total Loss: 0.1380 | Average Mel Loss: 0.1378 | Average Stop Loss: 0.0002
-[VALID] Epoch 050 | Average Total Loss: 0.2556 | Average Mel Loss: 0.1985 | Average Stop Loss: 0.0571
-Step 36900/100000 | Total Loss: 0.1290 | Mel Loss: 0.1290 | Stop Loss: 0.0000 | LR: 0.000325
-Step 37000/100000 | Total Loss: 0.1580 | Mel Loss: 0.1580 | Stop Loss: 0.0000 | LR: 0.000325
-Step 37100/100000 | Total Loss: 0.1395 | Mel Loss: 0.1395 | Stop Loss: 0.0000 | LR: 0.000324
+Step 100/35000 | Total Loss: 4.2860 | Mel Loss: 3.1307 | Stop Loss: 1.1553 | LR: 0.000025
+Step 200/35000 | Total Loss: 3.4716 | Mel Loss: 2.3990 | Stop Loss: 1.0726 | LR: 0.000049
+Step 300/35000 | Total Loss: 3.4153 | Mel Loss: 2.0824 | Stop Loss: 1.3329 | LR: 0.000074
+[TRAIN] Epoch 001 | Average Total Loss: 4.3544 | Average Mel Loss: 3.0525 | Average Stop Loss: 1.3019
+[VALID] Epoch 001 | Average Total Loss: 3.2072 | Average Mel Loss: 2.0535 | Average Stop Loss: 1.1537
+Step 400/35000 | Total Loss: 3.0371 | Mel Loss: 1.9382 | Stop Loss: 1.0989 | LR: 0.000099
+Step 500/35000 | Total Loss: 2.9699 | Mel Loss: 1.7952 | Stop Loss: 1.1747 | LR: 0.000124
+Step 600/35000 | Total Loss: 2.9316 | Mel Loss: 1.6958 | Stop Loss: 1.2358 | LR: 0.000148
+[TRAIN] Epoch 002 | Average Total Loss: 2.9906 | Average Mel Loss: 1.8278 | Average Stop Loss: 1.1628
+[VALID] Epoch 002 | Average Total Loss: 2.3065 | Average Mel Loss: 1.1534 | Average Stop Loss: 1.1531
+Step 700/35000 | Total Loss: 2.8675 | Mel Loss: 1.6276 | Stop Loss: 1.2399 | LR: 0.000173
+Step 800/35000 | Total Loss: 2.6622 | Mel Loss: 1.5535 | Stop Loss: 1.1087 | LR: 0.000198
+Step 900/35000 | Total Loss: 2.8705 | Mel Loss: 1.4449 | Stop Loss: 1.4256 | LR: 0.000222
+[TRAIN] Epoch 003 | Average Total Loss: 2.6968 | Average Mel Loss: 1.5339 | Average Stop Loss: 1.1628
+[VALID] Epoch 003 | Average Total Loss: 1.8534 | Average Mel Loss: 0.7006 | Average Stop Loss: 1.1528
+Step 1000/35000 | Total Loss: 2.5171 | Mel Loss: 1.3893 | Stop Loss: 1.1278 | LR: 0.000247
+Step 1100/35000 | Total Loss: 2.6428 | Mel Loss: 1.2859 | Stop Loss: 1.3568 | LR: 0.000272
+Step 1200/35000 | Total Loss: 2.4946 | Mel Loss: 1.2110 | Stop Loss: 1.2835 | LR: 0.000296
+Step 1300/35000 | Total Loss: 2.1600 | Mel Loss: 1.1515 | Stop Loss: 1.0085 | LR: 0.000321
+[TRAIN] Epoch 004 | Average Total Loss: 2.4282 | Average Mel Loss: 1.2693 | Average Stop Loss: 1.1589
+[VALID] Epoch 004 | Average Total Loss: 1.6387 | Average Mel Loss: 0.4859 | Average Stop Loss: 1.1528
+Step 1400/35000 | Total Loss: 2.1666 | Mel Loss: 1.0589 | Stop Loss: 1.1077 | LR: 0.000346
+Step 1500/35000 | Total Loss: 2.0224 | Mel Loss: 0.9808 | Stop Loss: 1.0416 | LR: 0.000371
+Step 1600/35000 | Total Loss: 1.9217 | Mel Loss: 0.9036 | Stop Loss: 1.0181 | LR: 0.000395
+[TRAIN] Epoch 005 | Average Total Loss: 2.1565 | Average Mel Loss: 0.9962 | Average Stop Loss: 1.1602
+[VALID] Epoch 005 | Average Total Loss: 1.5174 | Average Mel Loss: 0.3646 | Average Stop Loss: 1.1528
+Step 1700/35000 | Total Loss: 1.8330 | Mel Loss: 0.8139 | Stop Loss: 1.0191 | LR: 0.000420
+Step 1800/35000 | Total Loss: 1.7953 | Mel Loss: 0.7242 | Stop Loss: 1.0711 | LR: 0.000445
+Step 1900/35000 | Total Loss: 1.6920 | Mel Loss: 0.6492 | Stop Loss: 1.0428 | LR: 0.000469
+[TRAIN] Epoch 006 | Average Total Loss: 1.8844 | Average Mel Loss: 0.7221 | Average Stop Loss: 1.1623
+[VALID] Epoch 006 | Average Total Loss: 1.4110 | Average Mel Loss: 0.2582 | Average Stop Loss: 1.1528
+Step 2000/35000 | Total Loss: 1.7825 | Mel Loss: 0.5567 | Stop Loss: 1.2258 | LR: 0.000494
+Step 2100/35000 | Total Loss: 1.7035 | Mel Loss: 0.4845 | Stop Loss: 1.2190 | LR: 0.000519
+Step 2200/35000 | Total Loss: 1.6047 | Mel Loss: 0.4294 | Stop Loss: 1.1753 | LR: 0.000544
+[TRAIN] Epoch 007 | Average Total Loss: 1.6359 | Average Mel Loss: 0.4785 | Average Stop Loss: 1.1574
+[VALID] Epoch 007 | Average Total Loss: 1.3500 | Average Mel Loss: 0.1972 | Average Stop Loss: 1.1528
+Step 2300/35000 | Total Loss: 1.7470 | Mel Loss: 0.3572 | Stop Loss: 1.3898 | LR: 0.000568
+Step 2400/35000 | Total Loss: 1.4083 | Mel Loss: 0.3311 | Stop Loss: 1.0772 | LR: 0.000593
+Step 2500/35000 | Total Loss: 1.4357 | Mel Loss: 0.2964 | Stop Loss: 1.1393 | LR: 0.000618
+Step 2600/35000 | Total Loss: 1.4863 | Mel Loss: 0.2552 | Stop Loss: 1.2311 | LR: 0.000642
+[TRAIN] Epoch 008 | Average Total Loss: 1.4716 | Average Mel Loss: 0.3105 | Average Stop Loss: 1.1611
+[VALID] Epoch 008 | Average Total Loss: 1.3409 | Average Mel Loss: 0.1881 | Average Stop Loss: 1.1528
+Step 2700/35000 | Total Loss: 1.4797 | Mel Loss: 0.2458 | Stop Loss: 1.2339 | LR: 0.000667
+Step 2800/35000 | Total Loss: 1.4235 | Mel Loss: 0.2480 | Stop Loss: 1.1755 | LR: 0.000692
+Step 2900/35000 | Total Loss: 1.5648 | Mel Loss: 0.2233 | Stop Loss: 1.3415 | LR: 0.000716
+[TRAIN] Epoch 009 | Average Total Loss: 1.4092 | Average Mel Loss: 0.2474 | Average Stop Loss: 1.1618
+[VALID] Epoch 009 | Average Total Loss: 1.3584 | Average Mel Loss: 0.2056 | Average Stop Loss: 1.1528
+Step 3000/35000 | Total Loss: 1.4333 | Mel Loss: 0.2309 | Stop Loss: 1.2025 | LR: 0.000741
+Step 3100/35000 | Total Loss: 1.4467 | Mel Loss: 0.2228 | Stop Loss: 1.2239 | LR: 0.000766
+Step 3200/35000 | Total Loss: 1.4525 | Mel Loss: 0.2258 | Stop Loss: 1.2267 | LR: 0.000791
+[TRAIN] Epoch 010 | Average Total Loss: 1.3955 | Average Mel Loss: 0.2348 | Average Stop Loss: 1.1607
+[VALID] Epoch 010 | Average Total Loss: 1.3587 | Average Mel Loss: 0.2059 | Average Stop Loss: 1.1528
+Step 3300/35000 | Total Loss: 1.4551 | Mel Loss: 0.2176 | Stop Loss: 1.2374 | LR: 0.000815
+Step 3400/35000 | Total Loss: 1.2207 | Mel Loss: 0.2451 | Stop Loss: 0.9756 | LR: 0.000840
+Step 3500/35000 | Total Loss: 1.5486 | Mel Loss: 0.2029 | Stop Loss: 1.3457 | LR: 0.000865
+[TRAIN] Epoch 011 | Average Total Loss: 1.3875 | Average Mel Loss: 0.2255 | Average Stop Loss: 1.1620
+[VALID] Epoch 011 | Average Total Loss: 1.3735 | Average Mel Loss: 0.2207 | Average Stop Loss: 1.1528
+Step 3600/35000 | Total Loss: 1.2464 | Mel Loss: 0.2344 | Stop Loss: 1.0120 | LR: 0.000889
+Step 3700/35000 | Total Loss: 1.4059 | Mel Loss: 0.2162 | Stop Loss: 1.1897 | LR: 0.000914
+Step 3800/35000 | Total Loss: 1.2554 | Mel Loss: 0.2224 | Stop Loss: 1.0331 | LR: 0.000939
+Step 3900/35000 | Total Loss: 1.4756 | Mel Loss: 0.2069 | Stop Loss: 1.2687 | LR: 0.000964
+[TRAIN] Epoch 012 | Average Total Loss: 1.3772 | Average Mel Loss: 0.2182 | Average Stop Loss: 1.1589
+[VALID] Epoch 012 | Average Total Loss: 1.4017 | Average Mel Loss: 0.2489 | Average Stop Loss: 1.1528
+Step 4000/35000 | Total Loss: 1.4192 | Mel Loss: 0.2116 | Stop Loss: 1.2076 | LR: 0.000988
+Step 4100/35000 | Total Loss: 1.3860 | Mel Loss: 0.2095 | Stop Loss: 1.1765 | LR: 0.000976
+Step 4200/35000 | Total Loss: 1.3332 | Mel Loss: 0.2106 | Stop Loss: 1.1227 | LR: 0.000964
+[TRAIN] Epoch 013 | Average Total Loss: 1.3694 | Average Mel Loss: 0.2116 | Average Stop Loss: 1.1578
+[VALID] Epoch 013 | Average Total Loss: 1.4158 | Average Mel Loss: 0.2630 | Average Stop Loss: 1.1528
+Step 4300/35000 | Total Loss: 1.5026 | Mel Loss: 0.1938 | Stop Loss: 1.3089 | LR: 0.000953
+Step 4400/35000 | Total Loss: 1.2830 | Mel Loss: 0.2143 | Stop Loss: 1.0687 | LR: 0.000942
+Step 4500/35000 | Total Loss: 1.2649 | Mel Loss: 0.2091 | Stop Loss: 1.0558 | LR: 0.000932
+[TRAIN] Epoch 014 | Average Total Loss: 1.3662 | Average Mel Loss: 0.2050 | Average Stop Loss: 1.1612
+[VALID] Epoch 014 | Average Total Loss: 1.4103 | Average Mel Loss: 0.2575 | Average Stop Loss: 1.1528
+Step 4600/35000 | Total Loss: 1.1846 | Mel Loss: 0.2262 | Stop Loss: 0.9583 | LR: 0.000922
+Step 4700/35000 | Total Loss: 1.4548 | Mel Loss: 0.1933 | Stop Loss: 1.2616 | LR: 0.000912
+Step 4800/35000 | Total Loss: 1.4336 | Mel Loss: 0.1941 | Stop Loss: 1.2395 | LR: 0.000902
+Step 4900/35000 | Total Loss: 1.3919 | Mel Loss: 0.1951 | Stop Loss: 1.1969 | LR: 0.000893
+[TRAIN] Epoch 015 | Average Total Loss: 1.3580 | Average Mel Loss: 0.2003 | Average Stop Loss: 1.1577
+[VALID] Epoch 015 | Average Total Loss: 1.4163 | Average Mel Loss: 0.2635 | Average Stop Loss: 1.1528
+Step 5000/35000 | Total Loss: 1.5182 | Mel Loss: 0.1821 | Stop Loss: 1.3361 | LR: 0.000884
+Step 5100/35000 | Total Loss: 1.4372 | Mel Loss: 0.1879 | Stop Loss: 1.2492 | LR: 0.000875
+Step 5200/35000 | Total Loss: 1.1130 | Mel Loss: 0.2113 | Stop Loss: 0.9017 | LR: 0.000867
+[TRAIN] Epoch 016 | Average Total Loss: 1.3524 | Average Mel Loss: 0.1955 | Average Stop Loss: 1.1569
+[VALID] Epoch 016 | Average Total Loss: 1.4231 | Average Mel Loss: 0.2703 | Average Stop Loss: 1.1528
+Step 5300/35000 | Total Loss: 1.2840 | Mel Loss: 0.1953 | Stop Loss: 1.0887 | LR: 0.000859
+Step 5400/35000 | Total Loss: 1.4633 | Mel Loss: 0.1787 | Stop Loss: 1.2846 | LR: 0.000851
+Step 5500/35000 | Total Loss: 1.2467 | Mel Loss: 0.1973 | Stop Loss: 1.0494 | LR: 0.000843
+[TRAIN] Epoch 017 | Average Total Loss: 1.3498 | Average Mel Loss: 0.1907 | Average Stop Loss: 1.1591
+[VALID] Epoch 017 | Average Total Loss: 1.4375 | Average Mel Loss: 0.2847 | Average Stop Loss: 1.1528
+Step 5600/35000 | Total Loss: 1.4765 | Mel Loss: 0.1751 | Stop Loss: 1.3014 | LR: 0.000835
+Step 5700/35000 | Total Loss: 1.4255 | Mel Loss: 0.1791 | Stop Loss: 1.2464 | LR: 0.000828
+Step 5800/35000 | Total Loss: 1.5089 | Mel Loss: 0.1730 | Stop Loss: 1.3359 | LR: 0.000821
+[TRAIN] Epoch 018 | Average Total Loss: 1.3494 | Average Mel Loss: 0.1873 | Average Stop Loss: 1.1621
+[VALID] Epoch 018 | Average Total Loss: 1.4359 | Average Mel Loss: 0.2831 | Average Stop Loss: 1.1528
+Step 5900/35000 | Total Loss: 1.1326 | Mel Loss: 0.2026 | Stop Loss: 0.9300 | LR: 0.000814
+Step 6000/35000 | Total Loss: 1.2360 | Mel Loss: 0.1936 | Stop Loss: 1.0424 | LR: 0.000807
+Step 6100/35000 | Total Loss: 1.2059 | Mel Loss: 0.1983 | Stop Loss: 1.0076 | LR: 0.000800
+Step 6200/35000 | Total Loss: 1.1981 | Mel Loss: 0.1997 | Stop Loss: 0.9984 | LR: 0.000794
+[TRAIN] Epoch 019 | Average Total Loss: 1.3434 | Average Mel Loss: 0.1852 | Average Stop Loss: 1.1582
+[VALID] Epoch 019 | Average Total Loss: 1.4411 | Average Mel Loss: 0.2884 | Average Stop Loss: 1.1528
+Step 6300/35000 | Total Loss: 1.4283 | Mel Loss: 0.1762 | Stop Loss: 1.2521 | LR: 0.000787
+Step 6400/35000 | Total Loss: 1.1689 | Mel Loss: 0.2002 | Stop Loss: 0.9687 | LR: 0.000781
+Step 6500/35000 | Total Loss: 1.2859 | Mel Loss: 0.1879 | Stop Loss: 1.0980 | LR: 0.000775
+[TRAIN] Epoch 020 | Average Total Loss: 1.3425 | Average Mel Loss: 0.1826 | Average Stop Loss: 1.1599
+[VALID] Epoch 020 | Average Total Loss: 1.4461 | Average Mel Loss: 0.2933 | Average Stop Loss: 1.1528
+Step 6600/35000 | Total Loss: 1.2280 | Mel Loss: 0.1881 | Stop Loss: 1.0399 | LR: 0.000769
+Step 6700/35000 | Total Loss: 1.2324 | Mel Loss: 0.1890 | Stop Loss: 1.0433 | LR: 0.000764
+Step 6800/35000 | Total Loss: 1.1780 | Mel Loss: 0.1921 | Stop Loss: 0.9859 | LR: 0.000758
+[TRAIN] Epoch 021 | Average Total Loss: 1.3442 | Average Mel Loss: 0.1803 | Average Stop Loss: 1.1639
+[VALID] Epoch 021 | Average Total Loss: 1.4432 | Average Mel Loss: 0.2904 | Average Stop Loss: 1.1528
+Step 6900/35000 | Total Loss: 0.9785 | Mel Loss: 0.2104 | Stop Loss: 0.7681 | LR: 0.000752
+Step 7000/35000 | Total Loss: 1.3430 | Mel Loss: 0.1764 | Stop Loss: 1.1665 | LR: 0.000747
+Step 7100/35000 | Total Loss: 1.1839 | Mel Loss: 0.1944 | Stop Loss: 0.9895 | LR: 0.000742
+[TRAIN] Epoch 022 | Average Total Loss: 1.3399 | Average Mel Loss: 0.1787 | Average Stop Loss: 1.1612
+[VALID] Epoch 022 | Average Total Loss: 1.4407 | Average Mel Loss: 0.2880 | Average Stop Loss: 1.1528
+Step 7200/35000 | Total Loss: 1.2996 | Mel Loss: 0.1770 | Stop Loss: 1.1226 | LR: 0.000737
+Step 7300/35000 | Total Loss: 1.2474 | Mel Loss: 0.1836 | Stop Loss: 1.0638 | LR: 0.000732
+Step 7400/35000 | Total Loss: 1.2028 | Mel Loss: 0.1896 | Stop Loss: 1.0132 | LR: 0.000727
+Step 7500/35000 | Total Loss: 1.2931 | Mel Loss: 0.1784 | Stop Loss: 1.1147 | LR: 0.000722
+[TRAIN] Epoch 023 | Average Total Loss: 1.3368 | Average Mel Loss: 0.1768 | Average Stop Loss: 1.1599
+[VALID] Epoch 023 | Average Total Loss: 1.4289 | Average Mel Loss: 0.2761 | Average Stop Loss: 1.1528
+Step 7600/35000 | Total Loss: 1.2892 | Mel Loss: 0.1816 | Stop Loss: 1.1076 | LR: 0.000717
+Step 7700/35000 | Total Loss: 1.2924 | Mel Loss: 0.1742 | Stop Loss: 1.1183 | LR: 0.000712
+Step 7800/35000 | Total Loss: 1.4015 | Mel Loss: 0.1667 | Stop Loss: 1.2348 | LR: 0.000708
+[TRAIN] Epoch 024 | Average Total Loss: 1.3324 | Average Mel Loss: 0.1753 | Average Stop Loss: 1.1572
+[VALID] Epoch 024 | Average Total Loss: 1.4400 | Average Mel Loss: 0.2872 | Average Stop Loss: 1.1528
+Step 7900/35000 | Total Loss: 1.4097 | Mel Loss: 0.1716 | Stop Loss: 1.2382 | LR: 0.000703
+Step 8000/35000 | Total Loss: 1.2348 | Mel Loss: 0.1792 | Stop Loss: 1.0555 | LR: 0.000699
+Step 8100/35000 | Total Loss: 1.2204 | Mel Loss: 0.1826 | Stop Loss: 1.0377 | LR: 0.000694
+[TRAIN] Epoch 025 | Average Total Loss: 1.3329 | Average Mel Loss: 0.1736 | Average Stop Loss: 1.1593
+[VALID] Epoch 025 | Average Total Loss: 1.4251 | Average Mel Loss: 0.2723 | Average Stop Loss: 1.1528
+Step 8200/35000 | Total Loss: 1.2365 | Mel Loss: 0.1773 | Stop Loss: 1.0593 | LR: 0.000690
+Step 8300/35000 | Total Loss: 1.3233 | Mel Loss: 0.1758 | Stop Loss: 1.1475 | LR: 0.000686
+Step 8400/35000 | Total Loss: 1.2279 | Mel Loss: 0.1796 | Stop Loss: 1.0484 | LR: 0.000682
+Step 8500/35000 | Total Loss: 1.1244 | Mel Loss: 0.1868 | Stop Loss: 0.9376 | LR: 0.000678
+[TRAIN] Epoch 026 | Average Total Loss: 1.3339 | Average Mel Loss: 0.1720 | Average Stop Loss: 1.1619
+[VALID] Epoch 026 | Average Total Loss: 1.4058 | Average Mel Loss: 0.2531 | Average Stop Loss: 1.1528
+Step 8600/35000 | Total Loss: 1.5419 | Mel Loss: 0.1522 | Stop Loss: 1.3896 | LR: 0.000674
+Step 8700/35000 | Total Loss: 1.4286 | Mel Loss: 0.1631 | Stop Loss: 1.2655 | LR: 0.000670
+Step 8800/35000 | Total Loss: 1.0758 | Mel Loss: 0.1931 | Stop Loss: 0.8827 | LR: 0.000666
+[TRAIN] Epoch 027 | Average Total Loss: 1.3328 | Average Mel Loss: 0.1706 | Average Stop Loss: 1.1622
+[VALID] Epoch 027 | Average Total Loss: 1.4139 | Average Mel Loss: 0.2611 | Average Stop Loss: 1.1528
+Step 8900/35000 | Total Loss: 1.3535 | Mel Loss: 0.1655 | Stop Loss: 1.1880 | LR: 0.000662
+Step 9000/35000 | Total Loss: 1.2191 | Mel Loss: 0.1763 | Stop Loss: 1.0428 | LR: 0.000659
+Step 9100/35000 | Total Loss: 1.1644 | Mel Loss: 0.1836 | Stop Loss: 0.9807 | LR: 0.000655
+[TRAIN] Epoch 028 | Average Total Loss: 1.3333 | Average Mel Loss: 0.1691 | Average Stop Loss: 1.1642
+[VALID] Epoch 028 | Average Total Loss: 1.4114 | Average Mel Loss: 0.2586 | Average Stop Loss: 1.1528
+Step 9200/35000 | Total Loss: 1.2010 | Mel Loss: 0.1820 | Stop Loss: 1.0190 | LR: 0.000652
+Step 9300/35000 | Total Loss: 1.4971 | Mel Loss: 0.1576 | Stop Loss: 1.3395 | LR: 0.000648
+Step 9400/35000 | Total Loss: 1.1514 | Mel Loss: 0.1808 | Stop Loss: 0.9706 | LR: 0.000645
+[TRAIN] Epoch 029 | Average Total Loss: 1.3270 | Average Mel Loss: 0.1684 | Average Stop Loss: 1.1586
+[VALID] Epoch 029 | Average Total Loss: 1.4046 | Average Mel Loss: 0.2519 | Average Stop Loss: 1.1528
+Step 9500/35000 | Total Loss: 1.4277 | Mel Loss: 0.1611 | Stop Loss: 1.2667 | LR: 0.000641
+Step 9600/35000 | Total Loss: 1.3184 | Mel Loss: 0.1653 | Stop Loss: 1.1531 | LR: 0.000638
+Step 9700/35000 | Total Loss: 1.1030 | Mel Loss: 0.1826 | Stop Loss: 0.9204 | LR: 0.000635
+Step 9800/35000 | Total Loss: 1.2161 | Mel Loss: 0.1739 | Stop Loss: 1.0422 | LR: 0.000631
+[TRAIN] Epoch 030 | Average Total Loss: 1.3285 | Average Mel Loss: 0.1669 | Average Stop Loss: 1.1617
+[VALID] Epoch 030 | Average Total Loss: 1.3935 | Average Mel Loss: 0.2407 | Average Stop Loss: 1.1528
+Step 9900/35000 | Total Loss: 1.3530 | Mel Loss: 0.1647 | Stop Loss: 1.1884 | LR: 0.000628
+Step 10000/35000 | Total Loss: 1.3070 | Mel Loss: 0.1693 | Stop Loss: 1.1377 | LR: 0.000625
+Step 10100/35000 | Total Loss: 1.4852 | Mel Loss: 0.1518 | Stop Loss: 1.3334 | LR: 0.000622
+[TRAIN] Epoch 031 | Average Total Loss: 1.3273 | Average Mel Loss: 0.1658 | Average Stop Loss: 1.1615
+[VALID] Epoch 031 | Average Total Loss: 1.4187 | Average Mel Loss: 0.2659 | Average Stop Loss: 1.1528
+Step 10200/35000 | Total Loss: 1.5341 | Mel Loss: 0.1512 | Stop Loss: 1.3829 | LR: 0.000619
+Step 10300/35000 | Total Loss: 1.2393 | Mel Loss: 0.1721 | Stop Loss: 1.0672 | LR: 0.000616
+Step 10400/35000 | Total Loss: 1.2358 | Mel Loss: 0.1714 | Stop Loss: 1.0644 | LR: 0.000613
+[TRAIN] Epoch 032 | Average Total Loss: 1.3286 | Average Mel Loss: 0.1647 | Average Stop Loss: 1.1640
+[VALID] Epoch 032 | Average Total Loss: 1.3933 | Average Mel Loss: 0.2405 | Average Stop Loss: 1.1528
+Step 10500/35000 | Total Loss: 1.1520 | Mel Loss: 0.1789 | Stop Loss: 0.9731 | LR: 0.000610
+Step 10600/35000 | Total Loss: 1.4792 | Mel Loss: 0.1533 | Stop Loss: 1.3258 | LR: 0.000607
+Step 10700/35000 | Total Loss: 1.2089 | Mel Loss: 0.1736 | Stop Loss: 1.0353 | LR: 0.000604
+[TRAIN] Epoch 033 | Average Total Loss: 1.3258 | Average Mel Loss: 0.1638 | Average Stop Loss: 1.1620
+[VALID] Epoch 033 | Average Total Loss: 1.4071 | Average Mel Loss: 0.2543 | Average Stop Loss: 1.1528
+Step 10800/35000 | Total Loss: 1.3882 | Mel Loss: 0.1568 | Stop Loss: 1.2313 | LR: 0.000601
+Step 10900/35000 | Total Loss: 1.3168 | Mel Loss: 0.1618 | Stop Loss: 1.1549 | LR: 0.000599
+Step 11000/35000 | Total Loss: 1.4325 | Mel Loss: 0.1525 | Stop Loss: 1.2800 | LR: 0.000596
+Step 11100/35000 | Total Loss: 1.3933 | Mel Loss: 0.1554 | Stop Loss: 1.2379 | LR: 0.000593
+[TRAIN] Epoch 034 | Average Total Loss: 1.3239 | Average Mel Loss: 0.1630 | Average Stop Loss: 1.1610
+[VALID] Epoch 034 | Average Total Loss: 1.3988 | Average Mel Loss: 0.2460 | Average Stop Loss: 1.1528
+Step 11200/35000 | Total Loss: 1.3154 | Mel Loss: 0.1578 | Stop Loss: 1.1576 | LR: 0.000591
+Step 11300/35000 | Total Loss: 1.6682 | Mel Loss: 0.1382 | Stop Loss: 1.5300 | LR: 0.000588
+Step 11400/35000 | Total Loss: 1.2200 | Mel Loss: 0.1692 | Stop Loss: 1.0508 | LR: 0.000585
+[TRAIN] Epoch 035 | Average Total Loss: 1.3220 | Average Mel Loss: 0.1621 | Average Stop Loss: 1.1598
+[VALID] Epoch 035 | Average Total Loss: 1.3877 | Average Mel Loss: 0.2349 | Average Stop Loss: 1.1528
+Step 11500/35000 | Total Loss: 1.5321 | Mel Loss: 0.1469 | Stop Loss: 1.3851 | LR: 0.000583
+Step 11600/35000 | Total Loss: 1.2016 | Mel Loss: 0.1687 | Stop Loss: 1.0329 | LR: 0.000580
+Step 11700/35000 | Total Loss: 1.3320 | Mel Loss: 0.1597 | Stop Loss: 1.1723 | LR: 0.000578
+[TRAIN] Epoch 036 | Average Total Loss: 1.3241 | Average Mel Loss: 0.1612 | Average Stop Loss: 1.1629
+[VALID] Epoch 036 | Average Total Loss: 1.3979 | Average Mel Loss: 0.2451 | Average Stop Loss: 1.1528
+Step 11800/35000 | Total Loss: 1.3560 | Mel Loss: 0.1606 | Stop Loss: 1.1955 | LR: 0.000575
+Step 11900/35000 | Total Loss: 1.2816 | Mel Loss: 0.1612 | Stop Loss: 1.1204 | LR: 0.000573
+Step 12000/35000 | Total Loss: 1.4156 | Mel Loss: 0.1534 | Stop Loss: 1.2622 | LR: 0.000571
+[TRAIN] Epoch 037 | Average Total Loss: 1.3223 | Average Mel Loss: 0.1603 | Average Stop Loss: 1.1620
+[VALID] Epoch 037 | Average Total Loss: 1.4059 | Average Mel Loss: 0.2531 | Average Stop Loss: 1.1528
+Step 12100/35000 | Total Loss: 1.3385 | Mel Loss: 0.1586 | Stop Loss: 1.1799 | LR: 0.000568
+Step 12200/35000 | Total Loss: 1.3402 | Mel Loss: 0.1592 | Stop Loss: 1.1810 | LR: 0.000566
+Step 12300/35000 | Total Loss: 1.2069 | Mel Loss: 0.1685 | Stop Loss: 1.0384 | LR: 0.000564
+Step 12400/35000 | Total Loss: 1.3755 | Mel Loss: 0.1578 | Stop Loss: 1.2177 | LR: 0.000561
+[TRAIN] Epoch 038 | Average Total Loss: 1.3198 | Average Mel Loss: 0.1598 | Average Stop Loss: 1.1600
+[VALID] Epoch 038 | Average Total Loss: 1.4017 | Average Mel Loss: 0.2489 | Average Stop Loss: 1.1528
+Step 12500/35000 | Total Loss: 1.2659 | Mel Loss: 0.1602 | Stop Loss: 1.1057 | LR: 0.000559
+Step 12600/35000 | Total Loss: 1.5084 | Mel Loss: 0.1455 | Stop Loss: 1.3629 | LR: 0.000557
+Step 12700/35000 | Total Loss: 1.3721 | Mel Loss: 0.1568 | Stop Loss: 1.2153 | LR: 0.000555
+[TRAIN] Epoch 039 | Average Total Loss: 1.3174 | Average Mel Loss: 0.1591 | Average Stop Loss: 1.1583
+[VALID] Epoch 039 | Average Total Loss: 1.4011 | Average Mel Loss: 0.2483 | Average Stop Loss: 1.1528
+Step 12800/35000 | Total Loss: 1.4345 | Mel Loss: 0.1515 | Stop Loss: 1.2830 | LR: 0.000552
+Step 12900/35000 | Total Loss: 1.3064 | Mel Loss: 0.1627 | Stop Loss: 1.1437 | LR: 0.000550
+Step 13000/35000 | Total Loss: 1.4053 | Mel Loss: 0.1523 | Stop Loss: 1.2531 | LR: 0.000548
+[TRAIN] Epoch 040 | Average Total Loss: 1.3219 | Average Mel Loss: 0.1580 | Average Stop Loss: 1.1639
+[VALID] Epoch 040 | Average Total Loss: 1.3939 | Average Mel Loss: 0.2412 | Average Stop Loss: 1.1528
+Step 13100/35000 | Total Loss: 1.4030 | Mel Loss: 0.1509 | Stop Loss: 1.2522 | LR: 0.000546
+Step 13200/35000 | Total Loss: 1.3451 | Mel Loss: 0.1579 | Stop Loss: 1.1872 | LR: 0.000544
+Step 13300/35000 | Total Loss: 1.3716 | Mel Loss: 0.1554 | Stop Loss: 1.2162 | LR: 0.000542
+Step 13400/35000 | Total Loss: 1.5636 | Mel Loss: 0.1399 | Stop Loss: 1.4237 | LR: 0.000540
+[TRAIN] Epoch 041 | Average Total Loss: 1.3170 | Average Mel Loss: 0.1577 | Average Stop Loss: 1.1592
+[VALID] Epoch 041 | Average Total Loss: 1.3981 | Average Mel Loss: 0.2453 | Average Stop Loss: 1.1528
+Step 13500/35000 | Total Loss: 1.5556 | Mel Loss: 0.1385 | Stop Loss: 1.4170 | LR: 0.000538
+Step 13600/35000 | Total Loss: 1.1864 | Mel Loss: 0.1640 | Stop Loss: 1.0224 | LR: 0.000536
+Step 13700/35000 | Total Loss: 1.2739 | Mel Loss: 0.1616 | Stop Loss: 1.1122 | LR: 0.000534
+[TRAIN] Epoch 042 | Average Total Loss: 1.3179 | Average Mel Loss: 0.1569 | Average Stop Loss: 1.1610
+[VALID] Epoch 042 | Average Total Loss: 1.4084 | Average Mel Loss: 0.2556 | Average Stop Loss: 1.1528
+Step 13800/35000 | Total Loss: 1.2754 | Mel Loss: 0.1607 | Stop Loss: 1.1146 | LR: 0.000532
+Step 13900/35000 | Total Loss: 1.2162 | Mel Loss: 0.1639 | Stop Loss: 1.0523 | LR: 0.000530
+Step 14000/35000 | Total Loss: 1.3592 | Mel Loss: 0.1505 | Stop Loss: 1.2087 | LR: 0.000528
+[TRAIN] Epoch 043 | Average Total Loss: 1.3142 | Average Mel Loss: 0.1566 | Average Stop Loss: 1.1576
+[VALID] Epoch 043 | Average Total Loss: 1.4023 | Average Mel Loss: 0.2495 | Average Stop Loss: 1.1528
+Step 14100/35000 | Total Loss: 1.3812 | Mel Loss: 0.1523 | Stop Loss: 1.2289 | LR: 0.000526
+Step 14200/35000 | Total Loss: 1.4021 | Mel Loss: 0.1503 | Stop Loss: 1.2518 | LR: 0.000524
+Step 14300/35000 | Total Loss: 1.4353 | Mel Loss: 0.1434 | Stop Loss: 1.2919 | LR: 0.000523
+[TRAIN] Epoch 044 | Average Total Loss: 1.3169 | Average Mel Loss: 0.1558 | Average Stop Loss: 1.1611
+[VALID] Epoch 044 | Average Total Loss: 1.4154 | Average Mel Loss: 0.2626 | Average Stop Loss: 1.1528
+Step 14400/35000 | Total Loss: 1.1508 | Mel Loss: 0.1683 | Stop Loss: 0.9825 | LR: 0.000521
+Step 14500/35000 | Total Loss: 1.2305 | Mel Loss: 0.1621 | Stop Loss: 1.0684 | LR: 0.000519
+Step 14600/35000 | Total Loss: 1.2863 | Mel Loss: 0.1578 | Stop Loss: 1.1286 | LR: 0.000517
+Step 14700/35000 | Total Loss: 1.3794 | Mel Loss: 0.1493 | Stop Loss: 1.2301 | LR: 0.000515
+[TRAIN] Epoch 045 | Average Total Loss: 1.3164 | Average Mel Loss: 0.1553 | Average Stop Loss: 1.1612
+[VALID] Epoch 045 | Average Total Loss: 1.3964 | Average Mel Loss: 0.2436 | Average Stop Loss: 1.1528
+Step 14800/35000 | Total Loss: 1.3403 | Mel Loss: 0.1518 | Stop Loss: 1.1885 | LR: 0.000514
+Step 14900/35000 | Total Loss: 1.2375 | Mel Loss: 0.1598 | Stop Loss: 1.0777 | LR: 0.000512
+Step 15000/35000 | Total Loss: 1.1789 | Mel Loss: 0.1638 | Stop Loss: 1.0151 | LR: 0.000510
+[TRAIN] Epoch 046 | Average Total Loss: 1.3122 | Average Mel Loss: 0.1550 | Average Stop Loss: 1.1572
+[VALID] Epoch 046 | Average Total Loss: 1.4035 | Average Mel Loss: 0.2507 | Average Stop Loss: 1.1528
+Step 15100/35000 | Total Loss: 1.2972 | Mel Loss: 0.1566 | Stop Loss: 1.1406 | LR: 0.000509
+Step 15200/35000 | Total Loss: 1.3361 | Mel Loss: 0.1531 | Stop Loss: 1.1829 | LR: 0.000507
+Step 15300/35000 | Total Loss: 1.4768 | Mel Loss: 0.1455 | Stop Loss: 1.3313 | LR: 0.000505
+[TRAIN] Epoch 047 | Average Total Loss: 1.3147 | Average Mel Loss: 0.1542 | Average Stop Loss: 1.1605
+[VALID] Epoch 047 | Average Total Loss: 1.4031 | Average Mel Loss: 0.2503 | Average Stop Loss: 1.1528
+Step 15400/35000 | Total Loss: 1.2454 | Mel Loss: 0.1586 | Stop Loss: 1.0869 | LR: 0.000504
+Step 15500/35000 | Total Loss: 1.2195 | Mel Loss: 0.1644 | Stop Loss: 1.0551 | LR: 0.000502
+Step 15600/35000 | Total Loss: 1.4558 | Mel Loss: 0.1418 | Stop Loss: 1.3140 | LR: 0.000500
+[TRAIN] Epoch 048 | Average Total Loss: 1.3141 | Average Mel Loss: 0.1538 | Average Stop Loss: 1.1604
+[VALID] Epoch 048 | Average Total Loss: 1.3970 | Average Mel Loss: 0.2442 | Average Stop Loss: 1.1528
+Step 15700/35000 | Total Loss: 1.4986 | Mel Loss: 0.1412 | Stop Loss: 1.3574 | LR: 0.000499
+Step 15800/35000 | Total Loss: 1.4779 | Mel Loss: 0.1415 | Stop Loss: 1.3365 | LR: 0.000497
+Step 15900/35000 | Total Loss: 1.4444 | Mel Loss: 0.1454 | Stop Loss: 1.2990 | LR: 0.000496
+Step 16000/35000 | Total Loss: 1.2090 | Mel Loss: 0.1611 | Stop Loss: 1.0480 | LR: 0.000494
+[TRAIN] Epoch 049 | Average Total Loss: 1.3134 | Average Mel Loss: 0.1532 | Average Stop Loss: 1.1601
+[VALID] Epoch 049 | Average Total Loss: 1.4004 | Average Mel Loss: 0.2476 | Average Stop Loss: 1.1528
+Step 16100/35000 | Total Loss: 1.3371 | Mel Loss: 0.1502 | Stop Loss: 1.1869 | LR: 0.000493
+Step 16200/35000 | Total Loss: 1.2592 | Mel Loss: 0.1589 | Stop Loss: 1.1003 | LR: 0.000491
+Step 16300/35000 | Total Loss: 1.4085 | Mel Loss: 0.1452 | Stop Loss: 1.2633 | LR: 0.000490
+[TRAIN] Epoch 050 | Average Total Loss: 1.3103 | Average Mel Loss: 0.1531 | Average Stop Loss: 1.1573
+[VALID] Epoch 050 | Average Total Loss: 1.3976 | Average Mel Loss: 0.2448 | Average Stop Loss: 1.1528
+Step 16400/35000 | Total Loss: 1.2224 | Mel Loss: 0.1557 | Stop Loss: 1.0667 | LR: 0.000488
+Step 16500/35000 | Total Loss: 1.1662 | Mel Loss: 0.1610 | Stop Loss: 1.0052 | LR: 0.000487
+Step 16600/35000 | Total Loss: 1.3839 | Mel Loss: 0.1503 | Stop Loss: 1.2336 | LR: 0.000485
+[TRAIN] Epoch 051 | Average Total Loss: 1.3139 | Average Mel Loss: 0.1523 | Average Stop Loss: 1.1616
+[VALID] Epoch 051 | Average Total Loss: 1.4121 | Average Mel Loss: 0.2593 | Average Stop Loss: 1.1528
+Step 16700/35000 | Total Loss: 1.3087 | Mel Loss: 0.1500 | Stop Loss: 1.1587 | LR: 0.000484
+Step 16800/35000 | Total Loss: 1.2882 | Mel Loss: 0.1545 | Stop Loss: 1.1337 | LR: 0.000482
+Step 16900/35000 | Total Loss: 1.4586 | Mel Loss: 0.1418 | Stop Loss: 1.3168 | LR: 0.000481
+Step 17000/35000 | Total Loss: 1.3527 | Mel Loss: 0.1498 | Stop Loss: 1.2029 | LR: 0.000479
+[TRAIN] Epoch 052 | Average Total Loss: 1.3129 | Average Mel Loss: 0.1520 | Average Stop Loss: 1.1609
+[VALID] Epoch 052 | Average Total Loss: 1.4015 | Average Mel Loss: 0.2487 | Average Stop Loss: 1.1528
+Step 17100/35000 | Total Loss: 1.2299 | Mel Loss: 0.1542 | Stop Loss: 1.0756 | LR: 0.000478
+Step 17200/35000 | Total Loss: 1.3561 | Mel Loss: 0.1453 | Stop Loss: 1.2108 | LR: 0.000477
+Step 17300/35000 | Total Loss: 1.0170 | Mel Loss: 0.1705 | Stop Loss: 0.8465 | LR: 0.000475
+[TRAIN] Epoch 053 | Average Total Loss: 1.3155 | Average Mel Loss: 0.1514 | Average Stop Loss: 1.1641
+[VALID] Epoch 053 | Average Total Loss: 1.4087 | Average Mel Loss: 0.2559 | Average Stop Loss: 1.1528
+Step 17400/35000 | Total Loss: 1.2822 | Mel Loss: 0.1531 | Stop Loss: 1.1291 | LR: 0.000474
+Step 17500/35000 | Total Loss: 1.4220 | Mel Loss: 0.1443 | Stop Loss: 1.2777 | LR: 0.000472
+Step 17600/35000 | Total Loss: 1.2150 | Mel Loss: 0.1569 | Stop Loss: 1.0581 | LR: 0.000471
+[TRAIN] Epoch 054 | Average Total Loss: 1.3102 | Average Mel Loss: 0.1514 | Average Stop Loss: 1.1588
+[VALID] Epoch 054 | Average Total Loss: 1.3964 | Average Mel Loss: 0.2436 | Average Stop Loss: 1.1528
+Step 17700/35000 | Total Loss: 1.1946 | Mel Loss: 0.1560 | Stop Loss: 1.0386 | LR: 0.000470
+Step 17800/35000 | Total Loss: 1.3000 | Mel Loss: 0.1528 | Stop Loss: 1.1472 | LR: 0.000468
+Step 17900/35000 | Total Loss: 1.2542 | Mel Loss: 0.1562 | Stop Loss: 1.0981 | LR: 0.000467
+[TRAIN] Epoch 055 | Average Total Loss: 1.3122 | Average Mel Loss: 0.1508 | Average Stop Loss: 1.1614
+[VALID] Epoch 055 | Average Total Loss: 1.4004 | Average Mel Loss: 0.2476 | Average Stop Loss: 1.1528
+Step 18000/35000 | Total Loss: 1.3481 | Mel Loss: 0.1485 | Stop Loss: 1.1996 | LR: 0.000466
+Step 18100/35000 | Total Loss: 1.1824 | Mel Loss: 0.1624 | Stop Loss: 1.0199 | LR: 0.000465
+Step 18200/35000 | Total Loss: 1.5907 | Mel Loss: 0.1346 | Stop Loss: 1.4561 | LR: 0.000463
+Step 18300/35000 | Total Loss: 1.3144 | Mel Loss: 0.1503 | Stop Loss: 1.1641 | LR: 0.000462
+[TRAIN] Epoch 056 | Average Total Loss: 1.3141 | Average Mel Loss: 0.1503 | Average Stop Loss: 1.1639
+[VALID] Epoch 056 | Average Total Loss: 1.4119 | Average Mel Loss: 0.2591 | Average Stop Loss: 1.1528
+Step 18400/35000 | Total Loss: 1.2800 | Mel Loss: 0.1549 | Stop Loss: 1.1251 | LR: 0.000461
+Step 18500/35000 | Total Loss: 1.3771 | Mel Loss: 0.1452 | Stop Loss: 1.2318 | LR: 0.000460
+Step 18600/35000 | Total Loss: 1.1085 | Mel Loss: 0.1641 | Stop Loss: 0.9445 | LR: 0.000458
+[TRAIN] Epoch 057 | Average Total Loss: 1.3104 | Average Mel Loss: 0.1502 | Average Stop Loss: 1.1602
+[VALID] Epoch 057 | Average Total Loss: 1.4114 | Average Mel Loss: 0.2586 | Average Stop Loss: 1.1528
+Step 18700/35000 | Total Loss: 1.2691 | Mel Loss: 0.1559 | Stop Loss: 1.1132 | LR: 0.000457
+Step 18800/35000 | Total Loss: 1.3216 | Mel Loss: 0.1473 | Stop Loss: 1.1743 | LR: 0.000456
+Step 18900/35000 | Total Loss: 1.3912 | Mel Loss: 0.1405 | Stop Loss: 1.2507 | LR: 0.000455
+[TRAIN] Epoch 058 | Average Total Loss: 1.3116 | Average Mel Loss: 0.1497 | Average Stop Loss: 1.1619
+[VALID] Epoch 058 | Average Total Loss: 1.4092 | Average Mel Loss: 0.2564 | Average Stop Loss: 1.1528
+Step 19000/35000 | Total Loss: 1.2784 | Mel Loss: 0.1530 | Stop Loss: 1.1253 | LR: 0.000453
+Step 19100/35000 | Total Loss: 1.3217 | Mel Loss: 0.1453 | Stop Loss: 1.1764 | LR: 0.000452
+Step 19200/35000 | Total Loss: 1.3025 | Mel Loss: 0.1490 | Stop Loss: 1.1535 | LR: 0.000451
+[TRAIN] Epoch 059 | Average Total Loss: 1.3101 | Average Mel Loss: 0.1495 | Average Stop Loss: 1.1605
+[VALID] Epoch 059 | Average Total Loss: 1.4228 | Average Mel Loss: 0.2700 | Average Stop Loss: 1.1528
+Step 19300/35000 | Total Loss: 1.4624 | Mel Loss: 0.1403 | Stop Loss: 1.3221 | LR: 0.000450
+Step 19400/35000 | Total Loss: 1.2929 | Mel Loss: 0.1508 | Stop Loss: 1.1421 | LR: 0.000449
+Step 19500/35000 | Total Loss: 1.3539 | Mel Loss: 0.1438 | Stop Loss: 1.2101 | LR: 0.000448
+Step 19600/35000 | Total Loss: 1.3393 | Mel Loss: 0.1497 | Stop Loss: 1.1896 | LR: 0.000446
+[TRAIN] Epoch 060 | Average Total Loss: 1.3113 | Average Mel Loss: 0.1491 | Average Stop Loss: 1.1622
+[VALID] Epoch 060 | Average Total Loss: 1.4080 | Average Mel Loss: 0.2552 | Average Stop Loss: 1.1528
+Step 19700/35000 | Total Loss: 1.3898 | Mel Loss: 0.1438 | Stop Loss: 1.2460 | LR: 0.000445
+Step 19800/35000 | Total Loss: 1.3673 | Mel Loss: 0.1438 | Stop Loss: 1.2236 | LR: 0.000444
+Step 19900/35000 | Total Loss: 1.2318 | Mel Loss: 0.1551 | Stop Loss: 1.0767 | LR: 0.000443
+[TRAIN] Epoch 061 | Average Total Loss: 1.3099 | Average Mel Loss: 0.1489 | Average Stop Loss: 1.1610
+[VALID] Epoch 061 | Average Total Loss: 1.4124 | Average Mel Loss: 0.2596 | Average Stop Loss: 1.1528
+Step 20000/35000 | Total Loss: 1.4570 | Mel Loss: 0.1375 | Stop Loss: 1.3195 | LR: 0.000442
+Step 20100/35000 | Total Loss: 1.3258 | Mel Loss: 0.1439 | Stop Loss: 1.1819 | LR: 0.000441
+Step 20200/35000 | Total Loss: 1.2816 | Mel Loss: 0.1524 | Stop Loss: 1.1293 | LR: 0.000440
+[TRAIN] Epoch 062 | Average Total Loss: 1.3100 | Average Mel Loss: 0.1485 | Average Stop Loss: 1.1615
+[VALID] Epoch 062 | Average Total Loss: 1.4009 | Average Mel Loss: 0.2481 | Average Stop Loss: 1.1528
+Step 20300/35000 | Total Loss: 1.3565 | Mel Loss: 0.1462 | Stop Loss: 1.2103 | LR: 0.000439
+Step 20400/35000 | Total Loss: 1.3521 | Mel Loss: 0.1437 | Stop Loss: 1.2083 | LR: 0.000438
+Step 20500/35000 | Total Loss: 1.3623 | Mel Loss: 0.1438 | Stop Loss: 1.2185 | LR: 0.000437
+Step 20600/35000 | Total Loss: 1.3140 | Mel Loss: 0.1466 | Stop Loss: 1.1674 | LR: 0.000435
+[TRAIN] Epoch 063 | Average Total Loss: 1.3113 | Average Mel Loss: 0.1481 | Average Stop Loss: 1.1632
+[VALID] Epoch 063 | Average Total Loss: 1.4125 | Average Mel Loss: 0.2597 | Average Stop Loss: 1.1528
+Step 20700/35000 | Total Loss: 1.2947 | Mel Loss: 0.1478 | Stop Loss: 1.1469 | LR: 0.000434
+Step 20800/35000 | Total Loss: 1.4247 | Mel Loss: 0.1386 | Stop Loss: 1.2861 | LR: 0.000433
+Step 20900/35000 | Total Loss: 1.2553 | Mel Loss: 0.1498 | Stop Loss: 1.1055 | LR: 0.000432
+[TRAIN] Epoch 064 | Average Total Loss: 1.3066 | Average Mel Loss: 0.1480 | Average Stop Loss: 1.1586
+[VALID] Epoch 064 | Average Total Loss: 1.4126 | Average Mel Loss: 0.2598 | Average Stop Loss: 1.1528
+Step 21000/35000 | Total Loss: 1.3524 | Mel Loss: 0.1448 | Stop Loss: 1.2076 | LR: 0.000431
+Step 21100/35000 | Total Loss: 1.5213 | Mel Loss: 0.1316 | Stop Loss: 1.3897 | LR: 0.000430
+Step 21200/35000 | Total Loss: 1.2815 | Mel Loss: 0.1488 | Stop Loss: 1.1327 | LR: 0.000429
+[TRAIN] Epoch 065 | Average Total Loss: 1.3077 | Average Mel Loss: 0.1476 | Average Stop Loss: 1.1601
+[VALID] Epoch 065 | Average Total Loss: 1.4159 | Average Mel Loss: 0.2631 | Average Stop Loss: 1.1528
+Step 21300/35000 | Total Loss: 1.2370 | Mel Loss: 0.1517 | Stop Loss: 1.0853 | LR: 0.000428
+Step 21400/35000 | Total Loss: 1.2876 | Mel Loss: 0.1507 | Stop Loss: 1.1369 | LR: 0.000427
+Step 21500/35000 | Total Loss: 1.3710 | Mel Loss: 0.1406 | Stop Loss: 1.2304 | LR: 0.000426
+[TRAIN] Epoch 066 | Average Total Loss: 1.3080 | Average Mel Loss: 0.1472 | Average Stop Loss: 1.1608
+[VALID] Epoch 066 | Average Total Loss: 1.4059 | Average Mel Loss: 0.2531 | Average Stop Loss: 1.1528
+Step 21600/35000 | Total Loss: 1.4007 | Mel Loss: 0.1423 | Stop Loss: 1.2585 | LR: 0.000425
+Step 21700/35000 | Total Loss: 1.3600 | Mel Loss: 0.1416 | Stop Loss: 1.2184 | LR: 0.000424
+Step 21800/35000 | Total Loss: 1.2818 | Mel Loss: 0.1460 | Stop Loss: 1.1359 | LR: 0.000423
+Step 21900/35000 | Total Loss: 1.3327 | Mel Loss: 0.1482 | Stop Loss: 1.1845 | LR: 0.000422
+[TRAIN] Epoch 067 | Average Total Loss: 1.3072 | Average Mel Loss: 0.1470 | Average Stop Loss: 1.1602
+[VALID] Epoch 067 | Average Total Loss: 1.4213 | Average Mel Loss: 0.2685 | Average Stop Loss: 1.1528
+Step 22000/35000 | Total Loss: 1.5063 | Mel Loss: 0.1346 | Stop Loss: 1.3717 | LR: 0.000421
+Step 22100/35000 | Total Loss: 1.2735 | Mel Loss: 0.1474 | Stop Loss: 1.1261 | LR: 0.000420
+Step 22200/35000 | Total Loss: 1.4854 | Mel Loss: 0.1372 | Stop Loss: 1.3482 | LR: 0.000419
+[TRAIN] Epoch 068 | Average Total Loss: 1.3070 | Average Mel Loss: 0.1468 | Average Stop Loss: 1.1602
+[VALID] Epoch 068 | Average Total Loss: 1.4113 | Average Mel Loss: 0.2586 | Average Stop Loss: 1.1528
+Step 22300/35000 | Total Loss: 1.1575 | Mel Loss: 0.1589 | Stop Loss: 0.9985 | LR: 0.000419
+Step 22400/35000 | Total Loss: 1.1440 | Mel Loss: 0.1542 | Stop Loss: 0.9898 | LR: 0.000418
+Step 22500/35000 | Total Loss: 1.2081 | Mel Loss: 0.1544 | Stop Loss: 1.0537 | LR: 0.000417
+[TRAIN] Epoch 069 | Average Total Loss: 1.3078 | Average Mel Loss: 0.1464 | Average Stop Loss: 1.1615
+[VALID] Epoch 069 | Average Total Loss: 1.4146 | Average Mel Loss: 0.2618 | Average Stop Loss: 1.1528
+Step 22600/35000 | Total Loss: 1.1277 | Mel Loss: 0.1558 | Stop Loss: 0.9720 | LR: 0.000416
+Step 22700/35000 | Total Loss: 1.1682 | Mel Loss: 0.1577 | Stop Loss: 1.0105 | LR: 0.000415
+Step 22800/35000 | Total Loss: 1.2222 | Mel Loss: 0.1539 | Stop Loss: 1.0683 | LR: 0.000414
+[TRAIN] Epoch 070 | Average Total Loss: 1.3071 | Average Mel Loss: 0.1462 | Average Stop Loss: 1.1609
+[VALID] Epoch 070 | Average Total Loss: 1.4171 | Average Mel Loss: 0.2643 | Average Stop Loss: 1.1528
+Step 22900/35000 | Total Loss: 1.2914 | Mel Loss: 0.1463 | Stop Loss: 1.1451 | LR: 0.000413
+Step 23000/35000 | Total Loss: 1.3059 | Mel Loss: 0.1450 | Stop Loss: 1.1609 | LR: 0.000412
+Step 23100/35000 | Total Loss: 1.2913 | Mel Loss: 0.1460 | Stop Loss: 1.1453 | LR: 0.000411
+Step 23200/35000 | Total Loss: 1.2841 | Mel Loss: 0.1444 | Stop Loss: 1.1397 | LR: 0.000410
+[TRAIN] Epoch 071 | Average Total Loss: 1.3058 | Average Mel Loss: 0.1460 | Average Stop Loss: 1.1598
+[VALID] Epoch 071 | Average Total Loss: 1.4175 | Average Mel Loss: 0.2647 | Average Stop Loss: 1.1528
+Step 23300/35000 | Total Loss: 1.3891 | Mel Loss: 0.1417 | Stop Loss: 1.2474 | LR: 0.000409
+Step 23400/35000 | Total Loss: 1.4308 | Mel Loss: 0.1370 | Stop Loss: 1.2938 | LR: 0.000409
+Step 23500/35000 | Total Loss: 1.0219 | Mel Loss: 0.1640 | Stop Loss: 0.8579 | LR: 0.000408
+[TRAIN] Epoch 072 | Average Total Loss: 1.3056 | Average Mel Loss: 0.1458 | Average Stop Loss: 1.1598
+[VALID] Epoch 072 | Average Total Loss: 1.4216 | Average Mel Loss: 0.2689 | Average Stop Loss: 1.1528
+Step 23600/35000 | Total Loss: 1.3655 | Mel Loss: 0.1431 | Stop Loss: 1.2224 | LR: 0.000407
+Step 23700/35000 | Total Loss: 1.2238 | Mel Loss: 0.1532 | Stop Loss: 1.0706 | LR: 0.000406
+Step 23800/35000 | Total Loss: 1.5515 | Mel Loss: 0.1270 | Stop Loss: 1.4245 | LR: 0.000405
+[TRAIN] Epoch 073 | Average Total Loss: 1.3081 | Average Mel Loss: 0.1452 | Average Stop Loss: 1.1628
+[VALID] Epoch 073 | Average Total Loss: 1.4231 | Average Mel Loss: 0.2703 | Average Stop Loss: 1.1528
+Step 23900/35000 | Total Loss: 1.4699 | Mel Loss: 0.1346 | Stop Loss: 1.3353 | LR: 0.000404
+Step 24000/35000 | Total Loss: 1.4418 | Mel Loss: 0.1368 | Stop Loss: 1.3051 | LR: 0.000403
+Step 24100/35000 | Total Loss: 1.2972 | Mel Loss: 0.1456 | Stop Loss: 1.1516 | LR: 0.000403
+[TRAIN] Epoch 074 | Average Total Loss: 1.3029 | Average Mel Loss: 0.1454 | Average Stop Loss: 1.1576
+[VALID] Epoch 074 | Average Total Loss: 1.4332 | Average Mel Loss: 0.2805 | Average Stop Loss: 1.1528
+Step 24200/35000 | Total Loss: 1.2039 | Mel Loss: 0.1513 | Stop Loss: 1.0526 | LR: 0.000402
+Step 24300/35000 | Total Loss: 1.3495 | Mel Loss: 0.1404 | Stop Loss: 1.2091 | LR: 0.000401
+Step 24400/35000 | Total Loss: 1.3202 | Mel Loss: 0.1436 | Stop Loss: 1.1766 | LR: 0.000400
+Step 24500/35000 | Total Loss: 1.3716 | Mel Loss: 0.1396 | Stop Loss: 1.2319 | LR: 0.000399
+[TRAIN] Epoch 075 | Average Total Loss: 1.3055 | Average Mel Loss: 0.1448 | Average Stop Loss: 1.1606
+[VALID] Epoch 075 | Average Total Loss: 1.4198 | Average Mel Loss: 0.2670 | Average Stop Loss: 1.1528
+Step 24600/35000 | Total Loss: 1.3691 | Mel Loss: 0.1399 | Stop Loss: 1.2292 | LR: 0.000398
+Step 24700/35000 | Total Loss: 1.2102 | Mel Loss: 0.1508 | Stop Loss: 1.0594 | LR: 0.000398
+Step 24800/35000 | Total Loss: 1.2547 | Mel Loss: 0.1476 | Stop Loss: 1.1071 | LR: 0.000397
+[TRAIN] Epoch 076 | Average Total Loss: 1.3062 | Average Mel Loss: 0.1446 | Average Stop Loss: 1.1617
+[VALID] Epoch 076 | Average Total Loss: 1.4272 | Average Mel Loss: 0.2744 | Average Stop Loss: 1.1528
+Step 24900/35000 | Total Loss: 1.3631 | Mel Loss: 0.1414 | Stop Loss: 1.2217 | LR: 0.000396
+Step 25000/35000 | Total Loss: 1.3634 | Mel Loss: 0.1433 | Stop Loss: 1.2201 | LR: 0.000395
+Step 25100/35000 | Total Loss: 1.2153 | Mel Loss: 0.1514 | Stop Loss: 1.0638 | LR: 0.000394
+[TRAIN] Epoch 077 | Average Total Loss: 1.3039 | Average Mel Loss: 0.1445 | Average Stop Loss: 1.1594
+[VALID] Epoch 077 | Average Total Loss: 1.4141 | Average Mel Loss: 0.2614 | Average Stop Loss: 1.1528
+Step 25200/35000 | Total Loss: 1.3835 | Mel Loss: 0.1418 | Stop Loss: 1.2417 | LR: 0.000394
+Step 25300/35000 | Total Loss: 1.1426 | Mel Loss: 0.1543 | Stop Loss: 0.9883 | LR: 0.000393
+Step 25400/35000 | Total Loss: 1.2714 | Mel Loss: 0.1446 | Stop Loss: 1.1268 | LR: 0.000392
+Step 25500/35000 | Total Loss: 1.4437 | Mel Loss: 0.1383 | Stop Loss: 1.3055 | LR: 0.000391
+[TRAIN] Epoch 078 | Average Total Loss: 1.3065 | Average Mel Loss: 0.1440 | Average Stop Loss: 1.1625
+[VALID] Epoch 078 | Average Total Loss: 1.4220 | Average Mel Loss: 0.2692 | Average Stop Loss: 1.1528
+Step 25600/35000 | Total Loss: 1.1847 | Mel Loss: 0.1519 | Stop Loss: 1.0329 | LR: 0.000391
+Step 25700/35000 | Total Loss: 1.4811 | Mel Loss: 0.1333 | Stop Loss: 1.3479 | LR: 0.000390
+Step 25800/35000 | Total Loss: 1.3769 | Mel Loss: 0.1391 | Stop Loss: 1.2377 | LR: 0.000389
+[TRAIN] Epoch 079 | Average Total Loss: 1.3033 | Average Mel Loss: 0.1440 | Average Stop Loss: 1.1593
+[VALID] Epoch 079 | Average Total Loss: 1.4203 | Average Mel Loss: 0.2675 | Average Stop Loss: 1.1528
+Step 25900/35000 | Total Loss: 1.5149 | Mel Loss: 0.1312 | Stop Loss: 1.3837 | LR: 0.000388
+Step 26000/35000 | Total Loss: 1.2317 | Mel Loss: 0.1466 | Stop Loss: 1.0851 | LR: 0.000388
+Step 26100/35000 | Total Loss: 1.1352 | Mel Loss: 0.1530 | Stop Loss: 0.9821 | LR: 0.000387
+[TRAIN] Epoch 080 | Average Total Loss: 1.3046 | Average Mel Loss: 0.1437 | Average Stop Loss: 1.1609
+[VALID] Epoch 080 | Average Total Loss: 1.4267 | Average Mel Loss: 0.2739 | Average Stop Loss: 1.1528
+Step 26200/35000 | Total Loss: 1.2755 | Mel Loss: 0.1448 | Stop Loss: 1.1307 | LR: 0.000386
+Step 26300/35000 | Total Loss: 1.2654 | Mel Loss: 0.1474 | Stop Loss: 1.1180 | LR: 0.000385
+Step 26400/35000 | Total Loss: 1.1705 | Mel Loss: 0.1524 | Stop Loss: 1.0181 | LR: 0.000385
+[TRAIN] Epoch 081 | Average Total Loss: 1.3042 | Average Mel Loss: 0.1436 | Average Stop Loss: 1.1607
+[VALID] Epoch 081 | Average Total Loss: 1.4344 | Average Mel Loss: 0.2817 | Average Stop Loss: 1.1528
+Step 26500/35000 | Total Loss: 1.3135 | Mel Loss: 0.1435 | Stop Loss: 1.1699 | LR: 0.000384
+Step 26600/35000 | Total Loss: 1.3555 | Mel Loss: 0.1382 | Stop Loss: 1.2173 | LR: 0.000383
+Step 26700/35000 | Total Loss: 1.2638 | Mel Loss: 0.1464 | Stop Loss: 1.1174 | LR: 0.000382
+Step 26800/35000 | Total Loss: 1.4247 | Mel Loss: 0.1365 | Stop Loss: 1.2882 | LR: 0.000382
+[TRAIN] Epoch 082 | Average Total Loss: 1.3035 | Average Mel Loss: 0.1434 | Average Stop Loss: 1.1601
+[VALID] Epoch 082 | Average Total Loss: 1.4283 | Average Mel Loss: 0.2755 | Average Stop Loss: 1.1528
+Step 26900/35000 | Total Loss: 1.5856 | Mel Loss: 0.1282 | Stop Loss: 1.4573 | LR: 0.000381
+Step 27000/35000 | Total Loss: 1.4546 | Mel Loss: 0.1361 | Stop Loss: 1.3186 | LR: 0.000380
+Step 27100/35000 | Total Loss: 1.4633 | Mel Loss: 0.1317 | Stop Loss: 1.3316 | LR: 0.000380
+[TRAIN] Epoch 083 | Average Total Loss: 1.3022 | Average Mel Loss: 0.1433 | Average Stop Loss: 1.1589
+[VALID] Epoch 083 | Average Total Loss: 1.4326 | Average Mel Loss: 0.2798 | Average Stop Loss: 1.1528
+Step 27200/35000 | Total Loss: 1.2108 | Mel Loss: 0.1497 | Stop Loss: 1.0611 | LR: 0.000379
+Step 27300/35000 | Total Loss: 1.2208 | Mel Loss: 0.1492 | Stop Loss: 1.0716 | LR: 0.000378
+Step 27400/35000 | Total Loss: 1.3011 | Mel Loss: 0.1460 | Stop Loss: 1.1551 | LR: 0.000378
+[TRAIN] Epoch 084 | Average Total Loss: 1.3071 | Average Mel Loss: 0.1427 | Average Stop Loss: 1.1644
+[VALID] Epoch 084 | Average Total Loss: 1.4258 | Average Mel Loss: 0.2730 | Average Stop Loss: 1.1528
+Step 27500/35000 | Total Loss: 1.1275 | Mel Loss: 0.1519 | Stop Loss: 0.9756 | LR: 0.000377
+Step 27600/35000 | Total Loss: 1.2110 | Mel Loss: 0.1499 | Stop Loss: 1.0611 | LR: 0.000376
+Step 27700/35000 | Total Loss: 1.2454 | Mel Loss: 0.1484 | Stop Loss: 1.0970 | LR: 0.000376
+[TRAIN] Epoch 085 | Average Total Loss: 1.3031 | Average Mel Loss: 0.1428 | Average Stop Loss: 1.1603
+[VALID] Epoch 085 | Average Total Loss: 1.4289 | Average Mel Loss: 0.2761 | Average Stop Loss: 1.1528
+Step 27800/35000 | Total Loss: 1.1786 | Mel Loss: 0.1497 | Stop Loss: 1.0289 | LR: 0.000375
+Step 27900/35000 | Total Loss: 1.4116 | Mel Loss: 0.1352 | Stop Loss: 1.2764 | LR: 0.000374
+Step 28000/35000 | Total Loss: 1.1459 | Mel Loss: 0.1506 | Stop Loss: 0.9953 | LR: 0.000374
+Step 28100/35000 | Total Loss: 1.2025 | Mel Loss: 0.1518 | Stop Loss: 1.0508 | LR: 0.000373
+[TRAIN] Epoch 086 | Average Total Loss: 1.3026 | Average Mel Loss: 0.1426 | Average Stop Loss: 1.1600
+[VALID] Epoch 086 | Average Total Loss: 1.4254 | Average Mel Loss: 0.2726 | Average Stop Loss: 1.1528
+Step 28200/35000 | Total Loss: 1.2583 | Mel Loss: 0.1436 | Stop Loss: 1.1147 | LR: 0.000372
+Step 28300/35000 | Total Loss: 1.4144 | Mel Loss: 0.1338 | Stop Loss: 1.2806 | LR: 0.000372
+Step 28400/35000 | Total Loss: 1.2864 | Mel Loss: 0.1451 | Stop Loss: 1.1413 | LR: 0.000371
+[TRAIN] Epoch 087 | Average Total Loss: 1.2994 | Average Mel Loss: 0.1427 | Average Stop Loss: 1.1568
+[VALID] Epoch 087 | Average Total Loss: 1.4293 | Average Mel Loss: 0.2765 | Average Stop Loss: 1.1528
+Step 28500/35000 | Total Loss: 1.3352 | Mel Loss: 0.1415 | Stop Loss: 1.1937 | LR: 0.000370
+Step 28600/35000 | Total Loss: 1.3126 | Mel Loss: 0.1397 | Stop Loss: 1.1729 | LR: 0.000370
+Step 28700/35000 | Total Loss: 1.2698 | Mel Loss: 0.1426 | Stop Loss: 1.1272 | LR: 0.000369
+[TRAIN] Epoch 088 | Average Total Loss: 1.3010 | Average Mel Loss: 0.1423 | Average Stop Loss: 1.1587
+[VALID] Epoch 088 | Average Total Loss: 1.4200 | Average Mel Loss: 0.2672 | Average Stop Loss: 1.1528
+Step 28800/35000 | Total Loss: 1.1224 | Mel Loss: 0.1505 | Stop Loss: 0.9719 | LR: 0.000368
+Step 28900/35000 | Total Loss: 1.3197 | Mel Loss: 0.1399 | Stop Loss: 1.1797 | LR: 0.000368
+Step 29000/35000 | Total Loss: 1.4273 | Mel Loss: 0.1315 | Stop Loss: 1.2959 | LR: 0.000367
+Step 29100/35000 | Total Loss: 1.2113 | Mel Loss: 0.1500 | Stop Loss: 1.0613 | LR: 0.000366
+[TRAIN] Epoch 089 | Average Total Loss: 1.3020 | Average Mel Loss: 0.1421 | Average Stop Loss: 1.1599
+[VALID] Epoch 089 | Average Total Loss: 1.4293 | Average Mel Loss: 0.2765 | Average Stop Loss: 1.1528
+Step 29200/35000 | Total Loss: 1.3917 | Mel Loss: 0.1373 | Stop Loss: 1.2545 | LR: 0.000366
+Step 29300/35000 | Total Loss: 1.4021 | Mel Loss: 0.1366 | Stop Loss: 1.2655 | LR: 0.000365
+Step 29400/35000 | Total Loss: 1.2512 | Mel Loss: 0.1472 | Stop Loss: 1.1040 | LR: 0.000365
+[TRAIN] Epoch 090 | Average Total Loss: 1.3054 | Average Mel Loss: 0.1417 | Average Stop Loss: 1.1637
+[VALID] Epoch 090 | Average Total Loss: 1.4279 | Average Mel Loss: 0.2751 | Average Stop Loss: 1.1528
+Step 29500/35000 | Total Loss: 1.3962 | Mel Loss: 0.1381 | Stop Loss: 1.2581 | LR: 0.000364
+Step 29600/35000 | Total Loss: 1.0859 | Mel Loss: 0.1536 | Stop Loss: 0.9323 | LR: 0.000363
+Step 29700/35000 | Total Loss: 1.3579 | Mel Loss: 0.1391 | Stop Loss: 1.2188 | LR: 0.000363
+[TRAIN] Epoch 091 | Average Total Loss: 1.3036 | Average Mel Loss: 0.1416 | Average Stop Loss: 1.1619
+[VALID] Epoch 091 | Average Total Loss: 1.4310 | Average Mel Loss: 0.2782 | Average Stop Loss: 1.1528
+Step 29800/35000 | Total Loss: 1.2250 | Mel Loss: 0.1484 | Stop Loss: 1.0765 | LR: 0.000362
+Step 29900/35000 | Total Loss: 1.3857 | Mel Loss: 0.1386 | Stop Loss: 1.2471 | LR: 0.000361
+Step 30000/35000 | Total Loss: 1.1960 | Mel Loss: 0.1469 | Stop Loss: 1.0491 | LR: 0.000361
+[TRAIN] Epoch 092 | Average Total Loss: 1.3021 | Average Mel Loss: 0.1415 | Average Stop Loss: 1.1606
+[VALID] Epoch 092 | Average Total Loss: 1.4356 | Average Mel Loss: 0.2829 | Average Stop Loss: 1.1528
+Step 30100/35000 | Total Loss: 1.3452 | Mel Loss: 0.1378 | Stop Loss: 1.2074 | LR: 0.000360
+Step 30200/35000 | Total Loss: 1.5148 | Mel Loss: 0.1276 | Stop Loss: 1.3873 | LR: 0.000360
+Step 30300/35000 | Total Loss: 1.4233 | Mel Loss: 0.1370 | Stop Loss: 1.2863 | LR: 0.000359
+Step 30400/35000 | Total Loss: 1.3860 | Mel Loss: 0.1344 | Stop Loss: 1.2515 | LR: 0.000358
+[TRAIN] Epoch 093 | Average Total Loss: 1.3029 | Average Mel Loss: 0.1414 | Average Stop Loss: 1.1615
+[VALID] Epoch 093 | Average Total Loss: 1.4310 | Average Mel Loss: 0.2782 | Average Stop Loss: 1.1528
+Step 30500/35000 | Total Loss: 1.2189 | Mel Loss: 0.1447 | Stop Loss: 1.0742 | LR: 0.000358
+Step 30600/35000 | Total Loss: 1.3219 | Mel Loss: 0.1392 | Stop Loss: 1.1827 | LR: 0.000357
+Step 30700/35000 | Total Loss: 1.1355 | Mel Loss: 0.1543 | Stop Loss: 0.9813 | LR: 0.000357
+[TRAIN] Epoch 094 | Average Total Loss: 1.3028 | Average Mel Loss: 0.1412 | Average Stop Loss: 1.1616
+[VALID] Epoch 094 | Average Total Loss: 1.4271 | Average Mel Loss: 0.2743 | Average Stop Loss: 1.1528
+Step 30800/35000 | Total Loss: 1.2603 | Mel Loss: 0.1398 | Stop Loss: 1.1205 | LR: 0.000356
+Step 30900/35000 | Total Loss: 1.3091 | Mel Loss: 0.1422 | Stop Loss: 1.1669 | LR: 0.000356
+Step 31000/35000 | Total Loss: 1.2799 | Mel Loss: 0.1402 | Stop Loss: 1.1397 | LR: 0.000355
+[TRAIN] Epoch 095 | Average Total Loss: 1.3015 | Average Mel Loss: 0.1411 | Average Stop Loss: 1.1604
+[VALID] Epoch 095 | Average Total Loss: 1.4339 | Average Mel Loss: 0.2811 | Average Stop Loss: 1.1528
+Step 31100/35000 | Total Loss: 1.2917 | Mel Loss: 0.1435 | Stop Loss: 1.1482 | LR: 0.000354
+Step 31200/35000 | Total Loss: 1.4225 | Mel Loss: 0.1299 | Stop Loss: 1.2926 | LR: 0.000354
+Step 31300/35000 | Total Loss: 1.4873 | Mel Loss: 0.1290 | Stop Loss: 1.3583 | LR: 0.000353
+[TRAIN] Epoch 096 | Average Total Loss: 1.3009 | Average Mel Loss: 0.1409 | Average Stop Loss: 1.1599
+[VALID] Epoch 096 | Average Total Loss: 1.4245 | Average Mel Loss: 0.2717 | Average Stop Loss: 1.1528
+Step 31400/35000 | Total Loss: 1.6288 | Mel Loss: 0.1195 | Stop Loss: 1.5093 | LR: 0.000353
+Step 31500/35000 | Total Loss: 1.4984 | Mel Loss: 0.1280 | Stop Loss: 1.3704 | LR: 0.000352
+Step 31600/35000 | Total Loss: 1.3014 | Mel Loss: 0.1397 | Stop Loss: 1.1618 | LR: 0.000352
+Step 31700/35000 | Total Loss: 1.3704 | Mel Loss: 0.1340 | Stop Loss: 1.2365 | LR: 0.000351
+[TRAIN] Epoch 097 | Average Total Loss: 1.3028 | Average Mel Loss: 0.1407 | Average Stop Loss: 1.1621
+[VALID] Epoch 097 | Average Total Loss: 1.4267 | Average Mel Loss: 0.2739 | Average Stop Loss: 1.1528
+Step 31800/35000 | Total Loss: 1.4710 | Mel Loss: 0.1282 | Stop Loss: 1.3428 | LR: 0.000350
+Step 31900/35000 | Total Loss: 1.2560 | Mel Loss: 0.1438 | Stop Loss: 1.1121 | LR: 0.000350
+Step 32000/35000 | Total Loss: 1.1769 | Mel Loss: 0.1480 | Stop Loss: 1.0288 | LR: 0.000349
+[TRAIN] Epoch 098 | Average Total Loss: 1.3025 | Average Mel Loss: 0.1406 | Average Stop Loss: 1.1619
+[VALID] Epoch 098 | Average Total Loss: 1.4377 | Average Mel Loss: 0.2849 | Average Stop Loss: 1.1528
+Step 32100/35000 | Total Loss: 1.2149 | Mel Loss: 0.1452 | Stop Loss: 1.0697 | LR: 0.000349
+Step 32200/35000 | Total Loss: 1.4193 | Mel Loss: 0.1313 | Stop Loss: 1.2879 | LR: 0.000348
+Step 32300/35000 | Total Loss: 1.2533 | Mel Loss: 0.1432 | Stop Loss: 1.1100 | LR: 0.000348
+[TRAIN] Epoch 099 | Average Total Loss: 1.2984 | Average Mel Loss: 0.1407 | Average Stop Loss: 1.1577
+[VALID] Epoch 099 | Average Total Loss: 1.4242 | Average Mel Loss: 0.2714 | Average Stop Loss: 1.1528
+Step 32400/35000 | Total Loss: 1.3292 | Mel Loss: 0.1391 | Stop Loss: 1.1901 | LR: 0.000347
+Step 32500/35000 | Total Loss: 1.1783 | Mel Loss: 0.1495 | Stop Loss: 1.0288 | LR: 0.000347
+Step 32600/35000 | Total Loss: 1.3819 | Mel Loss: 0.1364 | Stop Loss: 1.2455 | LR: 0.000346
+Step 32700/35000 | Total Loss: 1.2685 | Mel Loss: 0.1451 | Stop Loss: 1.1234 | LR: 0.000346
+[TRAIN] Epoch 100 | Average Total Loss: 1.3030 | Average Mel Loss: 0.1403 | Average Stop Loss: 1.1627
+[VALID] Epoch 100 | Average Total Loss: 1.4278 | Average Mel Loss: 0.2750 | Average Stop Loss: 1.1528
+Step 32800/35000 | Total Loss: 1.3253 | Mel Loss: 0.1387 | Stop Loss: 1.1866 | LR: 0.000345
+Step 32900/35000 | Total Loss: 1.2231 | Mel Loss: 0.1467 | Stop Loss: 1.0764 | LR: 0.000345
+Step 33000/35000 | Total Loss: 1.3810 | Mel Loss: 0.1346 | Stop Loss: 1.2464 | LR: 0.000344
+[TRAIN] Epoch 101 | Average Total Loss: 1.3020 | Average Mel Loss: 0.1401 | Average Stop Loss: 1.1619
+[VALID] Epoch 101 | Average Total Loss: 1.4313 | Average Mel Loss: 0.2785 | Average Stop Loss: 1.1528
+Step 33100/35000 | Total Loss: 1.4607 | Mel Loss: 0.1302 | Stop Loss: 1.3304 | LR: 0.000344
+Step 33200/35000 | Total Loss: 1.3297 | Mel Loss: 0.1384 | Stop Loss: 1.1913 | LR: 0.000343
+Step 33300/35000 | Total Loss: 1.3503 | Mel Loss: 0.1364 | Stop Loss: 1.2139 | LR: 0.000342
+[TRAIN] Epoch 102 | Average Total Loss: 1.3019 | Average Mel Loss: 0.1401 | Average Stop Loss: 1.1618
+[VALID] Epoch 102 | Average Total Loss: 1.4223 | Average Mel Loss: 0.2696 | Average Stop Loss: 1.1528
+Step 33400/35000 | Total Loss: 1.3772 | Mel Loss: 0.1366 | Stop Loss: 1.2406 | LR: 0.000342
+Step 33500/35000 | Total Loss: 1.5399 | Mel Loss: 0.1234 | Stop Loss: 1.4165 | LR: 0.000341
+Step 33600/35000 | Total Loss: 1.3319 | Mel Loss: 0.1381 | Stop Loss: 1.1938 | LR: 0.000341
+[TRAIN] Epoch 103 | Average Total Loss: 1.2974 | Average Mel Loss: 0.1402 | Average Stop Loss: 1.1572
+[VALID] Epoch 103 | Average Total Loss: 1.4382 | Average Mel Loss: 0.2854 | Average Stop Loss: 1.1528
+Step 33700/35000 | Total Loss: 1.4023 | Mel Loss: 0.1340 | Stop Loss: 1.2682 | LR: 0.000340
+Step 33800/35000 | Total Loss: 1.2275 | Mel Loss: 0.1447 | Stop Loss: 1.0828 | LR: 0.000340
+Step 33900/35000 | Total Loss: 1.2394 | Mel Loss: 0.1465 | Stop Loss: 1.0928 | LR: 0.000339
+Step 34000/35000 | Total Loss: 1.0939 | Mel Loss: 0.1574 | Stop Loss: 0.9365 | LR: 0.000339
+[TRAIN] Epoch 104 | Average Total Loss: 1.3001 | Average Mel Loss: 0.1399 | Average Stop Loss: 1.1602
+[VALID] Epoch 104 | Average Total Loss: 1.4221 | Average Mel Loss: 0.2693 | Average Stop Loss: 1.1528
+Step 34100/35000 | Total Loss: 1.3424 | Mel Loss: 0.1353 | Stop Loss: 1.2071 | LR: 0.000338
+Step 34200/35000 | Total Loss: 1.4900 | Mel Loss: 0.1279 | Stop Loss: 1.3622 | LR: 0.000338
+Step 34300/35000 | Total Loss: 1.2066 | Mel Loss: 0.1468 | Stop Loss: 1.0597 | LR: 0.000337
+[TRAIN] Epoch 105 | Average Total Loss: 1.3030 | Average Mel Loss: 0.1395 | Average Stop Loss: 1.1634
+[VALID] Epoch 105 | Average Total Loss: 1.4268 | Average Mel Loss: 0.2740 | Average Stop Loss: 1.1528
+Step 34400/35000 | Total Loss: 1.6886 | Mel Loss: 0.1149 | Stop Loss: 1.5736 | LR: 0.000337
+Step 34500/35000 | Total Loss: 1.1855 | Mel Loss: 0.1472 | Stop Loss: 1.0383 | LR: 0.000336
+Step 34600/35000 | Total Loss: 1.1343 | Mel Loss: 0.1501 | Stop Loss: 0.9842 | LR: 0.000336
+[TRAIN] Epoch 106 | Average Total Loss: 1.2994 | Average Mel Loss: 0.1396 | Average Stop Loss: 1.1597
+[VALID] Epoch 106 | Average Total Loss: 1.4307 | Average Mel Loss: 0.2779 | Average Stop Loss: 1.1528
+Step 34700/35000 | Total Loss: 0.9748 | Mel Loss: 0.1615 | Stop Loss: 0.8133 | LR: 0.000336
+Step 34800/35000 | Total Loss: 1.3421 | Mel Loss: 0.1381 | Stop Loss: 1.2040 | LR: 0.000335
+Step 34900/35000 | Total Loss: 1.2827 | Mel Loss: 0.1413 | Stop Loss: 1.1414 | LR: 0.000335
+[TRAIN] Epoch 107 | Average Total Loss: 1.3018 | Average Mel Loss: 0.1393 | Average Stop Loss: 1.1625
+[VALID] Epoch 107 | Average Total Loss: 1.4260 | Average Mel Loss: 0.2732 | Average Stop Loss: 1.1528
+Step 35000/35000 | Total Loss: 1.2042 | Mel Loss: 0.1453 | Stop Loss: 1.0589 | LR: 0.000334
+[TRAIN] Epoch 108 | Average Total Loss: 0.0439 | Average Mel Loss: 0.0047 | Average Stop Loss: 0.0393
+[VALID] Epoch 108 | Average Total Loss: 1.4436 | Average Mel Loss: 0.2909 | Average Stop Loss: 1.1528

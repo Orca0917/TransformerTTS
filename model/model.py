@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from model.layers import LinearNorm
 from model.module import (
     EncoderPreNet, 
@@ -25,6 +24,7 @@ class TransformerTTS(nn.Module):
         self.mel_linear = LinearNorm(d_hidden, self.n_mels)
         self.stop_linear = LinearNorm(d_hidden, 1)
         self.postnet = PostNet(m_config)
+    
 
     def forward(self, phoneme, melspectrogram, src_len, mel_len, **kwargs):
         """
@@ -46,19 +46,23 @@ class TransformerTTS(nn.Module):
 
         # Decoder prenet
         go_frame = torch.zeros(batch_size, 1, self.n_mels).to(device)
-        melspectrogram = torch.cat([go_frame, melspectrogram[:, :-1, :]], dim=1)
-        prenet_tgt_out = self.decoder_prenet(melspectrogram)
+        mel_input = torch.cat([go_frame, melspectrogram[:, :-1, :]], dim=1)
+        prenet_tgt_out = self.decoder_prenet(mel_input)
         tgt = self.scaled_positional_encoding(prenet_tgt_out)
-
-        # transformer
+        
+        # Transformer
         transformer_out = self.transformer(src, tgt, src_len, mel_len)
 
-        # output layers
+        # Output layers
         mel_output = self.mel_linear(transformer_out)
         stop_token = self.stop_linear(transformer_out).squeeze(-1)
         mel_output_postnet = self.postnet(mel_output) + mel_output
         
-        return mel_output, stop_token, mel_output_postnet
+        return {
+            "mel_output": mel_output,
+            "stop_token": stop_token,
+            "mel_output_postnet": mel_output_postnet
+        }
     
 
     @torch.no_grad()
@@ -69,7 +73,7 @@ class TransformerTTS(nn.Module):
         device = phoneme.device
 
         # Encoder
-        prenet_src_out = self.encoder_prenet(phoneme)  # [1, src_len, d_model]
+        prenet_src_out = self.encoder_prenet(phoneme)  # [batch_size, src_len, d_model]
         src = self.scaled_positional_encoding(prenet_src_out)
         src_key_padding_mask = self.transformer._get_key_padding_masks(src_len)
         memory = self.transformer.transformer.encoder(
@@ -78,31 +82,27 @@ class TransformerTTS(nn.Module):
             src_key_padding_mask=src_key_padding_mask
         )
 
-        # Decoder
-        melspectrogram = torch.zeros(batch_size, 1, self.n_mels).to(device)
-        tgt_len = torch.ones(batch_size, dtype=torch.long, device=device)
-        not_finished = torch.ones(batch_size, dtype=torch.bool, device=device)
-        
+        # Decoder 초기화
+        ys = torch.zeros(batch_size, 1, self.n_mels).to(device)
         decoded_mel = []
         stop_tokens = []
-
-        # TODO: tgt_len 계산하는 것 만들기
+        not_finished = torch.ones(batch_size, dtype=torch.bool, device=device)
 
         for _ in range(max_decoder_steps):
-            # decoder prenet & positional encoding
-            prenet_tgt_out = self.decoder_prenet(melspectrogram)
+            # Decoder PreNet 및 Positional Encoding
+            prenet_tgt_out = self.decoder_prenet(ys)
             tgt = self.scaled_positional_encoding(prenet_tgt_out)
 
-            masks = self.transformer.get_masks(src_len, tgt_len)
+            # Transformer Decoder 호출
+            tgt_mask = self.transformer.transformer.generate_square_subsequent_mask(ys.size(1)).to(device)
             transformer_out = self.transformer.transformer.decoder(
                 tgt=tgt,
                 memory=memory,
-                tgt_mask=masks["tgt_mask"],
-                tgt_key_padding_mask=masks["tgt_key_padding_mask"],
-                memory_key_padding_mask=masks["src_key_padding_mask"],
+                tgt_mask=tgt_mask,
+                memory_key_padding_mask=src_key_padding_mask
             )
 
-            # output layers
+            # 마지막 타임스텝의 출력만 사용
             frame_pred = transformer_out[:, -1, :]
             mel_output = self.mel_linear(frame_pred)
             stop_token = self.stop_linear(frame_pred).squeeze(-1)
@@ -110,24 +110,25 @@ class TransformerTTS(nn.Module):
             decoded_mel.append(mel_output.unsqueeze(1))
             stop_tokens.append(stop_token.unsqueeze(1))
 
-            # stop token
+            # Stop Token 확인
             stop_probs = torch.sigmoid(stop_token)  # [batch_size]
             not_finished = not_finished & (stop_probs < 0.5)
             if not not_finished.any():
                 break
-            
+
             # 다음 입력 준비
             mel_output = mel_output * not_finished.unsqueeze(1)  # 완료된 배치는 업데이트하지 않음
-            melspectrogram = torch.cat([melspectrogram, mel_output.unsqueeze(1)], dim=1)  # [batch_size, T+1, n_mels]
-
-            # tgt_len 업데이트
-            tgt_len = tgt_len + not_finished.long()
+            ys = torch.cat([ys, mel_output.unsqueeze(1)], dim=1)  # [batch_size, T+1, n_mels]
 
         # 출력들을 하나의 텐서로 결합
         decoded_mel = torch.cat(decoded_mel, dim=1)
         stop_tokens = torch.cat(stop_tokens, dim=1)
 
         # PostNet 적용
-        mel_output_postnet = self.postnet(decoded_mel) + decoded_mel  # [1, total_steps, n_mels]
+        mel_output_postnet = self.postnet(decoded_mel) + decoded_mel  # [batch_size, total_steps, n_mels]
 
-        return decoded_mel, stop_tokens, mel_output_postnet
+        return {
+            "mel_output": decoded_mel, 
+            "stop_token": stop_tokens, 
+            "mel_output_postnet": mel_output_postnet
+        }

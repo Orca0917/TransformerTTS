@@ -99,7 +99,7 @@ class PostNet(nn.Module):
     
     
 class ScaledPositionalEncoding(nn.Module):
-    def __init__(self, m_config, max_len=1024):
+    def __init__(self, m_config, max_len=1025):
         super(ScaledPositionalEncoding, self).__init__()
         
         d_hidden = m_config["common"]["d_hidden"]

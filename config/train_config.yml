@@ -6,12 +6,12 @@ general:
   vocoder_path: "vocoder/checkpoint-2500000steps.pkl"
 
 training:
-  batch_size: 16
+  batch_size: 32
   learning_rate: 0.001
   betas:
     - 0.9
-    - 0.99
-  total_step: 100000
+    - 0.98
+  total_step: 35000
 
 optimizer:
   betas:
