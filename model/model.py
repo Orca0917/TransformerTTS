@@ -1,210 +1,388 @@
-# https://github.com/choiHkk/Transformer-TTS/blob/main/model.py
-
-from torch.autograd import Variable
-from .module import (
-    TextPrenet, 
-    PositionalEncoding, 
-    Prenet, 
-    Encoder, 
-    EncoderLayer, 
-    Decoder, 
-    DecoderLayer, 
-    LinearNorm, 
-    Postnet
-)
-import torch.nn as nn
-import torch
 import math
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from model.module import ConvNormBN, LinearNorm
+from torch.nn import (
+    TransformerEncoder,
+    TransformerEncoderLayer
+)
+from model.transformer.layers import TransformerDecoderLayer, TransformerDecoder
+
+
+class EncoderPreNet(nn.Module):
+    """
+    Encoder Pre-Net: N-layer ConvNormBN blocks followed by a final LinearNorm layer.
+    Input/Output shape: (B, T, H)
+    """
+
+    def __init__(
+        self,
+        n_layers: int,
+        in_channels: int,
+        out_channels: int,
+        kernel_size: int,
+        dropout: float = 0.5,
+    ):
+        super().__init__()
+
+        self.dropout = dropout
+
+        # N(3)-layer ConvNormBN blocks
+        self.conv_blocks = nn.ModuleList()
+        for i in range(n_layers):
+            in_dim = in_channels if i == 0 else out_channels
+            self.conv_blocks.append(ConvNormBN(in_dim, out_channels, kernel_size))
+
+        # Final linear layer
+        self.linear = LinearNorm(out_channels, out_channels)
+
+    def forward(self, phoneme_emb: torch.Tensor) -> torch.Tensor:
+        """
+        Args:
+            phoneme_emb (Tensor): (B, T_phon, H_emb)
+        Returns:
+            enc_prenet_out (Tensor): (B, T_phon, H)
+        """
+
+        for conv in self.conv_blocks:
+            phoneme_emb = F.dropout(F.relu(conv(phoneme_emb)), p=self.dropout, training=self.training)
+
+        enc_prenet_out = self.linear(phoneme_emb)
+        return enc_prenet_out
+
+
+class DecoderPreNet(nn.Module):
+    def __init__(
+        self, 
+        n_mels: int, 
+        d_model: int,
+        dropout: float = 0.5,
+    ):
+        super().__init__()
+        self.linear1 = LinearNorm(n_mels, d_model)
+        self.linear2 = LinearNorm(d_model, d_model)
+        self.dropout = dropout
+
+    def forward(self, melspec: torch.Tensor) -> torch.Tensor:
+        x = F.dropout(F.relu(self.linear1(melspec)), p=self.dropout, training=self.training)
+        dec_prenet_out = self.linear2(x)
+        return dec_prenet_out
+
+
+class PositionalEncoding(nn.Module):
+    def __init__(
+        self,
+        d_model: int,
+        device: str,
+        max_len: int = 5000,
+    ):
+        super().__init__()
+        pe = torch.zeros(max_len, d_model, device=device, dtype=torch.float32)
+        self.register_buffer('pe', pe)
+
+        position = torch.arange(0, max_len, dtype=torch.float32).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2, dtype=torch.float32) * (-math.log(10000.0)) / d_model)
+
+        self.pe[:, 0::2] = torch.sin(position * div_term)
+        self.pe[:, 1::2] = torch.cos(position * div_term)
+        self.alpha = nn.Parameter(torch.ones(1), requires_grad=True)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """
+        Args:
+            x (Tensor): Input tensor of shape (B, T, H)
+        Returns:
+            Tensor: Positionally encoded tensor of shape (B, T, H)
+        """
+        x = x + self.alpha * self.pe[:x.size(1), :].unsqueeze(0)
+        x = F.dropout(x, p=0.1, training=self.training)
+        return x
+
+
+class PostNet(nn.Module):
+    def __init__(
+        self, 
+        n_layers: int, 
+        in_channels: int,
+        out_channels: int,
+        kernel_size: int,
+        dropout: float = 0.5,
+    ):
+        super(PostNet, self).__init__()
+
+        self.conv_layers = nn.ModuleList()
+
+        # 1st layer of PostNet
+        self.conv_layers.append(ConvNormBN(in_channels, out_channels, kernel_size))
+        self.conv_layers.append(nn.Tanh())
+        self.conv_layers.append(nn.Dropout(dropout))
+        
+        # 2~4th layers of PostNet
+        for _ in range(n_layers - 2):
+            self.conv_layers.append(ConvNormBN(out_channels, out_channels, kernel_size))
+            self.conv_layers.append(nn.Tanh())
+            self.conv_layers.append(nn.Dropout(dropout))
+
+        # Last layer of PostNet
+        self.conv_layers.append(ConvNormBN(out_channels, in_channels, kernel_size))
+        self.conv_layers.append(nn.Dropout(dropout))
+
+
+    def forward(self, pred_mel: torch.Tensor) -> torch.Tensor:
+        """
+        Args:
+            pred_mel (Tensor): Input tensor of shape (B, T_mel, n_mels)
+        Returns:
+            post_mel (Tensor): Output tensor of shape (B, T_mel, n_mels)
+        """
+
+        for layer in self.conv_layers:
+            pred_mel = layer(pred_mel)
+
+        return pred_mel
+
 
 class TransformerTTS(nn.Module):
-    def __init__(self, hparams):
-        super(TransformerTTS, self).__init__()
-        n_symbols = hparams.n_symbols
-        n_speakers = hparams.n_speakers
-        d_model = hparams.d_model
-        n_mel_channels = hparams.n_mel_channels
-        self.n_speakers = n_speakers
-        self.n_mel_channels = n_mel_channels
+    def __init__(
+        self, 
+        encoder_prenet_n_layers: int, 
+        encoder_prenet_in_channel: int,
+        encoder_prenet_out_channel: int,
+        encoder_prenet_kernel_size: int,
+        encoder_prenet_dropout: float,
+        encoder_n_layers: int,
+        encoder_n_head: int,
+        encoder_d_ffn: int,
+        encoder_dropout: float,
+        decoder_n_layers: int,
+        decoder_n_head: int,
+        decoder_d_ffn: int,
+        decoder_dropout: float,
+        postnet_n_layers: int,
+        postnet_kernel_size: int,
+        postnet_dropout: float,
+        d_model: int,
+        n_phon: int = 100,
+        n_mels: int = 80,
+        device: str = 'cuda',
+    ):
+        super().__init__()
+
+        self.device = device
+        self.n_mels = n_mels
+
+        # embedding
+        self.emb = nn.Embedding(n_phon, d_model)
         
-        self.embedding = nn.Embedding(n_symbols, d_model*2)
-        std = math.sqrt(2.0 / (n_symbols + d_model))
-        val = math.sqrt(3.0) * std  # uniform bounds for std
-        self.embedding.weight.data.uniform_(-val, val)
-        self.text_prenet = TextPrenet(encoder_embedding_dim=d_model)
-        self.positinoal_encoding = PositionalEncoding(d_model)
-        self.prenet = Prenet(in_dim=n_mel_channels, sizes=[d_model,d_model])
-        self.encoder = Encoder(
-            encoder_layer=EncoderLayer(d_model=d_model), 
-            norm=nn.LayerNorm(normalized_shape=d_model))
-        self.decoder = Decoder(
-            decoder_layer=DecoderLayer(d_model=d_model), 
-            norm=nn.LayerNorm(normalized_shape=d_model))
-        self.linear_projection = LinearNorm(d_model, n_mel_channels)
-        self.postnet = Postnet(n_mel_channels=n_mel_channels)
-        self.gate_projection = LinearNorm(d_model, 1, w_init_gain='sigmoid')
-        if n_speakers > 0:
-            self.speaker_embedding = nn.Embedding(n_speakers, d_model)
-            std = math.sqrt(2.0 / (n_speakers + d_model))
-            val = math.sqrt(3.0) * std  # uniform bounds for std
-            self.speaker_embedding.weight.data.uniform_(-val, val)
+        # prenet
+        self.enc_prenet = EncoderPreNet(
+            encoder_prenet_n_layers,
+            encoder_prenet_in_channel,
+            encoder_prenet_out_channel,
+            encoder_prenet_kernel_size,
+            encoder_prenet_dropout,
+        )
+
+        self.dec_prenet = DecoderPreNet(
+            n_mels, d_model
+        )
+
+        # positional encoding
+        self.pe = PositionalEncoding(
+            d_model, device
+        )
+
+        # transformer encoder
+        encoder_layer = TransformerEncoderLayer(
+            d_model=d_model,
+            nhead=encoder_n_head,
+            dim_feedforward=encoder_d_ffn,
+            dropout=encoder_dropout,
+            activation='relu',
+            batch_first=True,
+        )
+        self.encoder = TransformerEncoder(
+            encoder_layer=encoder_layer,
+            num_layers=encoder_n_layers
+        )
+
+        # transformer decoder
+        decoder_layer = TransformerDecoderLayer(
+            d_model=d_model,
+            nhead=decoder_n_head,
+            dim_feedforward=decoder_d_ffn, 
+            dropout=decoder_dropout,
+            activation='relu',
+            batch_first=True,
+        )
+        self.decoder = TransformerDecoder(
+            decoder_layer=decoder_layer,
+            num_layers=decoder_n_layers
+        )
+
+        # postnet
+        self.postnet = PostNet(
+            postnet_n_layers,
+            n_mels,
+            d_model,
+            postnet_kernel_size,
+            postnet_dropout,
+        )
+
+        # linears
+        self.linear1 = LinearNorm(d_model, n_mels)
+        self.linear2 = LinearNorm(d_model, 1)  # Stop token prediction
+
+
+    def _get_mask(self, phoneme_lens: torch.Tensor = None, mel_lens: torch.Tensor = None):
+
+        src_key_padding_mask = None
+        tgt_key_padding_mask = None
+        tgt_mask = None
         
-    def generate_square_subsequent_mask(self, lsz, rsz):
-        """https://pytorch.org/docs/stable/_modules/torch/nn/modules/transformer.html#Transformer"""
-        return torch.triu(torch.ones(lsz, rsz) * float('-inf'), diagonal=1)
-    
-    def generate_padding_mask(self, lengths, max_len=None):
-        """https://github.com/ming024/FastSpeech2/blob/master/utils/tools.py"""
-        batch_size = lengths.shape[0]
-        if max_len is None:
-            max_len = torch.max(lengths).item()
-        ids = torch.arange(0, max_len).unsqueeze(0).expand(batch_size, -1).to(
-            dtype=lengths.dtype, device=lengths.device)
-        return ids >= lengths.unsqueeze(1).expand(-1, max_len)
-    
-    def initialize_masks(self, x_lengths=None, y_lengths=None):
-        """
-        - src: :math:`(S, E)` for unbatched input, :math:`(S, N, E)` if `batch_first=False` or
-          `(N, S, E)` if `batch_first=True`.
-        - tgt: :math:`(T, E)` for unbatched input, :math:`(T, N, E)` if `batch_first=False` or
-          `(N, T, E)` if `batch_first=True`.
-        - src_mask: :math:`(S, S)`.
-        - tgt_mask: :math:`(T, T)`.
-        - memory_mask: :math:`(T, S)`.
-        - src_key_padding_mask: :math:`(S)` for unbatched input otherwise :math:`(N, S)`.
-        - tgt_key_padding_mask: :math:`(T)` for unbatched input otherwise :math:`(N, T)`.
-        - memory_key_padding_mask: :math:`(S)` for unbatched input otherwise :math:`(N, S)`.
-        """
-        self.src_mask = None
-        self.tgt_mask = None
-        self.memory_mask = None
-        self.src_key_padding_mask = None
-        self.tgt_key_padding_mask = None
-        if x_lengths is not None:
-            S = x_lengths.max().item()
-            self.src_mask = self.generate_square_subsequent_mask(S, S).to(device=x_lengths.device)         # text sequence self-attention mask
-            self.src_key_padding_mask = self.generate_padding_mask(x_lengths).to(device=x_lengths.device)  # text sequence padding mask
-        if y_lengths is not None:
-            T = y_lengths.max().item()
-            self.tgt_mask = self.generate_square_subsequent_mask(T, T).to(device=y_lengths.device)         # mel sequence self-attention mask
-            self.tgt_key_padding_mask = self.generate_padding_mask(y_lengths).to(device=y_lengths.device)  # mel sequence padding mask
-        if x_lengths is not None and y_lengths is not None:
-            T = y_lengths.max().item()
-            S = x_lengths.max().item()
-            self.memory_mask = self.generate_square_subsequent_mask(T, S).to(device=y_lengths.device)      # text-mel cross attention mask
-            
-    def get_go_frame(self, memory):
-        """ Gets all zeros frames to use as first decoder input
-        PARAMS
-        ------
-        memory: decoder outputs
-        RETURNS
-        -------
-        decoder_input: all zeros frames
-        """
-        B = memory.size(0)
-        decoder_input = Variable(memory.data.new(B, self.n_mel_channels).zero_())
-        return decoder_input
-    
-    def to_gpu(self, x):
-        x = x.contiguous()
-        if torch.cuda.is_available():
-            x = x.cuda(non_blocking=True)
-        return torch.autograd.Variable(x)
-    
-    def parse_batch(self, batch):
-        text_padded, input_lengths, mel_padded, gate_padded, \
-            output_lengths = batch
-        text_padded = self.to_gpu(text_padded).long()
-        input_lengths = self.to_gpu(input_lengths).long()
-        mel_padded = self.to_gpu(mel_padded).float()
-        gate_padded = self.to_gpu(gate_padded).float()
-        output_lengths = self.to_gpu(output_lengths).long()
-        return (
-            (text_padded, input_lengths, mel_padded, output_lengths),
-            (mel_padded.clone(), gate_padded))
-            
-    def parse_output(self, outputs):
-        outputs[0].data.masked_fill_(
-            self.tgt_key_padding_mask.unsqueeze(-1).repeat(1,1,outputs[0].size(-1)), 0.0)
-        outputs[1].data.masked_fill_(
-            self.tgt_key_padding_mask.unsqueeze(-1).repeat(1,1,outputs[0].size(-1)), 0.0)
-        outputs[2].data.masked_fill_(
-            self.tgt_key_padding_mask.unsqueeze(-1), 1e3)  # gate energies
-        return outputs
-        
-    def forward(self, x, x_lengths=None, y=None, y_lengths=None, speakers=None):
-        self.train()
-        self.initialize_masks(x_lengths=x_lengths, y_lengths=y_lengths)
-        if speakers is None:
-            speakers = torch.LongTensor([0]).repeat(x.size(0)).to(x.device)
-        x = self.text_prenet(self.embedding(x))
-        x = self.positinoal_encoding(x)
-        memory = self.encoder(
-            src=x, 
-            mask=self.src_mask, 
-            src_key_padding_mask=self.src_key_padding_mask
-        )
-        if self.n_speakers > 0:
-            assert speakers is not None
-            g = self.speaker_embedding(speakers).unsqueeze(1).repeat(1,x_lengths.max().item(),1)
-            memory = memory + g
-        y = torch.cat([self.get_go_frame(memory).unsqueeze(1), y[:,:-1,:]], dim=1)
-        y = self.positinoal_encoding(self.prenet(y))
-        features = self.decoder(
-            tgt=y, 
-            memory=memory, 
-            tgt_mask=self.tgt_mask, 
-            memory_mask=self.memory_mask, 
-            tgt_key_padding_mask=self.tgt_key_padding_mask, 
-            memory_key_padding_mask=self.src_key_padding_mask
-        )
-        mel = self.linear_projection(features)
-        gate = self.gate_projection(features)
-        post_mel = self.postnet(mel.transpose(1,2)).transpose(1,2) + mel
-        return self.parse_output([post_mel, mel, gate])
-    
-    @torch.no_grad()
-    def inference(self, x, x_lengths=None, speakers=None, gate_threshold=0.5, max_len=1000):
-        self.eval()
-        self.initialize_masks(x_lengths=x_lengths)
-        if speakers is None:
-            speakers = torch.LongTensor([0]).repeat(x.size(0)).to(x.device)
-        x = self.text_prenet(self.embedding(x))
-        x = self.positinoal_encoding(x)
-        memory = self.encoder(
-            src=x, 
-            mask=self.src_mask, 
-            src_key_padding_mask=self.src_key_padding_mask
-        )
-        if self.n_speakers > 0:
-            assert speakers is not None
-            g = self.speaker_embedding(speakers).unsqueeze(1).repeat(1,x_lengths.max().item(),1)
-            memory = memory + g
-        go_frame = self.get_go_frame(memory).unsqueeze(1)
-        y_hat = torch.FloatTensor([]).to(x.device)
-        gate_outputs = torch.FloatTensor([]).to(x.device)
-        y_hat = torch.cat([y_hat, go_frame], dim=1)
-        while True:
-            y_lengths = torch.LongTensor([y_hat.size(1)]).to(x.device)
-            self.initialize_masks(x_lengths=x_lengths, y_lengths=y_lengths)
-            features = self.decoder(
-                tgt=self.positinoal_encoding(self.prenet(y_hat)), 
-                memory=memory, 
-                tgt_mask=self.tgt_mask, 
-                memory_mask=self.memory_mask, 
-                tgt_key_padding_mask=self.tgt_key_padding_mask, 
-                memory_key_padding_mask=self.src_key_padding_mask
+        if phoneme_lens is not None:
+            max_phon_len = phoneme_lens.max().item()
+            src_key_padding_mask = (
+                torch.arange(max_phon_len, device=self.device)
+                .unsqueeze(0)
+                .expand(phoneme_lens.size(0), max_phon_len)
+                >= phoneme_lens.unsqueeze(1)
             )
-            frame = self.linear_projection(features)
-            gate = self.gate_projection(features)
-            if torch.sigmoid(gate[:,-1].data) > gate_threshold:
+
+        if mel_lens is not None:
+            max_mel_len = mel_lens.max().item()
+            tgt_key_padding_mask = (
+                torch.arange(max_mel_len, device=self.device)
+                .unsqueeze(0)
+                .expand(mel_lens.size(0), max_mel_len)
+                >= mel_lens.unsqueeze(1)
+            )
+            tgt_mask = torch.triu(
+                torch.ones(max_mel_len, max_mel_len, device=self.device), 
+                diagonal=1
+            ).bool()
+
+        return src_key_padding_mask, tgt_key_padding_mask, tgt_mask
+
+
+    def forward(
+        self, 
+        phoneme: torch.Tensor, 
+        melspec: torch.Tensor, 
+        phoneme_lens: torch.Tensor,
+        melspec_lens: torch.Tensor, 
+    ) -> dict:
+        """
+        Args:
+          - phoneme_input (Tensor): Input phoneme tensor (B, T_phon)
+          - melspec (Tensor): Ground-truth mel spectrogram (B, T_mel, n_mels)
+          - phoneme_lens (Tensor): Lengths of each phoneme sequence (B,)
+          - melspec_lens (Tensor): Lengths of each mel sequence (B,)
+
+        Returns:
+          - Dict[str, Tensor]
+        """
+
+        go_frame = torch.zeros_like(melspec[:, :1, :])
+        tgt_in = torch.cat((go_frame, melspec[:, :-1, :]), dim=1)
+
+        (
+            src_key_padding_mask,
+            tgt_key_padding_mask,
+            tgt_mask
+        ) = self._get_mask(phoneme_lens, melspec_lens)
+       
+        # encoder
+        src_in = self.pe(self.enc_prenet(self.emb(phoneme)))
+        memory = self.encoder(
+            src=src_in,
+            src_key_padding_mask=src_key_padding_mask
+        )
+
+        # decoder
+        tgt_in = self.pe(self.dec_prenet(tgt_in))
+        tgt_out, alignments = self.decoder(
+            tgt=tgt_in,
+            memory=memory,
+            tgt_mask=tgt_mask,
+            tgt_key_padding_mask=tgt_key_padding_mask,
+            memory_key_padding_mask=src_key_padding_mask
+        )
+
+        # mel linear and postnet
+        pred_melspec = self.linear1(tgt_out)
+        post_melspec = self.postnet(pred_melspec) + pred_melspec
+
+        # stop token prediction
+        pred_stop = self.linear2(tgt_out).squeeze(-1)
+
+        return {
+            'pred_melspec': pred_melspec,
+            'post_melspec': post_melspec,
+            'pred_stop': pred_stop,
+            'alignments': alignments,
+        }
+
+
+    def inference(
+        self, 
+        phoneme: torch.Tensor, 
+        phoneme_lens: torch.Tensor, 
+        max_len: int = 1500, 
+        stop_threshold: float = 0.5
+    ) -> dict:
+        """
+        Args:
+            phoneme (Tensor): Input phoneme tensor (1, T_phon, H)
+            max_len (int): Maximum length of the output mel spectrogram
+            stop_threshold (float): Threshold for stop token prediction
+
+        Returns:
+            Tensor: Predicted mel spectrogram (1, T_mel, n_mels)
+        """
+
+        B = phoneme.size(0)
+        self.eval()
+
+        # encoder part
+        src_in = self.pe(self.enc_prenet(self.emb(phoneme)))
+        memory = self.encoder(
+            src=src_in
+        )
+
+        # decoder
+        ys = [torch.zeros(B, 1, self.n_mels, device=self.device)]
+        stop_history = []
+
+        for t in range(1, max_len):
+            tgt_in = torch.cat(ys, dim=1)
+            tgt_in = self.pe(self.dec_prenet(tgt_in))
+
+            _, _, tgt_mask = self._get_mask(mel_lens=torch.tensor([t] * B, device=self.device))
+            tgt_out, _ = self.decoder(
+                tgt=tgt_in,
+                memory=memory,
+                tgt_mask=tgt_mask,
+                # tgt_is_causal=True,
+            )
+
+            cur_frame = tgt_out[:, -1:, :]
+            pred_mel  = self.linear1(cur_frame)
+            pred_stop = self.linear2(cur_frame).squeeze(-1)
+            ys.append(pred_mel)
+            stop_history.append(pred_stop)
+
+            prob = torch.sigmoid(pred_stop)  # (B,)
+            if (prob >= stop_threshold).all():
                 break
-            elif y_hat.size(1) == max_len:
-                print("Warning! Reached max decoder steps")
-                break
-            else:
-                y_hat = torch.cat([y_hat, frame[:,-1:,:]], dim=1)
-                gate_outputs = torch.cat([gate_outputs, gate[:,-1:,:]], dim=1)
-        post_y_hat = self.postnet(y_hat.transpose(1,2)).transpose(1,2) + y_hat
-        return self.parse_output([post_y_hat, y_hat, gate])
-    
+
+        # Concatenate all predicted mel frames        
+        pred_melspec = torch.cat(ys[1:], dim=1)  # Skip the initial zero frame
+        post_melspec = self.postnet(pred_melspec) + pred_melspec
+
+        return {
+            'pred_melspec': pred_melspec,
+            'post_melspec': post_melspec,
+            'pred_stop': torch.stack(stop_history, dim=1),
+        }

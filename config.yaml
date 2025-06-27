@@ -1,0 +1,59 @@
+###########################################################
+# Path configuration
+###########################################################
+path:
+  data: "/workspace/data/LJSpeech-1.1"
+  preprocessed: "/workspace/preprocessed"
+  experiment: "/workspace/experiment"
+
+###########################################################
+# Audio configuration
+###########################################################
+audio:
+  sample_rate: 22050
+  n_fft: 1024
+  hop_length: 256
+  win_length: 1024
+  fmin: 0.0
+  fmax: 8000.0
+  n_mels: 80
+  normalize_mel: true
+
+###########################################################
+# Model configuration
+###########################################################
+model:
+  encoder_prenet_n_layers: 3
+  encoder_prenet_in_channel: 256
+  encoder_prenet_out_channel: 256
+  encoder_prenet_kernel_size: 5
+  encoder_prenet_dropout: 0.5
+  encoder_n_layers: 3
+  encoder_n_head: 4
+  encoder_d_ffn: 1024
+  encoder_dropout: 0.1
+  decoder_n_layers: 3
+  decoder_n_head: 4
+  decoder_d_ffn: 1024
+  decoder_dropout: 0.1
+  postnet_n_layers: 5
+  postnet_kernel_size: 5
+  postnet_dropout: 0.5
+  d_model: 256
+
+###########################################################
+# Training setup
+###########################################################
+training:
+  batch_size: 64
+  num_workers: 4
+  weight_decay: 0.000001
+  max_patience: 50
+  num_epochs: 300
+  max_grad_norm: 1.0
+  warmup_steps: 4000
+  grad_acc_steps: 1
+  log_interval: 5
+
+loss:
+  stop_weight: 8.0

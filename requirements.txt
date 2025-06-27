@@ -1,0 +1,8 @@
+speechbrain
+librosa
+matplotlib
+g2p_en
+torchcontrib
+datetime
+lightning
+loguru

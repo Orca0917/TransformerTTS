@@ -1,52 +1,55 @@
+import os
+import yaml
 import torch
-from dataset import TextMelLoader, TextMelCollate
-from config import Config
-from torch.utils.data import DataLoader
-from model import TransformerTTS
-from loss import TransformerTTSLoss
-from tqdm import tqdm
-from utils.visualization import visualize_spectrograms
+from loguru import logger
 
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
-
-def train(config):
-    transformer_tts_dataset = TextMelLoader("./data/metadata.csv", config)
-    collate_fn = TextMelCollate()
-    dataloader = DataLoader(transformer_tts_dataset, batch_size=config.batch_size, shuffle=True, drop_last=True, collate_fn=collate_fn)
-
-    config = Config()
-    model = TransformerTTS(config).to(device)
-    criterion = TransformerTTSLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
-
-    # print(len(dataloader))
-    epoch = 100
-    # 데이터로더에서 데이터를 가져와서 확인하기
-    for epoch in range(epoch):
-        tqdm_bar = tqdm(enumerate(dataloader), total=len(dataloader))
-        for i, data in tqdm_bar:
-
-            phoneme, phoneme_len, mel, stop, mel_len = data
-            phoneme = phoneme.to(device)
-            mel = mel.to(device)
-            stop = stop.to(device)
-            phoneme_len = phoneme_len.to(device)
-            mel_len = mel_len.to(device)
-
-            post_mel_pred, mel_pred, stop_pred = model(phoneme, phoneme_len, mel, mel_len)
-
-            loss = criterion(post_mel_pred, mel_pred, stop_pred, mel, stop)
-            tqdm_bar.set_postfix(epoch=epoch+1, loss=loss.item())
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-
-            if i % 100 == 0:
-                pred = post_mel_pred[0].detach().cpu().numpy().transpose(1, 0)
-                targ = mel[0].detach().cpu().numpy().transpose(1, 0)
-                # visualize_spectrograms(pred, targ)
+from dataset import DataModule
+from util import increment_path, setup_logger
+from pytorch_lightning import Trainer, seed_everything
+from lightning.lightning_wrapper import LightningModule
+from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 
 
-if __name__ == "__main__":
-    config = Config()
-    train(config)
+def main(config_path: str = 'config.yaml'):
+
+    config = yaml.safe_load(open(config_path))
+    
+    # logging
+    exp_dir = increment_path(config['path']['experiment'])
+    setup_logger(os.path.join(exp_dir, 'train.log'))
+    logger.info(f"Experiment path: {exp_dir}")
+
+    # seed
+    seed_everything(42)
+
+    # dataset
+    data_module = DataModule(config)
+    model = LightningModule(config, exp_dir)
+    
+    # early stopping
+    early_stop_callback = EarlyStopping(
+        monitor='val_loss',
+        patience=config['training']['max_patience'],
+        mode='min',
+        verbose=True
+    )
+
+    trainer = Trainer(
+        logger=False,
+        max_epochs=config['training']['num_epochs'],
+        gradient_clip_val=config['training']['max_grad_norm'],
+        accumulate_grad_batches=config['training']['grad_acc_steps'],
+        log_every_n_steps=10,
+        val_check_interval=1.0,
+        default_root_dir=exp_dir,
+        accelerator='gpu' if torch.cuda.is_available() else 'cpu',
+        devices=1,
+        enable_progress_bar=False,
+        callbacks=[early_stop_callback],
+    )
+    trainer.fit(model, datamodule=data_module)
+    logger.info("Training complete")
+
+
+if __name__ == '__main__':
+    main()
