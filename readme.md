@@ -26,7 +26,7 @@ Training was performed with a batch size of 16 on the complete LJSpeech dataset 
 
 This GIF visually compares the model's predicted melspectrograms against the ground truth melspectrograms, illustrating its ability to generate the target acoustic features.
 
-![training result](./asset/transformer-tts-result.gif)
+![training result](./asset/melspec_per_batch.gif)
 
 ### 2. Alignment Prediction (Per Batch)
 
