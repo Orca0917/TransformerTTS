@@ -20,7 +20,7 @@ This project utilizes the widely recognized LJSpeech dataset for training. LJSpe
 
 ## ✨ Results
 
-Training was performed with a batch size of 16 on the complete LJSpeech dataset for 10 epochs. The current results are visualized through a series of GIFs, demonstrating various aspects of the model's performance during training and initial inference.
+Training was performed with a batch size of 16 on the complete LJSpeech dataset for 181 epochs. The current results are visualized through a series of GIFs, demonstrating various aspects of the model's performance during training and initial inference.
 
 ### 1. Melspectrogram Prediction
 
