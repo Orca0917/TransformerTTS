@@ -3,18 +3,22 @@ import pytorch_lightning as pl
 
 from loguru import logger
 from typing import Dict, Any
-from model.model import TransformerTTS
+
+from model import TransformerTTS
 from loss import TransformerTTSLoss
-from util import (
-    save_specs,
-    plot_melspec,
+from utils.util import (
     prepare_batch,
     get_noam_scheduler,
-    plot_alignment_grid,
     apply_teacher_forcing,
     get_teacher_forcing_ratio,
 )
-
+from utils.plot import (
+    plot_mels_batch,
+    plot_mels_single,
+    plot_mels_scheduled,
+    plot_alignments_batch,
+    plot_alignment_single
+)
 
 class LightningModule(pl.LightningModule):
     def __init__(
@@ -57,7 +61,8 @@ class LightningModule(pl.LightningModule):
         # scheduled sampling
         p_tf = get_teacher_forcing_ratio(
             epoch=self.current_epoch + 1,
-            total_epochs=self.config['training']['num_epochs'], 
+            total_epochs=self.config['training']['num_epochs'],
+            mode=self.config['training']['teacher_forcing_mode'], 
             cycles=1
         )
         mel_mixed = apply_teacher_forcing(
@@ -74,6 +79,7 @@ class LightningModule(pl.LightningModule):
 
         # logging
         if batch_idx % self.log_interval == 0:
+            plot_mels_scheduled(mel_mixed, melspec, self.current_epoch + 1, self.exp_dir)
             self.log_step_info(batch_idx, 'TRAIN', loss)
         self.train_losses.append(loss['total'].item())
 
@@ -113,8 +119,9 @@ class LightningModule(pl.LightningModule):
 
         # logging
         if batch_idx == 0:
-            save_specs(output['pred_melspec'], melspec, melspec_lens, self.current_epoch + 1, self.exp_dir, valid=True)
-            plot_alignment_grid(output['alignments'], self.current_epoch + 1, self.exp_dir)
+            plot_mels_batch(output['pred_melspec'], melspec, self.current_epoch + 1, self.exp_dir)
+            plot_alignments_batch(output['alignments'], self.current_epoch + 1, self.exp_dir, top_k=4)
+            plot_alignment_single(output['alignments'], idx=0, epoch=self.current_epoch + 1, save_dir=self.exp_dir)
 
         if batch_idx % self.log_interval == 0:
             self.log_step_info(batch_idx, 'VALID', loss)
@@ -147,7 +154,7 @@ class LightningModule(pl.LightningModule):
                 pred_melspec = self.model.inference(phoneme[:1], phoneme_lens[:1])['pred_melspec']
                 
                 # logging
-                plot_melspec(pred_melspec, melspec[:1], self.current_epoch + 1, self.exp_dir)
+                plot_mels_single(pred_melspec[0], melspec[0], self.current_epoch + 1, self.exp_dir)
 
 
     def configure_optimizers(self):

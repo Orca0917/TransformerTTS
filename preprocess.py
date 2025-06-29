@@ -1,5 +1,6 @@
 import os
 import yaml
+import json
 import numpy as np
 from tqdm import tqdm
 from g2p_en import G2p
@@ -42,20 +43,32 @@ def process_and_save(audio_id, transcript, g2p, symbols, config, out_dir, mean, 
 
 
 def compute_global_stats(transcripts, config):
-    sum_mel = np.zeros(config['audio']['n_mels'])
-    sum_sq = np.zeros(config['audio']['n_mels'])
-    count = 0
+    total_sum = 0.0
+    total_sq_sum = 0.0
+    total_count = 0
 
     for audio_id in tqdm(transcripts, desc="Computing global mel stats"):
-        mel = mel_spectrogram(audio_id, config)
-        sum_mel += mel.sum(axis=1)
-        sum_sq += (mel ** 2).sum(axis=1)
-        count += mel.shape[1]
+        mel = mel_spectrogram(audio_id, config)     # mel   :(#mel, #frame)
+
+        n_mels, T = mel.shape
+        total_count += n_mels * T
+
+        total_sum += mel.sum()
+        total_sq_sum += (mel ** 2).sum()
     
-    mean = sum_mel / count
-    var = (sum_sq / count) - (mean ** 2)
+    mean = total_sum / total_count
+    var = total_sq_sum / total_count - mean ** 2
     std = np.sqrt(var + 1e-8)
+
     logger.info("Computed global mel mean/std.")
+    stats = {
+        "mean": mean.item() if isinstance(mean, np.generic) else float(mean),
+        "std" : std.item()  if isinstance(std,  np.generic) else float(std),
+    }
+    with open("stats.json", "w", encoding="utf-8") as f:
+        json.dump(stats, f, ensure_ascii=False, indent=2)
+    logger.info(f"Saved global stats to stats.json")
+
     return mean, std
 
 

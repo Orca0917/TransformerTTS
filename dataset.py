@@ -1,8 +1,9 @@
 import os
-import torch
 import numpy as np
 import pytorch_lightning as pl
 from typing import Dict, Literal
+
+import torch
 from torch.utils.data import Dataset
 
 class DataModule(pl.LightningDataModule):

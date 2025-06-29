@@ -1,27 +1,26 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torch import Tensor
+
 from typing import Dict
 
 
 class TransformerTTSLoss(nn.Module):
-    def __init__(
-        self,
-        stop_weight: float = 8.0,
-    ):
+    def __init__(self, stop_weight: float = 8.0):
         super().__init__()
         self.mse = nn.MSELoss()
         self.register_buffer("pos_weight", torch.tensor(stop_weight))
 
     def forward(
         self,
-        outputs: Dict[str, torch.Tensor],
-        mel: torch.Tensor,
-        lengths: torch.Tensor
-    ) -> Dict[str, torch.Tensor]:
-        pred_melspec  = outputs["pred_melspec"]        # (B, T, C)
-        post_melspec  = outputs["post_melspec"]        # (B, T, C)
-        pred_stop = outputs["pred_stop"]       # (B, T)
+        outputs: Dict[str, Tensor],
+        mel: Tensor,
+        lengths: Tensor
+    ) -> Dict[str, Tensor]:
+        pred_melspec  = outputs["pred_melspec"]     # (#bs, #frame, #mel)
+        post_melspec  = outputs["post_melspec"]     # (#bs, #frame, #mel)
+        pred_stop     = outputs["pred_stop"]        # (#bs, #frame)
 
         B, T, C = pred_melspec.size()
         device = lengths.device

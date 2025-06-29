@@ -45,15 +45,17 @@ model:
 # Training setup
 ###########################################################
 training:
-  batch_size: 64
+  seed: 42
+  batch_size: 16
   num_workers: 4
   weight_decay: 0.000001
   max_patience: 50
   num_epochs: 300
   max_grad_norm: 1.0
   warmup_steps: 4000
-  grad_acc_steps: 1
-  log_interval: 5
+  grad_acc_steps: 4
+  log_interval: 100
+  teacher_forcing_mode: "linear"
 
 loss:
   stop_weight: 8.0

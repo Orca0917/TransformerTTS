@@ -68,8 +68,8 @@ def seq2phoneme(seq, symbols):
 
 
 def normalize(mel, mean, std):
-    return (mel - mean[:, None]) / (std[:, None] + 1e-5)
+    return (mel - mean) / (std + 1e-8)
 
 
 def denormalize(mel, mean, std):
-    return (mel * (std[:, None] + 1e-5)) + mean[:, None]
+    return (mel * (std + 1e-8)) + mean

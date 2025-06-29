@@ -4,9 +4,10 @@ import torch
 from loguru import logger
 
 from dataset import DataModule
-from util import increment_path, setup_logger
+from lightning_module import LightningModule
+from utils.util import increment_path, setup_logger
+
 from pytorch_lightning import Trainer, seed_everything
-from lightning.lightning_wrapper import LightningModule
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 
 
@@ -20,7 +21,7 @@ def main(config_path: str = 'config.yaml'):
     logger.info(f"Experiment path: {exp_dir}")
 
     # seed
-    seed_everything(42)
+    seed_everything(config['training']['seed'])
 
     # dataset
     data_module = DataModule(config)
