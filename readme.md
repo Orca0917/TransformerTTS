@@ -26,25 +26,25 @@ Training was performed with a batch size of 16 on the complete LJSpeech dataset 
 
 This GIF visually compares the model's predicted melspectrograms against the ground truth melspectrograms, illustrating its ability to generate the target acoustic features.
 
-![training result](./asset/melspec_per_batch.gif)
+![training result](./asset/mels_batch.gif)
 
 ### 2. Alignment Prediction (Per Batch)
 
 This visualization displays the cross-attention alignments across different samples within a batch (specifically, a batch size of 8 for this visualization). Effective alignment between input text and output speech features is crucial for coherent synthesis.
 
-![training result: alignment 1](./asset/alignment_per_batch.gif)
+![training result: alignment 1](./asset/align_batch.gif)
 
 ### 3. Alignment Prediction (Per Layer, Head)
 
 Here, cross-attention alignments are presented per decoder layer and per attention head. This offers insights into how different parts of the Transformer learn to attend to relevant parts of the input sequence, which is vital for proper sequence-to-sequence mapping.
 
-![training result: alignment 2](./asset/alignment_per_layer_head.gif)
+![training result: alignment 2](./asset/align_single.gif)
 
 ### 4. Inference Challenges
 
 During training, a teacher forcing method was employed. While this approach significantly accelerates training by allowing parallel processing of decoder inputs, it often leads to a discrepancy between training and inference performance. As observed in the initial experiments, direct inference results without teacher forcing were notably poor. This is a common challenge, where the model becomes overly reliant on correct past tokens during training and struggles when generating tokens sequentially without such guidance during inference.
 
-![Wrong inference](./asset/infer_epoch_81.png)
+![Wrong inference](./asset/mels_single.gif)
 
 <br/>
 
