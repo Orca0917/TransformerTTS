@@ -30,7 +30,7 @@ This GIF visually compares the model's predicted melspectrograms against the gro
 
 ### 2. Alignment Prediction (Per Batch)
 
-This visualization displays the cross-attention alignments across different samples within a batch (specifically, a batch size of 8 for this visualization). Effective alignment between input text and output speech features is crucial for coherent synthesis.
+This visualization displays the cross-attention alignments across different samples within a batch (specifically, a batch size of 4 for this visualization). Effective alignment between input text and output speech features is crucial for coherent synthesis.
 
 ![training result: alignment 1](./asset/align_batch.gif)
 
